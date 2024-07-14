@@ -3,16 +3,24 @@
 namespace App\Http\Controllers\Admins;
 
 use App\Http\Controllers\Controller;
+use App\Models\DanhMuc;
+use App\Models\SanPham;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SanPhamController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+
     public function index()
     {
-        return view('admins.contents.sanpham.sanpham');
+        $listPr = SanPham::orderBy('id_san_pham')->get();
+
+        return view('admins.contents.sanpham.index',[
+            'listPr' => $listPr
+        ]);
     }
 
     /**
@@ -20,7 +28,11 @@ class SanPhamController extends Controller
      */
     public function create()
     {
-        //
+        // $listDm = DanhMuc::orderBy('id_danh_muc')->get();
+        $listDm = DB::table('danh_muc')->get();
+        return view('admins.contents.sanpham.create',[
+            'listDm' => $listDm
+        ]);
     }
 
     /**
@@ -28,7 +40,21 @@ class SanPhamController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Xử lí ảnh
+        if ($request->hasFile('hinh_anh')) {
+            $fileName = $request->file('hinh_anh')->store('uploads/sanpham', 'public');
+        }else{
+            $fileName = null;
+        }
+       $data = [
+        'ten_san_pham'=>$request->ten_san_pham,
+        'gia'=>$request->gia,
+        'hinh_anh'=>$fileName,
+        'mo_ta'=>$request->mo_ta,
+        'so_luong'=>$request->so_luong,
+        'trang_thai'=>$request->trang_thai,
+        'id_danh_muc'=>$request->id_danh_muc,
+       ];
     }
 
     /**
