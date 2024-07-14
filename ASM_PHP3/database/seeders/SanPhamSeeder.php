@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Faker\Factory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -14,17 +15,20 @@ class SanPhamSeeder extends Seeder
     public function run(): void
     {
         //
-        DB::table("san_pham")->insert([
-            
-                "id"=> "1",
-                "ten_san_pham"=> "iphone X",
-                "gia"=> "10000",
-                "hinh_anh"=> "Chưa có",
-                "mo_ta"=> "Máy xịn",
-                "so_luong"=> "100",
-                 "trang_thai"=> "1",
-                 "san_pham_id"=>"2"
+        $faker = Factory::create();
+        $limit = 16 ;
+
+        for ($i=0; $i < $limit; $i++) { 
+            DB::table("san_pham")->insert([
+               'ten_san_pham'=> $faker->name,
+               'gia'=> $faker->numerify($string = '#####'),
+               'hinh_anh'=> $faker->imageUrl($width = 50, $height = 50),
+               'mo_ta'=> $faker->sentence,
+               'so_luong'=> $faker->numerify($string = '##'),
+               'trang_thai'=> $faker->boolean(),
+               'id_danh_muc'=>$faker->numerify($string = '###')
            
         ]);
+        }
     }
 }

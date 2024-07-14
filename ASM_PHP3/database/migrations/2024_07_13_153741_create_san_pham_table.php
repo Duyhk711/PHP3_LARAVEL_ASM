@@ -12,14 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('san_pham', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id_san_pham');
             $table->string('ten_san_pham');
             $table->double('gia');
             $table->string('hinh_anh');
             $table->string('mo_ta');
             $table->integer('so_luong');
             $table->boolean('trang_thai');
-            $table->integer('san_pham_id');
+            $table->integer('id_danh_muc');
             $table->timestamps();
         });
     }
