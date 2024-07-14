@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admins\SanPhamController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+// Route::get('/dashboard', function () {
+//     return view('admins.index');
+// });
+
+Route::get('/dashboard', [HomeController::class, 'index']);
+Route::resource('/sanpham',SanPhamController::class);
+
