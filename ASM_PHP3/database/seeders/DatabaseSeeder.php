@@ -21,11 +21,11 @@ class DatabaseSeeder extends Seeder
         $this->call([
             SanPhamSeeder::class,
             DanhMucSeeder::class,
-            GioHangSeeder::class
+           GioHangSeeder::class,
             ChiTietDonHangSeeder::class,
             ChiTietGioHangSeeder::class,
-            DonHangSeeder::class,
-            GioHangSeeder::class,
+        
+      DonHangSeeder::class,
             TrangThaiDonHangSeeder::class
         ]);
     }

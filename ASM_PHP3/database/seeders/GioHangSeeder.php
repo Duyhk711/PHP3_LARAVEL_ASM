@@ -16,11 +16,11 @@ class GioHangSeeder extends Seeder
         DB::table('gio_hang')->insert([
             [
                 "id_gio_hang"=>"1",
-                "nguoi_dung_id"=> "2004",
+                "nguoi_dung_id"=> "1",
             ],
             [
               "id_gio_hang"=>"2",
-                "nguoi_dung_id"=> "2005",  
+                "nguoi_dung_id"=> "2",  
             ]
         ]);
         //

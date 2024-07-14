@@ -14,35 +14,21 @@ class DonHangSeeder extends Seeder
     public function run(): void
     {
         //
-        DB::table("")->insert([
+        DB::table("don_hang")->insert([
             [
                 "id_don_hang"=> "1",
-                "ma_don_hang"=> "sp01",
-                "ten_nguoi_nhan"=> "Nguyễn Văn A",
-                "email_nguoi_nhan"=> "anguyenvan@abc.com",
-                "so_dien_thoai"=> "0345672386",
-                "dia_chi"=> "Tổ A, Phường B, Huyện C",
-                "ngay_dat"=> "2024/15/07",
-                "nguoi_dung_id"=> "2004",
-                "tong_tien"=> "100000",
-                "ghi_chu"=> "Không",
+                "ma_don_hang"=> "dh01",
+                "ten_nguoi_nhan"=> "Tống Hoàng Hiệp",
+                "email_nguoi_nhan"=> "hiepthph123@abc.com",
+                "so_dien_thoai"=> "0346574434",
+                "dia_chi"=> "Yên Hưng, Yên Mô, Ninh Bình",
+                "ngay_dat"=> "2024-07-15",
+                "nguoi_dung_id"=> "2",
+                "tong_tien"=> "1000",
+                "ghi_chu"=> "không",
                 "phuong_thuc_thanh_toan"=> "Tiền mặt",
-                "id_trang_thai"=> "1",
-            ],
-            [
-                "id_don_hang"=> "2",
-                "ma_don_hang"=> "sp02",
-                "ten_nguoi_nhan"=> "Lê Văn D",
-                "email_nguoi_nhan"=> "dlevan@abc.com",
-                "so_dien_thoai"=> "0345672386",
-                "dia_chi"=> "Tổ C, Phường A, Huyện C",
-                "ngay_dat"=> "2024/15/07",
-                "nguoi_dung_id"=> "2005",
-                "tong_tien"=> "100000",
-                "ghi_chu"=> "Không",
-                "phuong_thuc_thanh_toan"=> "Chuyển Khoản",
-                "id_trang_thai"=> "1",
-            ],
+                "id_trang_thai"=> "3",
+            ]
         ]);
     }
 }
