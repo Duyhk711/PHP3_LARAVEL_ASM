@@ -1,5 +1,5 @@
-<footer class=" mt-5 container  align-bottom end-0  pt-5" >
-    <div class="container-fluid position-absolute bottom-0 end-0" style="width: 95%">
+<footer class=" mt-3 container  align-bottom end-0" >
+    <div class="container-fluid position-absolute bottom-0 end-0" style="width: 98%">
       <div class="row align-items-center  ">
         <div class="col-lg-6 mb-lg-0 mb-4 ">
           <div class="copyright text-end text-sm text-muted text-lg-end">

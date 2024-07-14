@@ -31,6 +31,7 @@
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <link href="{{asset('assets/admins/css/nucleo-svg.css" rel="stylesheet')}}" />
+  <link rel="stylesheet" href="{{asset('assets/admins/css/sidebar.css')}}">
   <!-- CSS Files -->
   <link id="pagestyle" href="{{asset('assets/admins/css/argon-dashboard.css?v=2.0.4')}}" rel="stylesheet" />
   
