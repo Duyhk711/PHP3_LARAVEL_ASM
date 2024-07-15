@@ -16,19 +16,19 @@ class DanhMucSeeder extends Seeder
         //
         DB::table('danh_muc')->insert([
             [
-                'id' => '1',
+                'id_danh_muc' => '1',
                 'ten_danh_muc' => 'Bánh kem'
             ],
             [
-                'id' => '2',
+                'id_danh_muc' => '2',
                 'ten_danh_muc' => 'Đồ uống'
             ],
             [
-                'id' => '3',
+                'id_danh_muc' => '3',
                 'ten_danh_muc' => 'Đồ ăn nhanh'
             ],
             [
-                'id' => '4',
+                'id_danh_muc' => '4',
                 'ten_danh_muc' => 'Đồ chiên'
             ],
         ]);

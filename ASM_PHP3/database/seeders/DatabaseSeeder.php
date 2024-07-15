@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
     //        GioHangSeeder::class,
     //         ChiTietDonHangSeeder::class,
     //         ChiTietGioHangSeeder::class,
-        
+        KhachHangSeeder::class,
     //   DonHangSeeder::class,
     //         TrangThaiDonHangSeeder::class
         ]);

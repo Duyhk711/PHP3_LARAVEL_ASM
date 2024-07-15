@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('danh_muc', function (Blueprint $table) {
-            $table->increments('id_danh_muc');
-            $table->string('ten_danh_muc');
-            $table->timestamps();
+        Schema::table('san_pham', function (Blueprint $table) {
+            //
+            $table->foreign('danh_muc_id')->references('id_danh_muc')->on('danh_muc');
         });
     }
 
@@ -23,6 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('danh_muc');
+        Schema::table('san_pham', function (Blueprint $table) {
+            //
+        });
     }
 };
