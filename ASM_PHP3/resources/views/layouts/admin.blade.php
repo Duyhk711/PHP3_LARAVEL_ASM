@@ -18,20 +18,24 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="{{asset('assets/admins/img/apple-icon.png')}}">
-  <link rel="icon" type="image/png" href="{{asset('assets/admins/img/favicon.png')}}">
+  {{-- <link rel="apple-touch-icon" sizes="76x76" href="{{asset('assets/admins/img/apple-icon.png')}}"> --}}
+  {{-- <link rel="icon" type="image/png" href="{{asset('assets/admins/img/favicon.png')}}"> --}}
   <title>
-    Argon Dashboard 2 by Creative Tim
+    ASM_NHOM7
   </title>
   <!--     Fonts and icons     -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  {{-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" /> --}}
   <!-- Nucleo Icons -->
   <link href="{{asset('assets/admins/css/nucleo-icons.css')}}" rel="stylesheet" />
   <link href="{{asset('assets/admins/css/nucleo-svg.css')}}" rel="stylesheet" />
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <link href="{{asset('assets/admins/css/nucleo-svg.css" rel="stylesheet')}}" />
-  <link rel="stylesheet" href="{{asset('assets/admins/css/sidebar.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/admins/css/siderbar.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/admins/lib/bootstrap.css')}}">
+  <script src="{{asset('assets/admins/lib/bootstrap.js')}}"></script>
+  <script src="{{asset('assets/admins/lib/font-fontawesome-ae333ffef2.js')}}"></script>
+
   <!-- CSS Files -->
   <link id="pagestyle" href="{{asset('assets/admins/css/argon-dashboard.css?v=2.0.4')}}" rel="stylesheet" />
   
@@ -42,8 +46,8 @@
   <div class="min-height-300 bg-primary position-fixed w-100" ></div>
   @include('admins.blocks.sidebar')
 
-  <main class="main-content position-relative border-radius-lg mb-4">
-    <!-- Navbar -->
+  <main class="main-content position-relative border-radius-lg mb-4  ">
+    <!-- Navbar --> 
     
     @include('admins.blocks.header')
     <!-- End Navbar -->
