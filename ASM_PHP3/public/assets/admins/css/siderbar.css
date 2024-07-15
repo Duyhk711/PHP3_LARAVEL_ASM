@@ -10,3 +10,7 @@
     height: 100%;
     overflow: hidden;
   }
+
+  .navbar-main{
+    position: fixed;
+  }

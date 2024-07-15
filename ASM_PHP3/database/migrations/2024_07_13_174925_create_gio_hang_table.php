@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('gio_hang', function (Blueprint $table) {
             $table->increments('id_gio_hang');
-            $table->integer('nguoi_dung_id');
+            $table->foreign('nguoi_dung_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
