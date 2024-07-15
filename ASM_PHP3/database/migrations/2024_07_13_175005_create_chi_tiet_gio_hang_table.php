@@ -15,6 +15,7 @@ return new class extends Migration
             $table->increments('id');
             $table->foreign('id_gio_hang')->references('id_gio_hang')->on('gio_hang');
             $table->foreign('id_san_pham')->references('id_san_pham')->on('san_pham');
+
             $table->integer('so_luong');
             $table->timestamps();
         });
