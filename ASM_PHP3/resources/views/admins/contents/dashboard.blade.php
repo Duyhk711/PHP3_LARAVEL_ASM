@@ -375,3 +375,7 @@
   </div>
 
 @endsection
+
+@section('pages-title')
+    {{$pages_title}}
+@endsection

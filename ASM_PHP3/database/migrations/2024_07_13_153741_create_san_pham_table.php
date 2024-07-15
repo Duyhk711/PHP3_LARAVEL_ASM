@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('san_pham', function (Blueprint $table) {
             $table->increments('id_san_pham');
+            $table->string('ma_san_pham')->unique(); 
             $table->string('ten_san_pham');
             $table->double('gia');
             $table->string('hinh_anh');
             $table->string('mo_ta');
             $table->integer('so_luong');
             $table->boolean('trang_thai');
-            $table->integer('id_danh_muc');
+            $table->foreign('id_danh_muc')->references('id_danh_muc')->on('danh_muc');
             $table->timestamps();
         });
     }
