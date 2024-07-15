@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
 
 class ChiTietDonHangSeeder extends Seeder
 {
@@ -13,7 +15,7 @@ class ChiTietDonHangSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+
         DB::table("chi_tiet_don_hang")->insert([
             [
                 "id_chi_tiet"=> "001",

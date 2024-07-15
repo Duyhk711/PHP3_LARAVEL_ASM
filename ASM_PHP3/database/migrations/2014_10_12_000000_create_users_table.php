@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('so_dien_thoai');
+            $table->string('so_dien_thoai')->unique();
             $table->string('dia_chi');
             $table->rememberToken();
             $table->timestamps();
