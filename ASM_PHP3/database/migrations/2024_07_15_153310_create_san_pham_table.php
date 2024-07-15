@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('mo_ta');
             $table->integer('so_luong');
             $table->boolean('trang_thai');
-            $table->foreign('id_danh_muc')->references('id')->on('danh_muc');
+            
             $table->timestamps();
         });
     }
