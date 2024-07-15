@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DanhMucSeeder extends Seeder
 {
@@ -13,21 +13,22 @@ class DanhMucSeeder extends Seeder
      */
     public function run(): void
     {
+        //
         DB::table('danh_muc')->insert([
             [
-                'id_danh_muc' => '1',
+                'id' => '1',
                 'ten_danh_muc' => 'Bánh kem'
             ],
             [
-                'id_danh_muc' => '2',
+                'id' => '2',
                 'ten_danh_muc' => 'Đồ uống'
             ],
             [
-                'id_danh_muc' => '3',
+                'id' => '3',
                 'ten_danh_muc' => 'Đồ ăn nhanh'
             ],
             [
-                'id_danh_muc' => '4',
+                'id' => '4',
                 'ten_danh_muc' => 'Đồ chiên'
             ],
         ]);
