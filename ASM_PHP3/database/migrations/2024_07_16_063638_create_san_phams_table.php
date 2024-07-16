@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('san_phams', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('ma_san_pham')->unique(); 
             $table->string('ten_san_pham');
             $table->double('gia');
@@ -20,10 +20,8 @@ return new class extends Migration
             $table->string('mo_ta');
             $table->integer('so_luong');
             $table->boolean('trang_thai');
-            $table->integer('id_danh_muc')->unsigned();
+            $table->unsignedBigInteger('danh_muc_id');
             $table->timestamps();
-            $table->foreign('id_danh_muc')->references('id')->on('danh_mucs');
-
         });
     }
 

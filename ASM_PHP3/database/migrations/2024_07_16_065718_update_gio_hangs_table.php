@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('gio_hang', function (Blueprint $table) {
+        Schema::table('gio_hangs', function (Blueprint $table) {
             //
             $table->foreign('nguoi_dung_id')->references('id')->on('users')->onDelete('cascade');
         });
@@ -22,9 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('gio_hang', function (Blueprint $table) {
+        Schema::table('gio_hangs', function (Blueprint $table) {
             //
-            Schema::dropIfExists('gio_hang');
+            Schema::dropIfExists('gio_hangs');
         });
     }
 };
