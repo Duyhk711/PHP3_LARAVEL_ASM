@@ -16,17 +16,18 @@ class SanPhamSeeder extends Seeder
     {
         //
         $faker = Factory::create();
-        $limit = 16 ;
+        $limit = 10 ;
 
         for ($i=0; $i < $limit; $i++) { 
-            DB::table("san_pham")->insert([
+            DB::table("san_phams")->insert([
+               'ma_san_pham'=> $faker-> name,
                'ten_san_pham'=> $faker->name,
                'gia'=> $faker->numerify($string = '#####'),
                'hinh_anh'=> $faker->imageUrl($width = 50, $height = 50),
                'mo_ta'=> $faker->sentence,
                'so_luong'=> $faker->numerify($string = '##'),
                'trang_thai'=> $faker->boolean(),
-               'id_danh_muc'=>$faker->numerify($string = '###')
+               'danh_muc_id'=>$faker->numerify($string = '1')
            
         ]);
         }

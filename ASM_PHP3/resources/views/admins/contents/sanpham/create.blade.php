@@ -17,7 +17,7 @@
                                     <label for="" class="form-label">Tên danh mục:</label>
                                     <select name="id_danh_muc" id="id_danh_muc" class="form-select">
                                         @foreach ($listDm as $item)
-                                            <option value="{{ $item->id_danh_muc }}">{{ $item->ten_danh_muc}}</option>
+                                            <option value="{{ $item->id }}">{{ $item->ten_danh_muc}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -26,6 +26,11 @@
                                     <label for="" class="form-label">Tên sản phẩm:</label>
                                     <input type="text" class="form-control" name="ten_san_pham"
                                         placeholder="Nhập tên sản phẩm">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="" class="form-label">Mã sản phẩm:</label>
+                                    <input type="text" class="form-control" name="ma_san_pham"
+                                        placeholder="Nhập mã sản phẩm">
                                 </div>
                                 {{-- Giá sản phẩm --}}
                                 <div class="mb-3">
