@@ -10,6 +10,7 @@ class DonHang extends Model
     use HasFactory;
 
     protected $table = 'don_hang';
+    
     protected $fillable = 
         [
             'id_don_hang',

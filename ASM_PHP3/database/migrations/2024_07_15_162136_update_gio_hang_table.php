@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('trang_thai_don_hang', function (Blueprint $table) {
-            $table->id();
-            $table->string('ten_trang_thai');
-            $table->timestamps();
+        Schema::table('gio_hang', function (Blueprint $table) {
+            //
+            $table->foreign('nguoi_dung_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -23,6 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('trang_thai_don_hang');
+        Schema::table('gio_hang', function (Blueprint $table) {
+            //
+            Schema::dropIfExists('gio_hang');
+        });
     }
 };

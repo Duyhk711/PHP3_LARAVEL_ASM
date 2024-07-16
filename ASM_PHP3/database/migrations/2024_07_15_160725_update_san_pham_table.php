@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('trang_thai_don_hang', function (Blueprint $table) {
-            $table->id();
-            $table->string('ten_trang_thai');
-            $table->timestamps();
+        Schema::table('san_pham', function (Blueprint $table) {
+            //
+            $table->foreign('danh_muc_id')->references('id_danh_muc')->on('danh_muc');
         });
     }
 
@@ -23,6 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('trang_thai_don_hang');
+        Schema::table('san_pham', function (Blueprint $table) {
+            //
+        });
     }
 };
