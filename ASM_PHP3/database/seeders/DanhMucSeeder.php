@@ -13,12 +13,10 @@ class DanhMucSeeder extends Seeder
      */
     public function run(): void
     {
-<<<<<<< HEAD
-        //
-        DB::table('danh_muc')->insert([
-=======
+
+
         DB::table('danh_mucs')->insert([
->>>>>>> main
+
             [
                 
                 'ten_danh_muc' => 'Bánh kem'
