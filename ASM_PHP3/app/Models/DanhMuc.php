@@ -11,9 +11,9 @@ class DanhMuc extends Model
     use HasFactory;
 
 
-    protected $table = 'danh_muc';
+    protected $table = 'danh_mucs';
     protected $fillable = [
-        'id_danh_muc',
+        'id',
         'ten_danh_muc'
     ];
 }
