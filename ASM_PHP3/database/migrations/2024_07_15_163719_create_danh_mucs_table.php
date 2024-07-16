@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('gio_hang', function (Blueprint $table) {
-            $table->increments('id_gio_hang');
-            $table->foreign('nguoi_dung_id')->references('id')->on('users');
+        Schema::create('danh_mucs', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('ten_danh_muc');
             $table->timestamps();
         });
     }
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('gio_hang');
+        Schema::dropIfExists('danh_mucs');
     }
 };

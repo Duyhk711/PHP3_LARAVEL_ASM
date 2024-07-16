@@ -15,7 +15,8 @@
                         <table class="table  table-hover p-0  p-3 mb-5 bg-body "  >
                             <thead  style="background-color: rgb(234, 246, 255)">
                                 <tr >
-                                    <th class="text-center" >ID</th>
+                                   
+                                    <th class="text-center" >MÃ SP</th>
                                     <th class="text-center" >Tên SP</th>
                                     <th class="text-center" >Giá</th>
                                     <th class="text-center" >Hình ảnh</th>
@@ -29,7 +30,8 @@
                             <tbody class="table-Default">
                                 @forelse ($listPr as $item)
                                     <tr>
-                                        <td class=" text-center  "  >{{ $item->id_san_pham }}</td>
+                                        
+                                        <td class=" text-center  "  >{{ $item->ma_san_pham }}</td>
 
                                         <td class=" text-center" style="max-width: 70px; overflow: hidden; ">{{ $item->ten_san_pham }}</td>
                                         
