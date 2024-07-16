@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('so_dien_thoai');
             $table->string('dia_chi');
             $table->date('ngay_dat');
-            
             $table->double('tong_tien');
             $table->string('ghi_chu');
             $table->string('phuong_thuc_thanh_toan');
