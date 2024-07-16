@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('password');
             $table->string('so_dien_thoai')->unique();
             $table->string('dia_chi');
-            
             $table->rememberToken();
             $table->timestamps();
         });
