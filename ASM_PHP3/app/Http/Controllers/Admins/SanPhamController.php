@@ -18,7 +18,7 @@ class SanPhamController extends Controller
 
     public function index()
     {
-        $listPr = SanPham::query()->latest('id_san_pham')->paginate(5);
+        $listPr = SanPham::query()->latest('id')->paginate(5);
         // $listPr = SanPham::orderByDesc('id_san_pham')->get();
         $pages_title = "Trang sản phẩm";
         return view('admins.contents.sanpham.index',[
@@ -33,7 +33,7 @@ class SanPhamController extends Controller
     public function create()
     {
         // $listDm = DanhMuc::orderBy('id_danh_muc')->get();
-        $listDm = DB::table('danh_muc')->get();
+        $listDm = DB::table('danh_mucs')->get();
         $pages_title = "Thêm sản phẩm";
         return view('admins.contents.sanpham.create',[
             'listDm' => $listDm,
