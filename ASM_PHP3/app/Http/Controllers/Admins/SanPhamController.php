@@ -16,7 +16,7 @@ class SanPhamController extends Controller
      * Display a listing of the resource.
      */
 
-     const PATH_UPLOAD = 'san_pham';
+     const PATH_UPLOAD = 'san_phams';
 
     public function index()
     {
