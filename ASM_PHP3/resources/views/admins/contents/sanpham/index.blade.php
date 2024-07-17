@@ -7,15 +7,24 @@
                 <h4 class="text-capitalize text-center">DANH SÁCH SẢN PHẨM</h4>
             </div>
 
+
+
             @if (session('msg'))
-                 <div class="alert text-success" style="max-width: 300px;">{{ session('msg') }}</div>
+            <div class="alert text-success m-2" >{{ session('msg') }}</div>
             @endif
             @if (session('delete'))
-                 <div class="alert text-danger" style="max-width: 300px;">{{ session('delete') }}</div>
+                    <div class="alert text-danger m-2" >{{ session('delete') }}</div>
             @endif
-            <div class="d-flex justify-content-end ">
-                <a class="btn btn-success mx-4" href="{{ route('sanpham.create') }}">Thêm mới sản phẩm</a>
+            <div class="d-flex">
+               
             </div>
+            <div class="d-flex justify-content-end ">
+                
+                <a class="btn btn-success mx-4" href="{{ route('sanpham.create') }}">Thêm mới sản phẩm</a>
+                
+            </div>
+            
+
             <div class="card-body p-3 ">
                 <div class="container" >
                     <div class="table-responsive  border-4 ">
@@ -73,10 +82,10 @@
                                                         <i class="fa-solid fa-pen-to-square fa-xl"></i>
                                                     </button>
                                                 </a>
-                                                <form action="{{ route('danhmuc.destroy', $item->id) }}" method="post" class="mt-1">
+                                                <form action="{{ route('sanpham.destroy', $item->id) }}" method="POST" class="mt-1">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" onclick="return confirm('Có chắc chắn xóa danh mục không?')" class="btn btn-link text-danger p-0 " style="border: none; background: none; ">
+                                                    <button type="submit" onclick="return confirm('Có chắc chắn xóa sản phẩm không?')" class="btn btn-link text-danger p-0 " style="border: none; background: none; ">
                                                         <i class="fa-solid fa-trash fa-xl "></i>
                                                     </button>
                                                 </form>

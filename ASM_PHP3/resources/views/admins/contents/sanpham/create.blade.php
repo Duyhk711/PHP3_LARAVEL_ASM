@@ -11,7 +11,7 @@
                     <div class="white_card_body QA_section">
                         <div class="QA_table ">
                             <form action="{{ route('sanpham.store')}}" method="POST" enctype="multipart/form-data" >
-                                @csrf
+                                @csrf   
                                 {{-- Tên danh mục --}}
                                 <div class="mb-3">
                                     <label for="" class="form-label">Tên danh mục:</label>
@@ -24,19 +24,31 @@
                                 {{-- Tên sản phẩm --}}
                                 <div class="mb-3">
                                     <label for="" class="form-label">Tên sản phẩm:</label>
-                                    <input type="text" class="form-control" name="ten_san_pham"
-                                        placeholder="Nhập tên sản phẩm">
+                                    <input type="text" class="form-control @error('ten_san_pham') is-invalid @enderror" name="ten_san_pham"
+                                        placeholder="Nhập tên sản phẩm" value="{{ old('ten_san_pham') }}">
+
+                                        @error('ten_san_pham')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
                                 </div>
                                 <div class="mb-3">
                                     <label for="" class="form-label">Mã sản phẩm:</label>
-                                    <input type="text" class="form-control" name="ma_san_pham"
-                                        placeholder="Nhập mã sản phẩm">
+                                    <input type="text" class="form-control @error('ma_san_pham') is-invalid @enderror" name="ma_san_pham"
+                                        placeholder="Nhập mã sản phẩm" value="{{ old('ma_san_pham') }}">
+
+                                        @error('ma_san_pham')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
                                 </div>
                                 {{-- Giá sản phẩm --}}
                                 <div class="mb-3">
                                     <label for="" class="form-label">Giá sản phẩm:</label>
-                                    <input type="number" class="form-control" name="gia" min="1"
-                                        placeholder="Nhập giá sản phẩm">
+                                    <input type="number" class="form-control @error('gia') is-invalid @enderror" name="gia" min="1"
+                                        placeholder="Nhập giá sản phẩm" value="{{ old('gia') }}">
+
+                                        @error('gia')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
                                 </div>
                                 {{-- Hình ảnh sản phẩm --}}
                                 <div class="mb-3">
@@ -47,22 +59,30 @@
                                 {{-- Số lượng sản phẩm --}}
                                 <div class="mb-3">
                                     <label for="" class="form-label">Số lượng sản phẩm:</label>
-                                    <input type="number" class="form-control" name="so_luong" min="1"
-                                        placeholder="Nhập số lượng sản phẩm">
+                                    <input type="number" class="form-control @error('so_luong') is-invalid @enderror" name="so_luong" min="1"
+                                        placeholder="Nhập số lượng sản phẩm" value="{{ old('so_luong') }}">
+
+                                        @error('so_luong')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
                                 </div>
                                 {{-- Trạng thái sản phẩm --}}
                                 <div class="mb-3">
                                     <label for="" class="form-label">Trạng thái sản phẩm:</label>
-                                    <select class="form-control" name="trang_thai">
+                                    <select class="form-control " name="trang_thai">
+                                        {{-- <option value="" >Chọn Trạng Thái</option> --}}
                                         <option value="1">Hiển thị</option>
                                         <option value="0">Ẩn</option>
                                     </select>
+                                    
                                 </div>
                                 {{-- Mô tả sản phẩm --}}
                                 <div class="mb-3">
                                     <label for="" class="form-label">Mô tả sản phẩm:</label>
-                                    <textarea class="form-control" name="mo_ta"
-                                        placeholder="Mô tả sản phẩm"></textarea>
+                                    <textarea class="form-control "  name="mo_ta"
+                                        placeholder="Mô tả sản phẩm">
+                                        {{ old('mo_ta') }}
+                                    </textarea>
                                 </div>
 
                                 {{-- Button --}}
