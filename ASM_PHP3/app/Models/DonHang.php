@@ -13,7 +13,7 @@ class DonHang extends Model
     
     protected $fillable = 
         [
-            'id_don_hang',
+            'id',
             'ma_don_hang',
             'ten_nguoi_nhan',
             'email_nguoi_nhan',

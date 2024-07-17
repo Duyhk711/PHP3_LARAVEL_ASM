@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admins;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SanPhamRequest;
 use App\Models\DanhMuc;
 use App\Models\SanPham;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class SanPhamController extends Controller
 {
@@ -44,32 +46,26 @@ class SanPhamController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(SanPhamRequest $request)
     {
-        // Xử lí ảnh
-    //     if ($request->hasFile('hinh_anh')) {
-    //         $fileName = $request->file('hinh_anh')->store('uploads/sanpham', 'public');
-    //     }else{
-    //         $fileName = null;
-    //     }
-    //    $data = [
-    //     'ten_san_pham'=>$request->ten_san_pham,
-    //     'gia'=>$request->gia,
-    //     'hinh_anh'=>$fileName,
-    //     'mo_ta'=>$request->mo_ta,
-    //     'so_luong'=>$request->so_luong,
-    //     'trang_thai'=>$request->trang_thai,
-    //     'id_danh_muc'=>$request->id_danh_muc,
-    //    ];
 
-        $data = $request->except('hinh_anh');
-        if($request->hasFile('hinh_anh')){
-            $data['hinh_anh'] = Storage::put(self::PATH_UPLOAD, $request->file('hinh_anh'));
+        if($request->isMethod('POST')){        
+            // dd($request);
+            $params = $request->post();    
+            $params = $request->except('_token');
+            // dd($params);
+
+            if($request->hasFile('hinh_anh')){
+                $params['hinh_anh'] = Storage::put(self::PATH_UPLOAD, $request->file('hinh_anh'));
+            } 
+            $params['danh_muc_id'] = $request->input('danh_muc_id');
+            
+            
+            SanPham::query()->create($params);
+            // dd($data);
+            return redirect()->route('sanpham.index')->with('msg', 'Thêm sản phẩm thành công!');
+
         }
-        // dd($data);
-        SanPham::query()->create($data);
-        return redirect()->route('sanpham.index');
-
     }
 
     /**
@@ -77,7 +73,20 @@ class SanPhamController extends Controller
      */
     public function show(string $id)
     {
-        //
+        
+        
+        $pages_title = "Thông tin sản phẩm";
+        $title = "THÔNG TIN SẢN PHẨM";
+        
+
+        $sanPham = SanPham::findOrFail($id);
+        $listDm = DB::table('danh_mucs')->get();
+       
+        // dd($data);
+        
+        // return redirect()->route('sanpham.index');
+
+       return view('admins.contents.sanpham.show',compact('sanPham', 'listDm', 'pages_title','title'));
     }
 
     /**
@@ -85,15 +94,48 @@ class SanPhamController extends Controller
      */
     public function edit(string $id)
     {
-        //
+       
+        
+        $sanPham = SanPham::findOrFail($id);
+        $listDm = DB::table('danh_mucs')->get();
+        $pages_title = "Trang sản phẩm";
+        // dd($data);
+        
+        // return redirect()->route('sanpham.index');
+
+        return view('admins.contents.sanpham.update',compact('sanPham', 'listDm', 'pages_title'));
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(SanPhamRequest $request, string $id)
     {
-        //
+        // dd($request);
+        if($request->isMethod('PUT')){
+
+            $params = $request->except('_token', '_method');
+            $sanPham = SanPham::findOrFail($id);
+            // xử lý ảnh
+            if($request->hasFile('hinh_anh')){
+                // Nếu có đẩy hình ảnh thì xóa hình cũ và thêm hình mới
+                if($sanPham->hinh_anh){
+                    // nếu sản phẩm có ảnh cũ thì mới xóa
+                    
+                    Storage::disk('public')->delete($sanPham->hinh_anh);
+                }
+
+                $params['hinh_anh'] = Storage::put(self::PATH_UPLOAD, $request->file('hinh_anh'));
+            } else{
+                // nếu không có hình ảnh thì lấy lại hình ảnh cũ
+                $params['hinh_anh']= $sanPham->hinh_anh;
+            }
+                //  cập nhật dữ liệu
+                // eloquent
+                $sanPham->update($params);
+                return redirect()->route('sanpham.index')->with('msg', 'Chỉnh sửa sản phẩm thành công!');
+        }
     }
 
     /**
@@ -101,6 +143,9 @@ class SanPhamController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $sanPham = SanPham::findOrFail($id);
+
+        $sanPham->delete();
+        return redirect()->route('sanpham.index')->with('delete', 'Xóa sản phẩm thành công!');
     }
 }
