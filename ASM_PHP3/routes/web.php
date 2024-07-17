@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admins\DanhMucController;
 use App\Http\Controllers\Admins\DonHangController;
 use App\Http\Controllers\Admins\SanPhamController;
 use App\Http\Controllers\HomeController;
@@ -25,5 +26,6 @@ Route::get('/', function () {
 
 Route::get('/dashboard', [HomeController::class, 'index']);
 Route::resource('/sanpham',SanPhamController::class);
+Route::resource('/danhmuc',DanhMucController::class);
 Route::resource('/donhang',DonHangController::class);
 

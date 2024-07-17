@@ -10,14 +10,15 @@
                 <div class="card-body p-3 rounded">
                     <div class="white_card_body QA_section">
                         <div class="QA_table ">
-                            <form action="{{ route('sanpham.store')}}" method="POST" enctype="multipart/form-data" >
+                            <form action="{{ route('sanpham.update', $sanPham->id)}}" method="POST" enctype="multipart/form-data" >
                                 @csrf
                                 {{-- Tên danh mục --}}
                                 <div class="mb-3">
                                     <label for="" class="form-label">Tên danh mục:</label>
                                     <select name="danh_muc_id" id="id_danh_muc" class="form-select">
+                                        
                                         @foreach ($listDm as $item)
-                                            <option value="{{ $item->id }}">{{ $item->ten_danh_muc}}</option>
+                                            <option value="{{ $item->id }}" selected>{{ $item->ten_danh_muc}} </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -25,44 +26,45 @@
                                 <div class="mb-3">
                                     <label for="" class="form-label">Tên sản phẩm:</label>
                                     <input type="text" class="form-control" name="ten_san_pham"
-                                        placeholder="Nhập tên sản phẩm">
+                                        value="{{$sanPham->ten_san_pham}}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="" class="form-label">Mã sản phẩm:</label>
                                     <input type="text" class="form-control" name="ma_san_pham"
-                                        placeholder="Nhập mã sản phẩm">
+                                    value="{{$sanPham->ma_san_pham}}">
                                 </div>
                                 {{-- Giá sản phẩm --}}
                                 <div class="mb-3">
                                     <label for="" class="form-label">Giá sản phẩm:</label>
                                     <input type="number" class="form-control" name="gia" min="1"
-                                        placeholder="Nhập giá sản phẩm">
+                                    value="{{$sanPham->gia}}">
                                 </div>
                                 {{-- Hình ảnh sản phẩm --}}
                                 <div class="mb-3">
                                     <label for="" class="form-label">Hình ảnh sản phẩm:</label>
                                     <input type="file" class="form-control" name="hinh_anh"
-                                        placeholder="Hình ảnh sản phẩm">
+                                    value="{{$sanPham->hinh_anh}}">
                                 </div>
                                 {{-- Số lượng sản phẩm --}}
                                 <div class="mb-3">
                                     <label for="" class="form-label">Số lượng sản phẩm:</label>
                                     <input type="number" class="form-control" name="so_luong" min="1"
-                                        placeholder="Nhập số lượng sản phẩm">
+                                    value="{{$sanPham->so_luong}}">
                                 </div>
                                 {{-- Trạng thái sản phẩm --}}
                                 <div class="mb-3">
                                     <label for="" class="form-label">Trạng thái sản phẩm:</label>
                                     <select class="form-control" name="trang_thai">
-                                        <option value="1">Hiển thị</option>
-                                        <option value="0">Ẩn</option>
+                                        {{-- <option selected>CHỌN TRẠNG THÁI</option> --}}
+                                        <option value="1"{{$sanPham->trang_thai == '1' ? 'selected' : ''}}> Hiển thị</option>
+                                        <option value="0"{{$sanPham->trang_thai == '0' ? 'selected' : ''}}>Ẩn</option>
                                     </select>
                                 </div>
                                 {{-- Mô tả sản phẩm --}}
                                 <div class="mb-3">
                                     <label for="" class="form-label">Mô tả sản phẩm:</label>
                                     <textarea class="form-control" name="mo_ta"
-                                        placeholder="Mô tả sản phẩm"></textarea>
+                                        >{{$sanPham->mo_ta}}</textarea>
                                 </div>
 
                                 {{-- Button --}}

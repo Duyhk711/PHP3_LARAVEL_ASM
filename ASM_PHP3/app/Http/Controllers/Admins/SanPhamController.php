@@ -61,14 +61,16 @@ class SanPhamController extends Controller
     //     'trang_thai'=>$request->trang_thai,
     //     'id_danh_muc'=>$request->id_danh_muc,
     //    ];
-
-        $data = $request->except('hinh_anh');
+       
+        $data = $request->except('_token','hinh_anh');
+        
         if($request->hasFile('hinh_anh')){
             $data['hinh_anh'] = Storage::put(self::PATH_UPLOAD, $request->file('hinh_anh'));
         }
+        $data['danh_muc_id'] = $request->input('danh_muc_id');
         // dd($data);
         SanPham::query()->create($data);
-        return redirect()->route('sanpham.index');
+        return redirect()->route('sanpham.index')->with('msg', 'Thêm sản phẩm thành công!');
 
     }
 
@@ -77,7 +79,20 @@ class SanPhamController extends Controller
      */
     public function show(string $id)
     {
-        //
+        
+        
+        $pages_title = "Thông tin sản phẩm";
+        $title = "THÔNG TIN SẢN PHẨM";
+        
+
+        $sanPham = SanPham::findOrFail($id);
+        $listDm = DB::table('danh_mucs')->get();
+       
+        // dd($data);
+        
+        // return redirect()->route('sanpham.index');
+
+       return view('admins.contents.sanpham.show',compact('sanPham', 'listDm', 'pages_title','title'));
     }
 
     /**
@@ -85,7 +100,17 @@ class SanPhamController extends Controller
      */
     public function edit(string $id)
     {
-        //
+       
+        
+        $sanPham = SanPham::findOrFail($id);
+        $listDm = DB::table('danh_mucs')->get();
+        $pages_title = "Trang sản phẩm";
+        // dd($data);
+        
+        // return redirect()->route('sanpham.index');
+
+        return view('admins.contents.sanpham.update',compact('sanPham', 'listDm', 'pages_title'));
+
     }
 
     /**
@@ -101,6 +126,9 @@ class SanPhamController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $sanPham = SanPham::findOrFail($id);
+
+        $sanPham->delete();
+        return redirect()->route('sanpham.index')->with('delete', 'Xóa sản phẩm thành công!');
     }
 }
