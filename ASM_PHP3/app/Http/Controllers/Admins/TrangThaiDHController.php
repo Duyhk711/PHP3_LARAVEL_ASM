@@ -3,25 +3,23 @@
 namespace App\Http\Controllers\Admins;
 
 use App\Http\Controllers\Controller;
-use App\Models\DonHang;
+use App\Models\TrangThaiDH;
 use Illuminate\Http\Request;
 
-class DonHangController extends Controller
+class TrangThaiDHController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $pages_title = "Đơn hàng";
-        $title = "Danh Sách Đơn Hàng";
-        $data = DonHang::query()->latest('id')->paginate(5);
-        return view('admins.contents.donhang.donhang', [
-            'pages_title' => $pages_title,
-            'data' => $data,
-            'title' => $title
+        $title = "Trạng thái đơn hàng";
+        $listTH = TrangThaiDH::orderBy('id')->get();
+        return view('admins.contents.trangthaiDH.index',[
+            'title' => $title,
+            'listTH' => $listTH
         ]);
-    }   
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -44,13 +42,7 @@ class DonHangController extends Controller
      */
     public function show(string $id)
     {
-        $title = "Chi Tiết Đơn Hàng";
-        $data = DonHang::query()->latest('id')->paginate(5);
-        return view('admins.contents.donhang.chi_tiet_don_hang', [
-            'title' => $title,
-            'data' => $data
-        ]);
-        
+        //
     }
 
     /**
@@ -76,6 +68,4 @@ class DonHangController extends Controller
     {
         //
     }
-
-    
 }
