@@ -26,8 +26,8 @@
             
 
             <div class="card-body p-3 ">
-                <div class="container" >
-                    <div class="table-responsive  border-4 ">
+                <div class="container white_card_body QA_section" >
+                    <div class="table-responsive  border-4 QA_table">
                         <table class="table  table-hover p-0  p-3 mb-5 bg-body "  >
                             <thead  style="background-color: rgb(234, 246, 255)">
                                 <tr class="">
