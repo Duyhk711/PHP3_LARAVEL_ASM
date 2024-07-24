@@ -51,5 +51,5 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Auth::routes();
 
-Route::get('/home', [HomeController::class, 'home'])->name('home')->middleware('auth');
+Route::get('/home', [HomeController::class, 'home'])->name('home');
 Route::get('/dashboard', [HomeController::class, 'index'])->name('index')->middleware(['auth','auth.admin']);
