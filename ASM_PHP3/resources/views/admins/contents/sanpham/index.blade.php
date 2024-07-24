@@ -6,9 +6,6 @@
             <div class="card-header pb-0 pt-3 bg-transparent ">
                 <h4 class="text-capitalize text-center">DANH SÁCH SẢN PHẨM</h4>
             </div>
-
-
-
             @if (session('msg'))
             <div class="alert text-success m-2" >{{ session('msg') }}</div>
             @endif

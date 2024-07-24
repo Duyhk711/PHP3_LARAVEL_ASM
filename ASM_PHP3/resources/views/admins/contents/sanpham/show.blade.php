@@ -12,10 +12,10 @@
                         <div class="QA_table ">
                             <div class="container">
                                 <div class="d-flex">
-
-                                    <img src="{{Storage::url($sanPham->hinh_anh)}}" width="300px" alt="" srcset="">
-                                    <b> Tên sản phẩm:  </b> 
-                                    <p>  {{ $sanPham->ten_san_pham}}</p>
+                                    {{-- Code --}}
+                                    <div class=""></div>
+                                    
+                                    
                                 </div>
                             </div>
                         </div>
