@@ -10,7 +10,14 @@ use App\Http\Controllers\Admins\DanhMucController;
 use App\Http\Controllers\Admins\DonHangController;
 use App\Http\Controllers\Admins\SanPhamController;
 use App\Http\Controllers\Admins\TrangThaiDHController;
+
 use App\Http\Controllers\AuthController;
+
+use App\Http\Controllers\Admins\UserController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,11 +38,14 @@ Route::get('/', function () {
 // });
 
 
+Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+
 Route::resource('/sanpham',SanPhamController::class);
 Route::resource('/danhmuc',DanhMucController::class);
 Route::resource('/donhang',DonHangController::class);
 Route::resource('/user',UserController::class);
 Route::resource('/trangthai',TrangThaiDHController::class);
+
 
 
 Route::get('/login', [AuthController::class, 'showFormLogin']);
@@ -53,3 +63,6 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/home', [HomeController::class, 'home'])->name('home');
 Route::get('/dashboard', [HomeController::class, 'index'])->name('index')->middleware(['auth','auth.admin']);
+
+Route::get('/client/index', [ClientController::class, 'index'])->name('trang_chu');
+
