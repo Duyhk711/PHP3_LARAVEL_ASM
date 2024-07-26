@@ -13,7 +13,7 @@ use App\Http\Controllers\Admins\TrangThaiDHController;
 
 use App\Http\Controllers\AuthController;
 
-use App\Http\Controllers\ClientController;
+
 use App\Http\Controllers\Clients\ShopController;
 
 use App\Http\Controllers\ClientController;
