@@ -13,10 +13,9 @@ use App\Http\Controllers\Admins\TrangThaiDHController;
 
 use App\Http\Controllers\AuthController;
 
-use App\Http\Controllers\Admins\UserController;
+// use App\Http\Controllers\Admins\UserController;
 use App\Http\Controllers\ClientController;
-use App\Http\Controllers\HomeController;
-use Illuminate\Support\Facades\Route;
+
 
 
 /*
@@ -38,13 +37,13 @@ Route::get('/', function () {
 // });
 
 
-Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+Route::get('/dashboard', [HomeController::class, 'index']);
 
-Route::resource('/sanpham',SanPhamController::class);
-Route::resource('/danhmuc',DanhMucController::class);
-Route::resource('/donhang',DonHangController::class);
-Route::resource('/user',UserController::class);
-Route::resource('/trangthai',TrangThaiDHController::class);
+Route::middleware(['auth', 'auth.admin'])->resource('/sanpham',SanPhamController::class);
+Route::middleware(['auth', 'auth.admin'])->resource('/danhmuc',DanhMucController::class);
+Route::middleware(['auth', 'auth.admin'])->resource('/donhang',DonHangController::class);
+Route::middleware(['auth', 'auth.admin'])->resource('/user',UserController::class);
+Route::middleware(['auth', 'auth.admin'])->resource('/trangthai',TrangThaiDHController::class);
 
 
 
@@ -61,8 +60,8 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Auth::routes();
 
-Route::get('/home', [HomeController::class, 'home'])->name('home');
-Route::get('/dashboard', [HomeController::class, 'index'])->name('index')->middleware(['auth','auth.admin']);
+// Route::get('/home', [HomeController::class, 'home'])->name('home');
+Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard')->middleware(['auth','auth.admin']);
 
-Route::get('/client/index', [ClientController::class, 'index'])->name('trang_chu');
+Route::get('/client/trangchu', [ClientController::class, 'index'])->name('trang_chu');
 

@@ -9,20 +9,46 @@ use Illuminate\Support\Facades\DB;
 class SanPham extends Model
 {
     use HasFactory;
-
-    public function createSP($data) {
-        DB::table('san_phams')->insert($data);
-    }
+    
+    
     protected $table = 'san_phams';
     protected $fillable = [
-        'id',
+       
         'ma_san_pham',
         'ten_san_pham',
-        'gia',
         'hinh_anh',
-        'mo_ta',
+        'gia_san_pham',
+        'gia_khuyen_mai',
+        'mo_ta_ngan',
+        'noi_dung',
         'so_luong',
-        'trang_thai',
-        'danh_muc_id'
+        'luot_xem',
+        'ngay_nhap',
+        'danh_muc_id',
+        'is_type',
+        'is_new',
+        'is_hot',
+        'is_hot_deal',
+        'is_show_home',
     ];
+
+    protected $casts = [
+        'is_type'=> 'boolean',
+        'is_new'=> 'boolean',
+        'is_hot'=> 'boolean',
+        'is_hot_deal'=> 'boolean',
+        'is_show_home'=> 'boolean',
+    ];
+
+    public function danhMuc(){
+        return $this->belongsTo(DanhMuc::class);
+    }
+
+    public function hinhAnhSanPhams(){
+        return $this->hasMany(HinhAnhSanPham::class);
+    }
+
+    public function chiTietDonHangs(){
+        return $this->hasMany(ChiTietDonHang::class, 'san_pham_id');
+    }
 }
