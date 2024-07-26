@@ -16,8 +16,8 @@
             <form name="frmsanphamchitiet" id="frmsanphamchitiet" method="post"
                 action="/php/twig/frontend/giohang/themvaogiohang">
                 <input type="hidden" name="sp_ma" id="sp_ma" value="5">
-                <input type="hidden" name="sp_ten" id="sp_ten" value="Abc abc">
-                <input type="hidden" name="sp_gia" id="sp_gia" value="abc ,ád">
+                <input type="hidden" name="sp_ten" id="sp_ten" value="Samsung Galaxy Tab 10.1 3G 16G">
+                <input type="hidden" name="sp_gia" id="sp_gia" value="10990000.00">
                 <input type="hidden" name="hinhdaidien" id="hinhdaidien" value="samsung-galaxy-tab-10.jpg">
 
                 <div class="wrapper row">
