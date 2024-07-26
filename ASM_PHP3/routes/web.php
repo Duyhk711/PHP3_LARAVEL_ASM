@@ -13,11 +13,9 @@ use App\Http\Controllers\Admins\TrangThaiDHController;
 
 use App\Http\Controllers\AuthController;
 
-<<<<<<< HEAD
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\Clients\ShopController;
 
-=======
-// use App\Http\Controllers\Admins\UserController;
->>>>>>> 8576adc76194105954cace6795d7145c4bb524c2
 use App\Http\Controllers\ClientController;
 
 
@@ -32,6 +30,7 @@ use App\Http\Controllers\ClientController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -53,19 +52,26 @@ Route::middleware(['auth', 'auth.admin'])->resource('/trangthai',TrangThaiDHCont
 
 Route::get('/login', [AuthController::class, 'showFormLogin']);
 Route::post('/login', [AuthController::class, 'login'])->name('login');
-
 Route::get('/register', [AuthController::class, 'showFormRegister']);
 Route::post('/register', [AuthController::class, 'register'])->name('register');
-
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
-
 
 
 // Auth::routes();
 
-// Route::get('/home', [HomeController::class, 'home'])->name('home');
-Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard')->middleware(['auth','auth.admin']);
+
+Route::get('/home', [HomeController::class, 'home'])->name('home');
+Route::get('/dashboard', [HomeController::class, 'index'])->name('index')->middleware(['auth','auth.admin']);
+Route::get('/client/home', [ClientController::class, 'index'])->name('trang_chu');
+
+Route::get('/client/shop',[ShopController::class, 'shop'])->name('shop');
+Route::get('/client/shop/doAnNhanh',[ShopController::class, 'doAnNhanh'])->name('shop.doAnNhanh');
+Route::get('/client/shop/banhKem',[ShopController::class, 'banhKem'])->name('shop.banhKem');
+Route::get('/client/shop/doUong',[ShopController::class, 'doUong'])->name('shop.doUong');
+Route::get('/client/shop/doChien',[ShopController::class, 'doChien'])->name('shop.doChien');
+Route::get('/client/shop/cart',[ShopController::class, 'cart'])->name('shop.cart');
+Route::get('/client/shop/detailProduct',[ShopController::class, 'detailProduct'])->name('shop.detailProduct');
 
 Route::get('/client/trangchu', [ClientController::class, 'index'])->name('trang_chu');
+
 
