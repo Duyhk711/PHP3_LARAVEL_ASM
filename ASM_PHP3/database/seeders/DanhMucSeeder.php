@@ -14,7 +14,6 @@ class DanhMucSeeder extends Seeder
     public function run(): void
     {
 
-
         DB::table('danh_mucs')->insert([
 
             [
