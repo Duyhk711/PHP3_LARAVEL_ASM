@@ -12,7 +12,7 @@
       <li class="nav-item">
         <a class="nav-link active" href="/dashboard">
           <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+            <i class="ni ni-tv-2 text-primary text-sm "></i>
           </div>
           <span class="nav-link-text ms-1">Dashboard</span>
         </a>
@@ -20,7 +20,7 @@
       <li class="nav-item">
         <a class="nav-link " href="{{route('danhmuc.index')}}">
           <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
+            <i class="ni ni-calendar-grid-58 text-warning text-sm "></i>
           </div>
           <span class="nav-link-text ms-1">Danh Mục</span>
         </a>
@@ -36,7 +36,7 @@
       <li class="nav-item">
         <a class="nav-link " href="{{route('donhang.index')}}">
           <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="ni ni-app text-info text-sm opacity-10"></i>
+            <i class="ni ni-app text-info text-sm "></i>
           </div>
           <span class="nav-link-text ms-1">Đơn hàng</span>
         </a>
@@ -44,7 +44,7 @@
       <li class="nav-item">
         <a class="nav-link " href="{{route('user.index')}}">
           <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
+            <i class="ni ni-world-2 text-danger text-sm "></i>
           </div>
           <span class="nav-link-text ms-1">Tài Khoản</span>
         </a>

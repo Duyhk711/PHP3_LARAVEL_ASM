@@ -25,8 +25,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
-        'so_dien_thoai',
-        'dia_chi',
+       
         
     ];
 
@@ -48,4 +47,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function donHangs (){
+        return $this->hasMany(DonHang::class);
+    }
 }

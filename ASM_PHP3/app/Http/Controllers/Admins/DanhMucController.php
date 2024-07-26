@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admins;
 
-use App\Http\Controllers\Controller;
 use App\Models\DanhMuc;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class DanhMucController extends Controller
 {
@@ -17,11 +18,7 @@ class DanhMucController extends Controller
         // $listPr = SanPham::orderByDesc('id_san_pham')->get();
         $pages_title = "Trang Danh Mục";
         $title = "DANH SÁCH DANH MỤC";
-        return view('admins.contents.danhmuc.index',[
-            'listDM' => $listDM,
-            'title' => $title,
-            'pages_title' => $pages_title,
-        ]);
+        return view('admins.contents.danhmucs.index', compact('title','listDM','pages_title'));
     }
 
     /**
@@ -31,7 +28,7 @@ class DanhMucController extends Controller
     {
         $pages_title = "Thêm Danh Mục";
         $title = "THÊM DANH MỤC";
-        return view('admins.contents.danhmuc.create',
+        return view('admins.contents.danhmucs.create',
         [
             'title' => $title,
             'pages_title' => $pages_title,
@@ -43,9 +40,20 @@ class DanhMucController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->except('_token');
-        DanhMuc::query()->create($data);
-        return redirect()->route('danhmuc.index')->with('msg','Thêm danh mục thành công');
+        if($request->isMethod('POST')){
+            $params = $request->post();
+            $params = $request->except('_token');
+            if($request->hasFile('hinh_anh')){
+                $filePath = $request->file('hinh_anh')->store('uploads/danhmucs','public');
+
+            }else{
+                $filePath = null;
+            }
+            $params['hinh_anh'] = $filePath;
+            DanhMuc::create($params);
+            return redirect()->route('danhmuc.index')->with('msg','Thêm danh mục thành công');
+        }
+        
     }
 
     /**
@@ -65,7 +73,7 @@ class DanhMucController extends Controller
         // $listPr = SanPham::orderByDesc('id_san_pham')->get();
         $pages_title = "Chỉnh Sửa Danh Mục";
         $title = "CHỈNH SỬA DANH MỤC";
-        return view('admins.contents.danhmuc.update',compact('showDM' , 'pages_title', 'title'));
+        return view('admins.contents.danhmucs.update',compact('showDM' , 'pages_title', 'title'));
     }
 
     /**
@@ -73,14 +81,23 @@ class DanhMucController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $danhMuc = DanhMuc::query()->findOrFail($id);
+        if($request->isMethod('PUT')){
+            $params = $request->post();
+            $params = $request->except('_token', '_method');
+            $danhMuc = DanhMuc::findOrFail($id);
 
-        $data =  $request->except('_token','_method');
-
-        $danhMuc->update($data);
-
-        return redirect()->route('danhmuc.index')->with('msg','Sửa danh mục thành công');
-
+            if($request->hasFile('hinh_anh' )){
+                if($danhMuc->hinh_anh && Storage::disk('public')->exists('uploads/danhmucs', 'public')){
+                    Storage::disk('public')->delete($danhMuc->hinh_anh);
+                }
+                $filePath = $request->file('hinh_anh')->store('uploads/danhmucs','public');
+            }else{
+                $filePath = $danhMuc->hinh_anh;
+            }
+            $params['hinh_anh'] = $filePath;
+            $danhMuc->update($params);
+            return redirect()->route('danhmuc.index')->with('success', 'Cập nhật danh mục thành công');
+        }
     }
 
     /**
@@ -90,10 +107,11 @@ class DanhMucController extends Controller
     {
         $danhMuc = DanhMuc::find($id);
         if($danhMuc) {
-
-            $danhMuc->san_pham()->delete();
+            $danhMuc->sanPhams()->delete();
             $danhMuc->delete();
-
+            if($danhMuc->hinh_anh && Storage::disk('public')->exists('uploads/danhmucs', 'public')){
+                Storage::disk('public')->delete($danhMuc->hinh_anh);
+            }
             return back()->with('delete', 'Xóa danh mục thành công!');
         }else {
             return back()->with('error', 'Danh mục không tồn tại!');
