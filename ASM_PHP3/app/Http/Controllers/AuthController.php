@@ -29,7 +29,7 @@ class AuthController extends Controller
             if(Auth::check() && Auth::user()->role === User::ROLE_ADMIN){
                 return redirect()->intended('dashboard');
             }
-            return redirect()->intended('home');
+            return redirect()->intended('/client/trangchu');
         }
 
             return redirect()->back()->withErrors([
@@ -50,19 +50,17 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
             'password' => 'required|string|min:8',
-            'so_dien_thoai' => 'required|numeric|min:11',
-            'dia_chi' => 'required|string',
+            
         ]);
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'so_dien_thoai' => $data['so_dien_thoai'],
-            'dia_chi' => $data['dia_chi'],
+            
             'password' => Hash::make($data['password']),
         ]);
         Auth::login($user);
 
-        return redirect()->intended('home');
+        return redirect()->intended('/client/index');
         // dd($data);
     }
 

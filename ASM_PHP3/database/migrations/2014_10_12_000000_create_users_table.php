@@ -1,8 +1,10 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\User;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
 
 return new class extends Migration
 {
@@ -18,8 +20,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('so_dien_thoai')->unique();
-            $table->string('dia_chi');
+            $table->enum('role', [User::ROLE_ADMIN,User::ROLE_USER] )->default(User::ROLE_USER);
             $table->rememberToken();
             $table->timestamps();
         });

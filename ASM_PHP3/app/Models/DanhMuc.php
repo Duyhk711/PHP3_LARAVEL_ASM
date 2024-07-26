@@ -12,13 +12,21 @@ class DanhMuc extends Model
 {
     use HasFactory;
 
-    public function san_pham()
-    {
-        return $this->hasMany(SanPham::class, 'danh_muc_id');
-    }
+    
     protected $table = 'danh_mucs';
     protected $fillable = [
-        'id',
-        'ten_danh_muc'
+        
+        'hinh_anh',
+        'ten_danh_muc',
+        'trang_thai',
     ];
+
+    protected $casts = [
+        'trang_thai' => 'boolean'
+    ];
+
+    public function sanPhams (){
+        return $this->hasMany(SanPham::class);
+    }
+
 }

@@ -42,31 +42,7 @@
                     @enderror
                 </div>
 
-                <div class="form-group">
-                    <div class="fxt-transformY-50 fxt-transition-delay-2">
-                        <input id="so_dien_thoai" type="text" class="form-control @error('so_dien_thoai') is-invalid @enderror"
-                            name="so_dien_thoai" placeholder="Số điện thoại" required="required">
-                        {{-- <i toggle="#password" class="fa fa-fw fa-eye toggle-password field-icon"></i> --}}
-                    </div>
-                    @error('so_dien_thoai')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-
-                <div class="form-group">
-                    <div class="fxt-transformY-50 fxt-transition-delay-2">
-                        <input id="dia_chi" type="text" class="form-control @error('dia_chi') is-invalid @enderror""
-                            name="dia_chi" placeholder="Địa Chỉ" required="required">
-                        {{-- <i toggle="#password" class="fa fa-fw fa-eye toggle-password field-icon"></i> --}}
-                    </div>
-                    @error('dia_chi')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
+                
 
                 <div class="form-group">
                     <div class="fxt-transformY-50 fxt-transition-delay-3">
