@@ -8,9 +8,8 @@
 </head>
 <body>
     <h1>Đây là trang chủ client</h1>
-@if ()
-    
-@endif
+ 
+
     <form action="{{route('logout')}}" method="POST">
         @csrf
         <button type="submit">logout</button>
