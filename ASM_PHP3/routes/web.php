@@ -13,10 +13,9 @@ use App\Http\Controllers\Admins\TrangThaiDHController;
 
 use App\Http\Controllers\AuthController;
 
-use App\Http\Controllers\Admins\UserController;
+
 use App\Http\Controllers\ClientController;
-use App\Http\Controllers\HomeController;
-use Illuminate\Support\Facades\Route;
+
 
 
 /*
