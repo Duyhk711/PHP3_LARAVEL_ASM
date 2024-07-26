@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="{{asset('assets/admins/lib/bootstrap.css')}}">
   <script src="{{asset('assets/admins/lib/bootstrap.js')}}"></script>
   <script src="{{asset('assets/admins/lib/font-fontawesome-ae333ffef2.js')}}"></script>
-
+  @yield('css')
   <!-- CSS Files -->
   <link id="pagestyle" href="{{asset('assets/admins/css/argon-dashboard.css?v=2.0.4')}}" rel="stylesheet" />
   
@@ -69,6 +69,7 @@
  
 
   <!--   Core JS Files   -->
+  @yield('js')
   <script src="{{asset('assets/js/core/popper.min.js')}}"></script>
   <script src="{{asset('assets/js/core/bootstrap.min.js')}}"></script>
   <script src="{{asset('assets/js/plugins/perfect-scrollbar.min.js')}}"></script>
