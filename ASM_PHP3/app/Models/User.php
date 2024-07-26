@@ -17,10 +17,16 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+     const ROLE_ADMIN = 'Admin';
+     const ROLE_USER = 'User';
     protected $fillable = [
         'name',
         'email',
         'password',
+        'role',
+       
+        
     ];
 
     /**
@@ -41,4 +47,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function donHangs (){
+        return $this->hasMany(DonHang::class);
+    }
 }

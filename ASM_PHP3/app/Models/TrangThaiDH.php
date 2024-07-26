@@ -10,7 +10,7 @@ class TrangThaiDH extends Model
     use HasFactory;
     protected $table = 'trang_thai_don_hangs';
     protected $fillable = [
-        'id',
+        
         'ten_trang_thai'
     ];
 }

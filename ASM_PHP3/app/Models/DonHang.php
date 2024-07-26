@@ -13,18 +13,22 @@ class DonHang extends Model
     
     protected $fillable = 
         [
-            'id',
+
             'ma_don_hang',
-            'ten_nguoi_nhan',
-            'email_nguoi_nhan',
+            'user_id',
             'so_dien_thoai',
             'dia_chi',
-            'ngay_dat',
-            'nguoi_dung_id',
             'tong_tien',
             'ghi_chu',
             'phuong_thuc_thanh_toan',
-            'id_trang_thai',
-        ]
-    ;
+           
+        ];
+
+        public function user (){
+            return $this->belongsTo(User::class, 'user_id');
+        }
+
+        public function chiTietDonHangs() {
+            return $this->hasMany(ChiTietDonHang::class, 'don_hang_id');
+        }
 }
