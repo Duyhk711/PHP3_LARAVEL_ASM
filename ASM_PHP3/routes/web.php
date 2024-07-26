@@ -13,7 +13,11 @@ use App\Http\Controllers\Admins\TrangThaiDHController;
 
 use App\Http\Controllers\AuthController;
 
+<<<<<<< HEAD
+
+=======
 // use App\Http\Controllers\Admins\UserController;
+>>>>>>> 8576adc76194105954cace6795d7145c4bb524c2
 use App\Http\Controllers\ClientController;
 
 
