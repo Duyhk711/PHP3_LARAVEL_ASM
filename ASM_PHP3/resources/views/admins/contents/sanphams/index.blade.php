@@ -25,51 +25,72 @@
                 </div>
 
 
-
-
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped mb-0">
+                <div class="card-body container ">
+                    <div class="table-responsive container p-0">
+                        <table class="table align-items-center justify-content-center mb-0">
                             <thead>
                                 <tr>
-                                    <th>Mã sản phẩm</th>
-                                    <th>Hình ảnh</th>
-                                    <th>Tên sản phẩm</th>
-                                    <th>Danh mục</th>
-                                    <th>Giá sản phẩm</th>
-                                    <th>Giá khuyến mại</th>
-                                    <th>Số lượng</th>
-                                    <th>Trạng thái</th>
-                                    <th>&nbsp;</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Sản phẩm
+                                    </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Giá
+                                        sản phẩm</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Giá
+                                        khuyến mãi</th>
+                                    <th
+                                        class="text-uppercase text-secondary text-xxs font-weight-bolder  text-center opacity-7">
+                                        Danh mục</th>
+                                    <th
+                                        class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7">
+                                        Số lượng</th>
+                                    <th
+                                        class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7">
+                                        Trạng thái</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse ($listPr as $item)
                                     <tr>
-
-                                        <td class="text-center">{{ $item->ma_san_pham }}</td>
-
-                                        <td class="text-center"><img class="" style="width: 100px"
-                                                src="{{ Storage::url($item->hinh_anh) }}" alt="1" srcset="">
+                                        <td>
+                                            <div class="d-flex px-2">
+                                                <div>
+                                                    <img class="" style="width: 50px"
+                                                        src="{{ Storage::url($item->hinh_anh) }}" alt="1"
+                                                        srcset="">
+                                                </div>
+                                                <div class="my-auto ms-2">
+                                                    <h6 class="mb-0 text-sm">{{ $item->ten_san_pham }}</h6>
+                                                    <p class="mb-0 text-sm">{{ $item->ma_san_pham }} </p>
+                                                </div>
+                                            </div>
                                         </td>
-
-                                        <td class="text-center" style="max-width: 70px; overflow: hidden; ">
-                                            {{ $item->ten_san_pham }}</td>
-
-                                        <td class="text-center">{{ $item->danhMuc->ten_danh_muc }}</td>
-
-                                        <td class="text-center">{{ $item->gia_san_pham }}</td>
-                                        <td class="text-center"> {{ empty($item->gia_khuyen_mai) ? 0 : $item->gia_khuyen_mai }}</td>
-                                        <td class="text-center">{{ $item->so_luong }}</td>
+                                        <td>
+                                            <p class="text-sm font-weight-bold mb-0">
+                                                {{ number_format($item->gia_san_pham, 0, ',', '.') }}</p>
+                                        </td>
+                                        <td>
+                                            <p class="text-sm font-weight-bold mb-0">
+                                                {{ empty(number_format($item->gia_khuyen_mai, 0, ',', '.')) ? 0 : number_format($item->gia_khuyen_mai, 0, ',', '.') }}
+                                            </p>
+                                        </td>
                                         <td class="text-center">
+                                            <span class="text-xs font-weight-bold">{{ $item->danhMuc->ten_danh_muc }}
+                                             </span>
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            <div class="d-flex align-items-center justify-content-center">
+                                                <span class="me-2 text-xs font-weight-bold">{{ $item->so_luong }}</span>
+
+                                            </div>
+                                        </td>
+                                        <td class="align-middle  text-center">
                                             {!! $item->is_type == 1
                                                 ? '<span class="badge bg-info">Hiển thị</span>'
                                                 : '<span class="badge bg-danger">Ẩn</span>' !!}
                                         </td>
 
-                                        <td class="text-center">
-                                            <div>
-
+                                        <td class="align-middle">
+                                            <div class="mt-3">
                                                 <a class=" text-center text-warning m-1"
                                                     href="{{ route('sanpham.edit', $item->id) }}">
                                                     <button class="btn btn-link text-warning p-0 "
@@ -95,9 +116,12 @@
                                 @endforelse
                             </tbody>
                         </table>
-                        {{ $listPr->links() }}
+                        {{$listPr->links('pagination::bootstrap-5')}}
                     </div>
                 </div>
+
+
+
 
             </div>
 

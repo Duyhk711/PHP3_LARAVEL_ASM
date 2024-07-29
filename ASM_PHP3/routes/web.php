@@ -17,8 +17,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Clients\ShopController;
 
 use App\Http\Controllers\ClientController;
-
-
+use App\Http\Controllers\Clients\CartController;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,7 +40,7 @@ Route::get('/', function () {
 // });
 
 
-Route::get('/dashboard', [HomeController::class, 'index']);
+
 
 Route::middleware(['auth', 'auth.admin'])->resource('/sanpham',SanPhamController::class);
 Route::middleware(['auth', 'auth.admin'])->resource('/danhmuc',DanhMucController::class);
@@ -48,7 +48,7 @@ Route::middleware(['auth', 'auth.admin'])->resource('/donhang',DonHangController
 Route::middleware(['auth', 'auth.admin'])->resource('/user',UserController::class);
 Route::middleware(['auth', 'auth.admin'])->resource('/trangthai',TrangThaiDHController::class);
 
-
+Route::get('/profile', [UserController::class, 'showProfile'])->name('profile');
 
 Route::get('/login', [AuthController::class, 'showFormLogin']);
 Route::post('/login', [AuthController::class, 'login'])->name('login');
@@ -58,7 +58,9 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 // Auth::routes();
-
+Route::get('/client/list-cart', [CartController::class, 'listCart'])->name('cart.list');
+Route::post('/client/add-to-cart', [CartController::class, 'addCart'])->name('cart.add');
+Route::post('/client/update-cart', [CartController::class, 'updateCart'])->name('cart.update');
 
 Route::get('/home', [HomeController::class, 'home'])->name('home');
 Route::get('/dashboard', [HomeController::class, 'index'])->name('index')->middleware(['auth','auth.admin']);
@@ -69,9 +71,11 @@ Route::get('/client/shop/doAnNhanh',[ShopController::class, 'doAnNhanh'])->name(
 Route::get('/client/shop/banhKem',[ShopController::class, 'banhKem'])->name('shop.banhKem');
 Route::get('/client/shop/doUong',[ShopController::class, 'doUong'])->name('shop.doUong');
 Route::get('/client/shop/doChien',[ShopController::class, 'doChien'])->name('shop.doChien');
-Route::get('/client/shop/cart',[ShopController::class, 'cart'])->name('shop.cart');
-Route::get('/client/shop/detailProduct',[ShopController::class, 'detailProduct'])->name('shop.detailProduct');
+// Route::get('/client/shop/cart',[ShopController::class, 'cart'])->name('shop.cart');
+Route::get('/client/shop/detailProduct/{id}',[ShopController::class, 'detailProduct'])->name('shop.detailProduct');
 
 Route::get('/client/trangchu', [ClientController::class, 'index'])->name('trang_chu');
+
+
 
 

@@ -24,10 +24,10 @@ class ShopController extends Controller
     public function doUong(){
         return view('clients.contents.shops.doUong');
     }
-    public function cart(){
-        return view('clients.contents.shops.cart');
-    }
-    public function detailProduct(){
-        return view('clients.contents.sanpham.productDetail');
+    
+    public function detailProduct(string $id){
+        $sanPham = SanPham::query()->findOrFail($id);
+        $listSanPham = SanPham::query()->get();
+        return view('clients.contents.sanpham.productDetail', compact('sanPham', 'listSanPham'));
     }
 }

@@ -16,7 +16,7 @@ class DonHangController extends Controller
         $pages_title = "Đơn hàng";
         $title = "Danh Sách Đơn Hàng";
         $data = DonHang::query()->latest('id')->paginate(5);
-        return view('admins.contents.donhang.donhang', [
+        return view('admins.contents.donhangs.donhang', [
             'pages_title' => $pages_title,
             'data' => $data,
             'title' => $title

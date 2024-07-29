@@ -29,7 +29,7 @@
                                                 <option selected>-- Chọn danh mục --</option>
                                                 @foreach ($listDm as $item)
                                                     <option value="{{ $item->id }}"
-                                                        {{ old($item->ten_danh_muc) == $item->id ? 'selected' : '' }}>
+                                                        {{ old('danh_muc_id') == $item->id ? 'selected' : '' }}>
                                                         {{ $item->ten_danh_muc }}
                                                     </option>
                                                 @endforeach

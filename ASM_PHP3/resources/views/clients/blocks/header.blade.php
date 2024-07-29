@@ -58,7 +58,7 @@
             <div class="col">
                 <div class="site-logo-wrap">
                     <div class="site-logo">
-                        <a href="index.html"><img src="{{asset('assets/clients')}}/img/logo.png" alt="Logo"></a>
+                        <a href="index.html"><img src="{{asset('assets/clients/img/logo.png')}}" alt="Logo"></a>
                     </div>
                 </div>
             </div>
@@ -132,9 +132,9 @@
                 </div>
                 <!-- mini-cart -->
                 <div class="mini-cart-icon">
-                    <a href="{{route('shop.cart')}}" class="ltn__utilize-toggle">
+                    <a href="{{ route('cart.list') }}">
                         <i class="icon-shopping-cart"></i>
-                        <sup>2</sup>
+                        <sup>{{session('cart') ? count(session('cart')) : '0'}}</sup>
                     </a>
                 </div>
                 <!-- mini-cart -->
