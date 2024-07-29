@@ -75,3 +75,4 @@ Route::get('/client/shop/detailProduct',[ShopController::class, 'detailProduct']
 Route::get('/client/trangchu', [ClientController::class, 'index'])->name('trang_chu');
 
 
+

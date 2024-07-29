@@ -98,12 +98,12 @@ class SanPhamController extends Controller
 
         $sanPham = SanPham::findOrFail($id);
         $listDm = DB::table('danh_mucs')->get();
-       
+        $sanPham->increment('luot_xem'); // Tăng số lượt xem
         // dd($data);
         
         // return redirect()->route('sanpham.index');
 
-       return view('admins.contents.sanpham.show',compact('sanPham', 'listDm', 'pages_title','title'));
+       return view('admins.contents.sanphams.show',compact('sanPham', 'listDm', 'pages_title','title'));
     }
 
     /**

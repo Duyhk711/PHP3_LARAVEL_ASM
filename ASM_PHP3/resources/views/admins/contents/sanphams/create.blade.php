@@ -140,11 +140,14 @@
                                         <label for="">Tùy chỉnh khác</label> <br>
                                         <div class="row d-flex justify-content-between row-cols-lg-2">
                                             <div class="mb-2  col">
+                                                {{-- s --}}
                                                 <div class="form-check form-switch">
                                                     <input class="form-check-input bg-danger" type="checkbox"
                                                         role="switch" id="is_new" name="is_new" checked>
                                                     <label class="form-check-label" for="is_new">New</label>
                                                 </div>
+                                                {{-- e --}}
+
                                                 <div class="form-check  form-switch">
                                                     <input class="form-check-input bg-info" type="checkbox"
                                                         role="switch" id="is_hot_deal" name="is_hot_deal" checked>

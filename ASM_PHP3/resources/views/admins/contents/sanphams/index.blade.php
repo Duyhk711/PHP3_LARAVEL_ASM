@@ -50,7 +50,7 @@
                                         <td class="text-center">{{ $item->ma_san_pham }}</td>
 
                                         <td class="text-center"><img class="" style="width: 100px"
-                                                src="{{ Storage::url($item->hinh_anh) }}" alt="1" srcset="">
+                                                src="{{Storage::url($item->hinh_anh)}}" alt="1" srcset="">
                                         </td>
 
                                         <td class="text-center" style="max-width: 70px; overflow: hidden; ">
@@ -69,6 +69,13 @@
 
                                         <td class="text-center">
                                             <div>
+                                                <a class=" text-center text-warning m-1"
+                                                href="{{ route('sanpham.show', $item->id) }}">
+                                                <button class="btn btn-link text-warning p-0 "
+                                                    style="border: none; background: none; ">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                            </a>
 
                                                 <a class=" text-center text-warning m-1"
                                                     href="{{ route('sanpham.edit', $item->id) }}">
