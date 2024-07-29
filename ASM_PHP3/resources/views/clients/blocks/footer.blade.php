@@ -71,7 +71,7 @@
                             <li><a href="order-tracking.html">Order tracking</a></li>
                             <li><a href="wishlist.html">Wish List</a></li>
                             <li><a href="login.html">Login</a></li>
-                            <li><a href="account.html">My account</a></li>
+                            <li><a href="{{ url('account') }}">My account</a></li>
                             <li><a href="about.html">Terms & Conditions</a></li>
                             <li><a href="about.html">Promotional Offers</a></li>
                         </ul>
@@ -84,7 +84,7 @@
                     <div class="footer-menu">
                         <ul>
                             <li><a href="login.html">Login</a></li>
-                            <li><a href="account.html">My account</a></li>
+                            <li><a href="{{ url('account') }}">My account</a></li>
                             <li><a href="wishlist.html">Wish List</a></li>
                             <li><a href="order-tracking.html">Order tracking</a></li>
                             <li><a href="faq.html">FAQ</a></li>

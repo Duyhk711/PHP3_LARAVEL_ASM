@@ -124,7 +124,7 @@
                             <ul>
                                 <li><a href="login.html">Sign in</a></li>
                                 <li><a href="register.html">Register</a></li>
-                                <li><a href="account.html">My Account</a></li>
+                                <li><a href="{{ url('account') }}">My Account</a></li>
                                 <li><a href="wishlist.html">Wishlist</a></li>
                             </ul>
                         </li>

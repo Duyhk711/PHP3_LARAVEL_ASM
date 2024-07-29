@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UsersSeeder::class,
             TrangThaiDHSeeder::class,
-            DonHangSeeed::class,
+            // DonHangSeeed::class,
             DanhMucSeeder::class
         ]);
     }

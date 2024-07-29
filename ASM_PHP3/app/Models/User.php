@@ -25,8 +25,11 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
-       
-        
+        'nam_sinh',
+        'so_dien_thoai',
+        'dia_chi',
+        'gioi_tinh',
+        'anh_dai_dien'
     ];
 
     /**

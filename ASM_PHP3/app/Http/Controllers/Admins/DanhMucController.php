@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admins;
 use App\Models\DanhMuc;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\DanhMucRequest;
 use Illuminate\Support\Facades\Storage;
 
 class DanhMucController extends Controller
@@ -38,7 +39,7 @@ class DanhMucController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(DanhMucRequest $request)
     {
         if($request->isMethod('POST')){
             $params = $request->post();
@@ -79,7 +80,7 @@ class DanhMucController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(DanhMucRequest $request, string $id)
     {
         if($request->isMethod('PUT')){
             $params = $request->post();

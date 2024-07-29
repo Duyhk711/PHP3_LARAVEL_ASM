@@ -17,8 +17,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Clients\ShopController;
 
 use App\Http\Controllers\ClientController;
-
-
+use App\Http\Controllers\Clients\UserController as ClientsUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,4 +73,5 @@ Route::get('/client/shop/detailProduct',[ShopController::class, 'detailProduct']
 
 Route::get('/client/trangchu', [ClientController::class, 'index'])->name('trang_chu');
 
-
+// account
+Route::get('/account', [ClientsUserController::class,'index'])->name('account');

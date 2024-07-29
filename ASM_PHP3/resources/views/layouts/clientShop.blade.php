@@ -32,7 +32,7 @@
 
 <!-- Body main wrapper start -->
 <div class="wrapper">
-
+{{-- bắt đầu phần header (bao gồm cả banner) --}}
     <!-- HEADER AREA START (header-5) -->
     <header class="ltn__header-area ltn__header-5 ltn__header-transparent gradient-color-2">
      @include('clients.blocks.headerShop')
@@ -247,7 +247,7 @@
         </div>
     </div>
     <!-- BREADCRUMB AREA END -->
-    
+{{-- kết thúc phần header (bao gồm cả banner) --}}
     <!-- PRODUCT DETAILS AREA START -->
     <div class="ltn__product-area ltn__product-gutter mb-120">
         <div class="container">
