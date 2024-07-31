@@ -1,4 +1,4 @@
-@extends('layouts.clientShop')
+@extends('layouts.client')
 @section('content')
 <div class="liton__shoping-cart-area mb-120">
      <div class="container">

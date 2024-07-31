@@ -64,11 +64,9 @@ Route::get('/home', [HomeController::class, 'home'])->name('home');
 Route::get('/dashboard', [HomeController::class, 'index'])->name('index')->middleware(['auth','auth.admin']);
 Route::get('/client/home', [ClientController::class, 'index'])->name('trang_chu');
 
-Route::get('/client/shop',[ShopController::class, 'shop'])->name('shop');
-Route::get('/client/shop/doAnNhanh',[ShopController::class, 'doAnNhanh'])->name('shop.doAnNhanh');
-Route::get('/client/shop/banhKem',[ShopController::class, 'banhKem'])->name('shop.banhKem');
-Route::get('/client/shop/doUong',[ShopController::class, 'doUong'])->name('shop.doUong');
-Route::get('/client/shop/doChien',[ShopController::class, 'doChien'])->name('shop.doChien');
+Route::get('/client/shop',[ClientController::class, 'shop'])->name('shop');
+Route::get('/client/danhmuc/{danhmuc}',[ClientController::class, 'danhmuc'])->name('shop.danhmuc');
+
 Route::get('/client/shop/cart',[ShopController::class, 'cart'])->name('shop.cart');
 Route::get('/client/shop/detailProduct',[ShopController::class, 'detailProduct'])->name('shop.detailProduct');
 

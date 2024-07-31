@@ -38,7 +38,7 @@
                                     <table class="table table-striped mb-0">
                                         <thead>
                                             <tr>
-                                                <th scope="col" class="text-center">#</th>
+                                                <th scope="col" class="text-center">ID</th>
                                                 <th scope="col" class="text-center">Hình Ảnh</th>
                                                 <th scope="col" class="text-center">Tên Danh Mục</th>
                                                 <th scope="col" class="text-center">Trạng Thái</th>

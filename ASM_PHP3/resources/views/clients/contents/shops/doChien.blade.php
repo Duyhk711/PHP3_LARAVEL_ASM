@@ -1,4 +1,4 @@
-@extends('layouts.clientShop')
+@extends('layouts.client')
 @section('content')
 
  <!-- PRODUCT DETAILS AREA START -->

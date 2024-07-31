@@ -1,4 +1,4 @@
-@extends('layouts.clientShop')
+@extends('layouts.client')
 @section('content')
    
     <div class="ltn__product-area ltn__product-gutter mb-120">
