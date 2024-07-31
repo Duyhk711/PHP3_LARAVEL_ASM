@@ -75,7 +75,7 @@
                                         <p>{{ $sanPham->mo_ta_ngan }}</p>
                                     </div>
 
-                                    <form action="{{route('cart.add')}}" method="POST" >
+                                    <form action="{{route('clients.cart.add')}}" method="POST" >
                                         @csrf
                                     <div class="ltn__product-details-menu-2">
                                         <ul>
@@ -303,19 +303,19 @@
                                     <li>
                                         <div class="top-rated-product-item clearfix">
                                             <div class="top-rated-product-img">
-                                                <a href="{{ route('shop.detailProduct', $item->id) }}"><img
+                                                <a href="{{ route('clients.detailProduct', $item->id) }}"><img
                                                         src="{{ Storage::url($item->hinh_anh) }}" alt="#" style="height: 100px"></a>
                                             </div>
                                             <div class="top-rated-product-info">
 
                                                 <h6><a
-                                                        href="{{ route('shop.detailProduct', $item->id) }}">{{ $item->ten_san_pham }}</a>
+                                                        href="{{ route('clients.detailProduct', $item->id) }}">{{ $item->ten_san_pham }}</a>
                                                 </h6>
                                                 <div class="product-price">
                                                     <span>{{ number_format($item->gia_khuyen_mai, 0, ',', '.') }}đ</span>
                                                     <del>{{ number_format($item->gia_khuyen_mai, 0, ',', '.') }}đ</del>
                                                     
-                                                    <form action="{{route('cart.add')}}" method="POST">
+                                                    <form action="{{route('clients.cart.add')}}" method="POST">
                                                         @csrf
                                                         <input type="hidden" name="qtybutton" value="1">
                                                         <input type="hidden" name="product_id" value="{{$item->id}}">

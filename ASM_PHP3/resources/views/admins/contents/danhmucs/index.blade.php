@@ -18,7 +18,7 @@
                     <div class="alert alert-success">{{ session('error') }}</div>
                 @endif
                 <div class="d-flex justify-content-end ">
-                    <a class="btn btn-success mx-4" href="{{ route('danhmuc.create') }}">Thêm mới danh mục</a>
+                    <a class="btn btn-success mx-4" href="{{ route('admins.danhmucs.create') }}">Thêm mới danh mục</a>
                 </div>
                 <div class="row">
                     <div class="col-xl-12">
@@ -76,13 +76,13 @@
                                                     <div class="d-inline">
 
                                                         <a class="  text-warning m-1"
-                                                            href="{{ route('danhmuc.edit', $item->id) }}">
+                                                            href="{{ route('admins.danhmucs.edit', $item->id) }}">
                                                             <button class="btn btn-link text-warning p-0 "
                                                                 style="border: none; background: none; ">
                                                                 <i class="fa-solid fa-pen-to-square fa-xl"></i>
                                                             </button>
                                                         </a>
-                                                        <form action="{{ route('danhmuc.destroy', $item->id) }}"
+                                                        <form action="{{ route('admins.danhmucs.destroy', $item->id) }}"
                                                             method="POST" class="mt-1 d-inline">
                                                             @csrf
                                                             @method('DELETE')

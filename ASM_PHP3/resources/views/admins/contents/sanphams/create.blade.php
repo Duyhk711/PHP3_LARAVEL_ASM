@@ -17,7 +17,7 @@
                 <div class="card-body p-3 rounded">
                     <div class="white_card_body QA_section">
                         <div class="QA_table ">
-                            <form action="{{ route('sanpham.store') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('admins.sanphams.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="row">

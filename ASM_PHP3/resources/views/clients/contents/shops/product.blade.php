@@ -37,7 +37,7 @@
                          <div class="ltn__product-tab-content-inner ltn__product-grid-view">
                              <div class="row">
                                  <!-- ltn__product-item -->
-                                 @foreach ($listSanPham as $item)
+                                 @foreach ($sanPham as $item)
                                     <div class="col-xl-4 col-sm-6 col-6">
                                         <div class="ltn__product-item ltn__product-item-3 text-center">
                                             <div class="product-img">
@@ -50,12 +50,12 @@
                                                 <div class="product-hover-action">
                                                     <ul>
                                                         <li>
-                                                            <a href="{{route('clients.detailProduct',$item->id)}}">
+                                                            <a href="{{route('clients.detailProduct',$item->id)}}" >
                                                                 <i class="far fa-eye"></i>
                                                             </a>
                                                         </li>
                                                         <li>
-                                                            <form action="{{ route('clients.cart.add') }}" method="POST">
+                                                            <form action="{{route('clients.cart.add')}}" method="POST">
                                                                 @csrf
                                                                 <input type="hidden" name="qtybutton" value="1">
                                                                 <input type="hidden" name="product_id" value="{{$item->id}}">
@@ -93,7 +93,7 @@
                          <div class="ltn__product-tab-content-inner ltn__product-list-view">
                              <div class="row">
                                  <!-- ltn__product-item -->
-                                  @foreach ($listSanPham as $item)
+                                  @foreach ($sanPham as $item)
                                     <div class="col-lg-12">
                                         <div class="ltn__product-item ltn__product-item-3">
                                             <div class="product-img">
@@ -123,9 +123,16 @@
                                                             </a>
                                                         </li>
                                                         <li>
-                                                            <a href="#" title="Add to Cart" data-bs-toggle="modal" data-bs-target="#add_to_cart_modal">
-                                                                <i class="fas fa-shopping-cart"></i>
-                                                            </a>
+                                                            <form action="{{route('clients.cart.add')}}" method="POST">
+                                                                @csrf
+                                                                <input type="hidden" name="qtybutton" value="1">
+                                                                <input type="hidden" name="product_id" value="{{$item->id}}">
+                                                                <button type="submit" style="background: none; border: none" >
+                                                                    
+                                                                        <i class="fas fa-shopping-cart"></i>
+                                                                    
+                                                                </button>
+                                                            </form>
                                                         </li>
                                                         <li>
                                                             <a href="#" title="Wishlist" data-bs-toggle="modal" data-bs-target="#liton_wishlist_modal">
@@ -143,7 +150,7 @@
                  </div>
                  <div class="ltn__pagination-area text-center">
                      <div class="">      
-                             {{$listSanPham->links('pagination::bootstrap-5')}}
+                             {{$sanPham->links('pagination::bootstrap-5')}}
                      </div>
                  </div>
              </div>

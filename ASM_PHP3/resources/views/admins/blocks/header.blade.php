@@ -27,10 +27,11 @@
                             <i class="fa fa-user me-sm-1"></i>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                          <li><a class="dropdown-item nav-link text-center" href="{{route('profile')}}">Profile</a></li>
+                            <li><a class="dropdown-item nav-link text-center" href="{{route('clients.trang_chu')}}">Client</a></li>
+                          <li><a class="dropdown-item nav-link text-center" href="{{route('admins.taikhoans.profile')}}">Profile</a></li>
                             <li>
                                 <span class="">
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                         @csrf
                                         <button class="nav-link dropdown-item text-center" onclick="return confirm('Đăng Xuất')">Logout</button>
                                     </form>

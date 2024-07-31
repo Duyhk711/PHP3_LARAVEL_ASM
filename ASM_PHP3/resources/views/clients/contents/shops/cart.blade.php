@@ -42,10 +42,14 @@
             <div class="row">
                 <div class="shoping-cart-inner">
                     <div class="shoping-cart-table">
+                        @if (session('error'))
+                             <div class="alert text-danger m-2">{{ session('error') }}</div>
+                            
+                        @endif
                         <div class="row">
                             <div class="QA_section border-0">
                                 <div class="card-body QA_table">
-                                    <form action="{{route('cart.update')}}" method="POST">
+                                    <form action="{{route('clients.cart.update')}}" method="POST">
                                         @csrf
                                         <div class=" table-responsive shopping-cart container">
                                             <table class="table mb-0">
@@ -65,7 +69,7 @@
                                                                 <img src="{{ Storage::url($item['hinh_anh']) }}" alt
                                                                     height="52" style="width: 100px; height: 100px;" />
                                                                 <p class="d-inline-block align-middle mb-0">
-                                                                    <a href="{{route('shop.detailProduct',['id' => $key])}}"
+                                                                    <a href="{{route('clients.detailProduct',['id' => $key])}}"
                                                                         class="d-inline-block align-middle mb-0 f_s_16 f_w_600 color_theme2">
                                                                         {{ $item['ten_san_pham'] }} <br> <span
                                                                             
@@ -136,7 +140,7 @@
                             </tbody>
                         </table>
                         <div class="btn-wrapper text-right text-end">
-                            <a href="checkout.html" class="theme-btn-1 btn btn-effect-1">Proceed to checkout</a>
+                            <a href="{{route('clients.donhangs.create')}}" class="theme-btn-1 btn btn-effect-1">Proceed to checkout</a>
                         </div>
                     </div>
                 </div>

@@ -20,7 +20,7 @@
                 </div>
                 <div class="d-flex justify-content-end ">
 
-                    <a class="btn btn-success mx-4" href="{{ route('sanpham.create') }}">Thêm mới sản phẩm</a>
+                    <a class="btn btn-success mx-4" href="{{ route('admins.sanphams.create') }}">Thêm mới sản phẩm</a>
 
                 </div>
 
@@ -92,13 +92,13 @@
                                         <td class="align-middle">
                                             <div class="mt-3">
                                                 <a class=" text-center text-warning m-1"
-                                                    href="{{ route('sanpham.edit', $item->id) }}">
+                                                    href="{{ route('admins.sanphams.edit', $item->id) }}">
                                                     <button class="btn btn-link text-warning p-0 "
                                                         style="border: none; background: none; ">
                                                         <i class="fa-solid fa-pen-to-square fa-xl"></i>
                                                     </button>
                                                 </a>
-                                                <form action="{{ route('sanpham.destroy', $item->id) }}" method="POST"
+                                                <form action="{{ route('admins.sanphams.destroy', $item->id) }}" method="POST"
                                                     class="d-inline mt-1">
                                                     @csrf
                                                     @method('DELETE')

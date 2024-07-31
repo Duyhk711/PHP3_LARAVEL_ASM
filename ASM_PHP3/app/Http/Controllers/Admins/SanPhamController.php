@@ -81,7 +81,7 @@ class SanPhamController extends Controller
                     }
                 }
             }
-            return redirect()->route('sanpham.index')->with('msg', 'Thêm sản phẩm thành công!');
+            return redirect()->route('admins.sanphams.index')->with('msg', 'Thêm sản phẩm thành công!');
 
         }
     }
@@ -200,7 +200,7 @@ class SanPhamController extends Controller
 
             $sanPham->update($params);
 
-            return redirect()->route('sanpham.index')->with('msg', 'Cập nhật thông tin sản phẩm thành công!');
+            return redirect()->route('admins.sanphams.index')->with('msg', 'Cập nhật thông tin sản phẩm thành công!');
 
         }
     }
@@ -222,6 +222,6 @@ class SanPhamController extends Controller
             Storage::disk('public')->deleteDirectory($path);
         }
         $sanPham->delete();
-        return redirect()->route('sanpham.index')->with('msg', 'Xóa sản phẩm thành công!');
+        return redirect()->route('admins.sanphams.index')->with('msg', 'Xóa sản phẩm thành công!');
     }
 }
