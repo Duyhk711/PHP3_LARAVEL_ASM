@@ -26,7 +26,7 @@ class DanhMuc extends Model
     ];
 
     public function sanPhams (){
-        return $this->hasMany(SanPham::class,'danh_muc_id','id')->orderBy('id','DESC');
+        return $this->hasMany(SanPham::class);
     }
 
 }

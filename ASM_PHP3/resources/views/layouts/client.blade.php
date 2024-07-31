@@ -10,7 +10,12 @@
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    @yield('css')
+    <style>
+        .btn-logout:hover{
+            color: rgb(67, 175, 5);
+        }
+    </style>
     <!-- Place favicon.png in the root directory -->
     <link rel="shortcut icon" href="{{asset('assets/clients')}}/img/favicon.png" type="image/x-icon" />
     <!-- Font Icons css -->
@@ -487,7 +492,7 @@
         </div>
     </div>
     <!-- preloader area end -->
-
+    @yield('js')
     <!-- All JS Plugins -->
     <script src="{{asset('assets/clients')}}/js/plugins.js"></script>
     <!-- Main JS -->

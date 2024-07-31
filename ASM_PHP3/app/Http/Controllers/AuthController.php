@@ -27,9 +27,9 @@ class AuthController extends Controller
         if(Auth::attempt($user)){
             
             if(Auth::check() && Auth::user()->role === User::ROLE_ADMIN){
-                return redirect()->intended('dashboard');
+                return redirect()->intended('/admins/dashboard');
             }
-            return redirect()->intended('/client/trangchu');
+            return redirect()->intended('/clients/trangchu');
         }
 
             return redirect()->back()->withErrors([
@@ -48,8 +48,8 @@ class AuthController extends Controller
     public function register(Request $request){
         $data =  $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255',
-            'password' => 'required|string|min:8',
+            'email' => 'required|string|email|max:255|unique:users,email',
+            'password' => 'required|string|min:8|confirmed',
             
         ]);
         $user = User::create([
@@ -60,13 +60,13 @@ class AuthController extends Controller
         ]);
         Auth::login($user);
 
-        return redirect()->intended('/client/index');
+        return redirect()->intended('/clients/trangchu');
         // dd($data);
     }
 
     public function logout(Request $request){
         Auth::logout();
-        return redirect('/login');
+        return redirect('/');
     }
 
 

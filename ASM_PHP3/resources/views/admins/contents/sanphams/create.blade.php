@@ -17,7 +17,7 @@
                 <div class="card-body p-3 rounded">
                     <div class="white_card_body QA_section">
                         <div class="QA_table ">
-                            <form action="{{ route('sanpham.store') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('admins.sanphams.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="row">
@@ -29,7 +29,7 @@
                                                 <option selected>-- Chọn danh mục --</option>
                                                 @foreach ($listDm as $item)
                                                     <option value="{{ $item->id }}"
-                                                        {{ old($item->ten_danh_muc) == $item->id ? 'selected' : '' }}>
+                                                        {{ old('danh_muc_id') == $item->id ? 'selected' : '' }}>
                                                         {{ $item->ten_danh_muc }}
                                                     </option>
                                                 @endforeach

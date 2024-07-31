@@ -26,4 +26,9 @@ class ClientController extends Controller
         // dd($danhmuc->sanPhams);
         return view('clients.contents.shops.product',compact('danhmuc','sanPham'));
     }
+    public function danhMuc(DanhMuc $cat){
+        $sanPham = $cat->sanPhams()->paginate(1);
+        // dd($cat->sanPhams);
+         return view('clients.contents.shops.product', compact('cat', 'sanPham'));
+    }
 }

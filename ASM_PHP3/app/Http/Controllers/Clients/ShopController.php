@@ -10,15 +10,10 @@ use Illuminate\Http\Request;
 class ShopController extends Controller
 {
     public function shop(){
-
-        $product=SanPham::get();
-        // dd($product);
-        return view('clients.contents.shops.shop',compact('product'));
+        return view('clients.contents.shops.shop');
     }
-    public function danhmuc( string $id){
-        $danhmucs=DanhMuc::findOrFail($id);
-
-        return view('clients.contents.shops.doAnNhanh',compact('danhmucs'));
+    public function doAnNhanh(){
+        return view('clients.contents.shops.doAnNhanh');
     }
     public function banhKem(){
         $danhmucs=DanhMuc::get();
@@ -37,11 +32,9 @@ class ShopController extends Controller
         return view('clients.contents.shops.doUong');
     }
     public function cart(){
-
         return view('clients.contents.shops.cart');
     }
     public function detailProduct(){
-
         return view('clients.contents.sanpham.productDetail');
     }
 }

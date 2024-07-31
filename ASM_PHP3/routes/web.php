@@ -17,8 +17,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Clients\ShopController;
 
 use App\Http\Controllers\ClientController;
-
-
+use App\Http\Controllers\Clients\CartController;
+use App\Http\Controllers\OrderController;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,44 +33,102 @@ use App\Http\Controllers\ClientController;
 */
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 // Route::get('/dashboard', function () {
 //     return view('admins.index');
 // });
 
 
-Route::get('/dashboard', [HomeController::class, 'index']);
+Route::middleware(['auth', 'auth.admin'])->prefix('admins')
+->as('admins.')
+->group(function(){
 
-Route::middleware(['auth', 'auth.admin'])->resource('/sanpham',SanPhamController::class);
-Route::middleware(['auth', 'auth.admin'])->resource('/danhmuc',DanhMucController::class);
-Route::middleware(['auth', 'auth.admin'])->resource('/donhang',DonHangController::class);
-Route::middleware(['auth', 'auth.admin'])->resource('/user',UserController::class);
-Route::middleware(['auth', 'auth.admin'])->resource('/trangthai',TrangThaiDHController::class);
+        Route::get('/dashboard', [HomeController::class, 'index'])
+        ->name('dashboard');
+
+        Route::prefix('danhmucs')
+        ->as('danhmucs.')
+        ->group(function(){
+            Route::get('/',                 [DanhMucController::class , 'index'])->name('index');
+            Route::get('/create',           [DanhMucController::class , 'create'])->name('create');
+            Route::post('/store',           [DanhMucController::class , 'store'])->name('store');
+            Route::get('/show/{id}',        [DanhMucController::class , 'show'])->name('show');
+            Route::get('{id}/edit',         [DanhMucController::class , 'edit'])->name('edit');
+            Route::put('{id}/update',       [DanhMucController::class , 'update'])->name('update');
+            Route::delete('{id}/destroy',   [DanhMucController::class , 'destroy'])->name('destroy');
+        });
 
 
+        Route::prefix('sanphams')
+        ->as('sanphams.')
+        ->group(function(){
+            Route::get('/',                 [SanPhamController::class , 'index'])->name('index');
+            Route::get('/create',           [SanPhamController::class , 'create'])->name('create');
+            Route::post('/store',           [SanPhamController::class , 'store'])->name('store');
+            Route::get('/show/{id}',        [SanPhamController::class , 'show'])->name('show');
+            Route::get('{id}/edit',         [SanPhamController::class , 'edit'])->name('edit');
+            Route::put('{id}/update',       [SanPhamController::class , 'update'])->name('update');
+            Route::delete('{id}/destroy',   [SanPhamController::class , 'destroy'])->name('destroy');
+        });
 
-Route::get('/login', [AuthController::class, 'showFormLogin']);
-Route::post('/login', [AuthController::class, 'login'])->name('login');
-Route::get('/register', [AuthController::class, 'showFormRegister']);
-Route::post('/register', [AuthController::class, 'register'])->name('register');
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+        Route::prefix('donhangs')
+        ->as('donhangs.')
+        ->group(function(){
+            Route::get('/',             [DonHangController::class , 'index'])->name('index');
+            Route::get('/show/{id}',    [DonHangController::class , 'show'])->name('show');
+        });
+
+        Route::prefix('taikhoans')
+        ->as('taikhoans.')
+        ->group(function(){
+            Route::get('/', [UserController::class , 'index'])->name('index');
+            Route::get('/profile', [UserController::class , 'showProfile'])->name('profile');
+        });
+});
+
+Route::get('/login',      [AuthController::class, 'showFormLogin']);
+Route::post('/login',     [AuthController::class, 'login'])->name('login');
+Route::get('/register',   [AuthController::class, 'showFormRegister']);
+Route::post('/register',  [AuthController::class, 'register'])->name('register');
+Route::post('/logout',    [AuthController::class, 'logout'])->name('logout');
 
 
-// Auth::routes();
+Route::prefix('clients')
+->as('clients.')
+->group(function(){
 
+    Route::get('/list-cart',         [CartController::class,   'listCart'])->name('cart.list');
+    Route::post('/add-to-cart',      [CartController::class,   'addCart'])->name('cart.add');
+    Route::post('/update-cart',      [CartController::class,   'updateCart'])->name('cart.update');
+    
+    Route::get('/home',              [ClientController::class, 'index'])->name('trang_chu');
+    Route::get('/product/{cat}',     [ClientController::class, 'danhMuc'])->name('product');
+    Route::get('/shop',              [ShopController::class,   'shop'])->name('shop');
+    Route::get('/shop/doAnNhanh',    [ShopController::class,   'doAnNhanh'])->name('shop.doAnNhanh');
+    Route::get('/shop/banhKem',      [ShopController::class,   'banhKem'])->name('shop.banhKem');
+    Route::get('/shop/doUong',       [ShopController::class,   'doUong'])->name('shop.doUong');
+    Route::get('/shop/doChien',      [ShopController::class,   'doChien'])->name('shop.doChien');
+    
+    Route::get('/detailProduct/{id}',[ShopController::class,   'detailProduct'])->name('detailProduct');
+    
+    Route::middleware('auth')->prefix('donhangs')
+    ->as('donhangs.')
+    ->group(function(){
+        Route::get('/',                 [OrderController::class , 'index'])->name('index');
+        Route::get('/create',           [OrderController::class , 'create'])->name('create');
+        Route::post('/store',           [OrderController::class , 'store'])->name('store');
+        Route::get('/show/{id}',        [OrderController::class , 'show'])->name('show');
+        Route::put('{id}/update',       [OrderController::class , 'update'])->name('update');
 
-Route::get('/home', [HomeController::class, 'home'])->name('home');
-Route::get('/dashboard', [HomeController::class, 'index'])->name('index')->middleware(['auth','auth.admin']);
-Route::get('/client/home', [ClientController::class, 'index'])->name('trang_chu');
+    });
 
-Route::get('/client/shop',[ClientController::class, 'shop'])->name('shop');
-Route::get('/client/danhmuc/{danhmuc}',[ClientController::class, 'danhmuc'])->name('shop.danhmuc');
+    
+});
 
-Route::get('/client/shop/cart',[ShopController::class, 'cart'])->name('shop.cart');
-Route::get('/client/shop/detailProduct',[ShopController::class, 'detailProduct'])->name('shop.detailProduct');
+Route::get('/', [ClientController::class, 'index'])->name('trang_chu');
 
-Route::get('/client/trangchu', [ClientController::class, 'index'])->name('trang_chu');
 
 

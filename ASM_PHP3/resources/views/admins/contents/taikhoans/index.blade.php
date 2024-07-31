@@ -1,57 +1,213 @@
 @extends('layouts.admin')
+@section('css')
+    <style>
+        .modal-profile-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+
+        .profile-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-details {
+            flex-grow: 1;
+        }
+
+        .profile-details p {
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-details strong {
+            width: 120px;
+            display: inline-block;
+        }
+    </style>
+@endsection
 @section('content')
-<div class=" mt-4 container ">
-    <div class=" mb-lg-0 mb-4">
-        <div class="card z-index-2 h-100 " >
-            <div class="card-header pb-0 pt-3 bg-transparent ">
-                <h4 class="text-capitalize text-center">{{$title}}</h4>
-            </div>
-            <div class="d-flex justify-content-end ">
-                <a class="btn btn-success mx-4" href="{{ route('user.create') }}">Thêm mới tài khoản</a>
-            </div>
-            <div class="card-body p-3 ">
-                <div class="container" >
-                    <div class="table-responsive  border-4 ">
-                    <div class="card">
-                        <table class="table table-hover">
-                            <thead>
-                                <th class="text-center">ID</th>
-                                <th class="text-center">Tên Tài Khoản</th>
-                                <th class="text-center">Email</th>
-                                <th class="text-center">Password</th>
-                                <th class="text-center">Số Điện Thoại</th>
-                                <th class="text-center">Địa Chỉ</th>
-                                <th class="text-center">Thao Tác</th>
-                            </thead>
-                            <tbody>
-                                @foreach($listUser as $item)
-                                    <tr>
-                                        <td class="text-center">{{ $item->id }}</td>
-                                        <td class="text-center">{{ $item->name}}</td>
-                                        <td class="text-center">{{ $item->email}}</td>
-                                        <td class="text-center">{{ $item->password}}</td>
-                                        <td class="text-center">{{ $item->so_dien_thoai}}</td>
-                                        <td class="text-center">{{ $item->dia_chi }}</td>
-                                        
-                                        <th>
-                                            <a href="#" class="btn btn-warning">Sửa</a>
-                                            <a href="#"class="btn btn-danger" onclick="return confirm('Bạn Có Muốn Xóa Không')">Xóa</a>
-                                        </th>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+    <div class=" mt-4 container ">
+        <div class=" mb-lg-0 mb-4">
+            <div class="card z-index-2 h-100 ">
+                <div class="card-header pb-0 pt-3 bg-transparent ">
+                    <h4 class="text-capitalize text-center">{{ $title }}</h4>
+                </div>
+
+                <div class="card-body p-3 ">
+                    <div class="container">
+                        <div class="row ">
+
+                            <div class="col-lg-5">
+                                <div class="card-body px-0 pt-0 pb-2">
+                                    <div class="table-responsive p-0">
+                                        <table class="table align-items-center mb-0">
+                                            <thead class="table-warning">
+
+                                                <tr>
+                                                    <th
+                                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                        Khách Hàng</th>
+                                                    <th
+                                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                                    </th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($users as $item)
+                                                    <tr>
+                                                        <td>
+                                                            <div class="d-flex px-2 py-1">
+                                                                <div>
+                                                                    <img src="{{ asset('assets/admins/img/team-2.jpg') }}"
+                                                                        class="avatar avatar-sm me-3" alt="user2">
+                                                                </div>
+                                                                <div class="d-flex flex-column justify-content-center">
+                                                                    <h6 class="mb-0 text-sm">{{ $item->name }}</h6>
+                                                                    <p class="text-xs text-secondary mb-0">
+                                                                        {{ $item->email }}</p>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+
+                                                        <td class="align-middle">
+                                                            <a href="javascript:;"
+                                                                class="text-secondary font-weight-bold text-xs"
+                                                                data-toggle="tooltip" data-original-title="Edit user"
+                                                                onclick="showProfileModal({{ json_encode($item) }})">
+                                                                <i class="fa-solid fa-eye"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-7">
+                                <div class="card-body px-0 pt-0 pb-2">
+                                    <div class="table-responsive p-0">
+                                        <table class="table align-items-center  mb-0">
+                                            <thead class="table-info">
+                                                <tr>
+                                                    <th
+                                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                        Nhân Viên</th>
+                                                    <th
+                                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                                        Chức vụ</th>
+
+                                                    <th
+                                                        class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                        Ngày làm việc</th>
+                                                    <th class="text-secondary opacity-7"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($admins as $item)
+                                                    <tr>
+                                                        <td>
+                                                            <div class="d-flex px-2 py-1">
+                                                                <div>
+                                                                    <img src="{{ asset('assets/admins/img/team-2.jpg') }}"
+                                                                        class="avatar avatar-sm me-3" alt="user1">
+                                                                </div>
+                                                                <div class="d-flex flex-column justify-content-center">
+                                                                    <h6 class="mb-0 text-sm">{{ $item->name }}</h6>
+                                                                    <p class="text-xs text-secondary mb-0">
+                                                                        {{ $item->email }}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <p class="text-xs font-weight-bold mb-0">{{ $item->role }}</p>
+
+                                                        </td>
+
+                                                        <td class="align-middle text-center">
+                                                            <span
+                                                                class="text-secondary text-xs font-weight-bold">{{ date($item->created_at) }}</span>
+                                                        </td>
+                                                        <td class="align-middle">
+                                                            <a href="javascript:;"
+                                                                class="text-secondary font-weight-bold text-xs"
+                                                                data-toggle="tooltip" data-original-title="Edit user"
+                                                                onclick="showProfileModal({{ json_encode($item) }})">
+                                                                <i class="fa-solid fa-eye"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <!-- Profile Modal -->
+    <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="profileModalLabel">Profile</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="profile-info">
+                        <img id="profileAvatar" src="" class="modal-profile-avatar" alt="Avatar">
+                        <div class="profile-details">
+                            <h4 id="profileName"></h4>
+                            <p><strong>Email:</strong> <span id="profileEmail"></span></p>
+                            <p><strong>Ngày sinh:</strong> <span id="profileDob"></span></p>
+                            <p><strong>Địa chỉ:</strong> <span id="profileAddress"></span></p>
+                            <p><strong>Giới tính:</strong> <span id="profileGender"></span></p>
+                            <p><strong>Số điện thoại:</strong> <span id="profilePhone"></span></p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-</div>
-
 @endsection
 
 @section('pages-title')
-    {{$title}}
+    {{ $title }}
+@endsection
+
+@section('js')
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        function showProfileModal(user) {
+            document.getElementById('profileAvatar').src = user.avatar ||
+                '{{ asset('assets/admins/img/team-2.jpg') }}';
+            document.getElementById('profileName').innerText = user.name;
+            document.getElementById('profileEmail').innerText = user.email;
+            document.getElementById('profileDob').innerText = user.dob || 'N/A';
+            document.getElementById('profileAddress').innerText = user.address || 'N/A';
+            document.getElementById('profileGender').innerText = user.gender || 'N/A';
+            document.getElementById('profilePhone').innerText = user.phone || 'N/A';
+            $('#profileModal').modal('show');
+        }
+    </script>
 @endsection
