@@ -75,3 +75,6 @@ Route::get('/client/trangchu', [ClientController::class, 'index'])->name('trang_
 
 // account
 Route::get('/account', [ClientsUserController::class,'index'])->name('account');
+
+// User
+Route::resource('user', UserController::class);

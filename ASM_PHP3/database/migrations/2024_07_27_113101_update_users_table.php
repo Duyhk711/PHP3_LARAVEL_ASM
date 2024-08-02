@@ -17,6 +17,7 @@ return new class extends Migration
             $table ->string('dia_chi')->after('so_dien_thoai')->nullable();
             $table ->enum('gioi_tinh', ['Nam', 'Nữ', 'Khác'])->after('dia_chi')->nullable();
             $table ->string('anh_dai_dien')->after('gioi_tinh')->nullable();
+            $table ->softDeletes();
         });
     }
 
