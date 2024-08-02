@@ -6,92 +6,91 @@
                 <div class="card-header pb-0 pt-3 bg-transparent ">
                     <h4 class="text-capitalize text-center">{{ $title }}</h4>
                 </div>
+                @if (session('error'))
+                    <div class="alert text-danger m-2">{{ session('error') }}</div>
+                @endif
+                @if (session('success'))
+                    <div class="alert text-success m-2">{{ session('success') }}</div>
+                @endif
                 <div class="card-body container ">
-                    <div class="table-responsive container p-0">
+                    <div class=" container p-0">
                         <table class="table align-items-center justify-content-center mb-0">
                             <thead>
                                 <tr>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Sản phẩm
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder  opacity-7">
+                                        Mã đơn
                                     </th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Giá
-                                        sản phẩm</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Giá
-                                        khuyến mãi</th>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder  text-center opacity-7">
-                                        Danh mục</th>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7">
-                                        Số lượng</th>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7">
-                                        Trạng thái</th>
-                                    <th></th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
+                                        Ngày đặt
+                                    </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
+                                        Tổng 
+                                    </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
+                                        Trạng thái
+                                    </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
+                                        &nbsp;
+                                    </th>
+                                    
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse ($data as $item)
                                     <tr>
-                                        <td>
-                                            <div class="d-flex px-2">
-                                                <div>
-                                                    <img class="" style="width: 50px"
-                                                        src="{{ Storage::url($item->hinh_anh) }}" alt="1"
-                                                        srcset="">
-                                                </div>
-                                                <div class="my-auto ms-2">
-                                                    <h6 class="mb-0 text-sm">{{ $item->ten_san_pham }}</h6>
-                                                    <p class="mb-0 text-sm">{{ $item->ma_san_pham }} </p>
-                                                </div>
-                                            </div>
+                                        <td>  
+                                            <h6 class="mb-0 text-sm">{{ $item->ma_don_hang }}</h6>
                                         </td>
-                                        <td>
-                                            <p class="text-sm font-weight-bold mb-0">
-                                                {{ number_format($item->gia_san_pham, 0, ',', '.') }}</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-sm font-weight-bold mb-0">
-                                                {{ empty(number_format($item->gia_khuyen_mai, 0, ',', '.')) ? 0 : number_format($item->gia_khuyen_mai, 0, ',', '.') }}
-                                            </p>
-                                        </td>
+                                       
                                         <td class="text-center">
-                                            <span class="text-xs font-weight-bold">{{ $item->danhMuc->ten_danh_muc }}
-                                             </span>
+                                            {{ $item->created_at->format('d-m-Y') }}
+                                        </td>
+
+                                      
+                                        <td class="align-middle  text-center">
+                                           {{ number_format($item->tong_tien, 0 , ',', '.') }}đ
+                                        </td>
+
+                                        <td class="align-middle text-center">
+                                            <form action="{{route('admins.donhangs.update', $item->id )}}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <select name="trang_thai_don_hang" class="form-select" 
+                                                onchange="confirmSubmit(this)" data-default-value="{{$trangThaiDonHang[$item->trang_thai_don_hang]}}">
+                                                    @foreach ($trangThaiDonHang as $key => $value)
+                                                        <option value="{{ $key }}" 
+                                                        {{ $key == $item->trang_thai_don_hang ? 'selected' : '' }}
+                                                        {{ $key == 'huy_don_hang' ? 'disabled' : '' }}>
+                                                            {{ $value }}
+
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </form>
                                         </td>
                                         <td class="align-middle text-center">
-                                            <div class="d-flex align-items-center justify-content-center">
-                                                <span class="me-2 text-xs font-weight-bold">{{ $item->so_luong }}</span>
-
+                                            <div class="row">
+                                                    <a href="{{route('admins.donhangs.show', $item->id)}}" class="col-lg-6">
+                                                        <i class="fa-solid fa-eye fa-xl"></i>
+                                                    </a>
+                                                
+                                                    @if ($item->trang_thai_don_hang === $type_huy_don_hang )
+                                                        <form action="{{ route('admins.donhangs.destroy', $item->id) }}" method="POST"
+                                                            class="d-inline col-lg-6">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" 
+                                                                onclick="return confirm('Có chắc chắn xóa sản phẩm không?')"
+                                                                class="text-danger p-0"
+                                                                style="border: none; background: none; ">
+                                                                <i class="fa-solid fa-delete-left fa-xl"></i>
+                                                            </button>
+                                                        </form>
+                                                    @endif
+                                                
                                             </div>
                                         </td>
-                                        <td class="align-middle  text-center">
-                                            {!! $item->is_type == 1
-                                                ? '<span class="badge bg-info">Hiển thị</span>'
-                                                : '<span class="badge bg-danger">Ẩn</span>' !!}
-                                        </td>
-
-                                        <td class="align-middle">
-                                            <div class="mt-3">
-                                                <a class=" text-center text-warning m-1"
-                                                    href="{{ route('admins.sanphams.edit', $item->id) }}">
-                                                    <button class="btn btn-link text-warning p-0 "
-                                                        style="border: none; background: none; ">
-                                                        <i class="fa-solid fa-pen-to-square fa-xl"></i>
-                                                    </button>
-                                                </a>
-                                                <form action="{{ route('admins.sanphams.destroy', $item->id) }}" method="POST"
-                                                    class="d-inline mt-1">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit"
-                                                        onclick="return confirm('Có chắc chắn xóa sản phẩm không?')"
-                                                        class="btn btn-link text-danger p-0 "
-                                                        style="border: none; background: none; ">
-                                                        <i class="fa-solid fa-trash fa-xl "></i>
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        </td>
+                                        
                                     </tr>
                                 @empty
                                 @endforelse
@@ -106,6 +105,21 @@
     </div>
 @endsection
 
+@section('js')
+    <script>
+        function confirmSubmit(selectElement){
+            var form = selectElement.form;
+            var selectedOption =  selectElement.options[selectElement.selectedIndex].text;
+            var defaultValue = selectElement.getAttribute('data-default-value');
+
+            if (confirm('Bạn có chắc chắn thay đổi trạng thái đơn hàng thành: "' + selectedOption + '" không?')) {
+                form.submit();
+            } else {    
+                selectElement.value = defaultValue;
+            }
+        }
+    </script>
+@endsection
 @section('pages-title')
     {{ $pages_title }}
 @endsection

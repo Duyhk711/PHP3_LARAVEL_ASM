@@ -12,8 +12,7 @@ use App\Http\Controllers\Admins\SanPhamController;
 use App\Http\Controllers\Admins\TrangThaiDHController;
 
 use App\Http\Controllers\AuthController;
-
-
+use App\Http\Controllers\BinhLuanController;
 use App\Http\Controllers\Clients\ShopController;
 
 use App\Http\Controllers\ClientController;
@@ -77,8 +76,10 @@ Route::middleware(['auth', 'auth.admin'])->prefix('admins')
         Route::prefix('donhangs')
         ->as('donhangs.')
         ->group(function(){
-            Route::get('/',             [DonHangController::class , 'index'])->name('index');
-            Route::get('/show/{id}',    [DonHangController::class , 'show'])->name('show');
+            Route::get('/',                 [DonHangController::class , 'index'])->name('index');
+            Route::get('/show/{id}',        [DonHangController::class , 'show'])->name('show');
+            Route::put('{id}/update',       [DonHangController::class , 'update'])->name('update');
+            Route::delete('{id}/destroy',   [DonHangController::class , 'destroy'])->name('destroy');
         });
 
         Route::prefix('taikhoans')
@@ -99,12 +100,13 @@ Route::post('/logout',    [AuthController::class, 'logout'])->name('logout');
 Route::prefix('clients')
 ->as('clients.')
 ->group(function(){
-
-    Route::get('/list-cart',         [CartController::class,   'listCart'])->name('cart.list');
-    Route::post('/add-to-cart',      [CartController::class,   'addCart'])->name('cart.add');
-    Route::post('/update-cart',      [CartController::class,   'updateCart'])->name('cart.update');
     
-    Route::get('/home',              [ClientController::class, 'index'])->name('trang_chu');
+    Route::middleware('auth')->group(function(){
+        Route::get('/list-cart',         [CartController::class,   'listCart'])->name('cart.list');
+        Route::post('/add-to-cart',      [CartController::class,   'addCart'])->name('cart.add');
+        Route::post('/update-cart',      [CartController::class,   'updateCart'])->name('cart.update');
+    });
+    // Route::get('/home',              [ClientController::class, 'index'])->name('trang_chu');
     Route::get('/product/{cat}',     [ClientController::class, 'danhMuc'])->name('product');
     Route::get('/shop',              [ShopController::class,   'shop'])->name('shop');
     Route::get('/shop/doAnNhanh',    [ShopController::class,   'doAnNhanh'])->name('shop.doAnNhanh');
@@ -127,6 +129,7 @@ Route::prefix('clients')
 
     
 });
+Route::post('/products/{id}/comments', [BinhLuanController::class, 'store'])->middleware('auth')->name('comments.store');
 
 Route::get('/', [ClientController::class, 'index'])->name('trang_chu');
 

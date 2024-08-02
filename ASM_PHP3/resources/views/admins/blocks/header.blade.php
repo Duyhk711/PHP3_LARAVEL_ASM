@@ -24,10 +24,10 @@
                      
                         <button class="btn btn-white btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa fa-user me-sm-1"></i>
+                            <i class="fa fa-user me-sm-1"></i>{{Auth::user()->name}}
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item nav-link text-center" href="{{route('clients.trang_chu')}}">Client</a></li>
+                            <li><a class="dropdown-item nav-link text-center" href="{{route('trang_chu')}}">Client</a></li>
                           <li><a class="dropdown-item nav-link text-center" href="{{route('admins.taikhoans.profile')}}">Profile</a></li>
                             <li>
                                 <span class="">

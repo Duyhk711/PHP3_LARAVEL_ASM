@@ -24,7 +24,7 @@
                                         <div class="single-large-img">
                                             <a href="{{ Storage::url($sanPham->hinh_anh) }}"
                                                 data-rel="lightcase:myCollection">
-                                                <img src="{{ Storage::url($sanPham->hinh_anh) }}" alt="Image">
+                                                <img src="{{ Storage::url($sanPham->hinh_anh) }}" alt="Image" height="400px" width="500px">
                                             </a>
                                         </div>
                                         @foreach ($sanPham->hinhAnhSanPhams as $image)
@@ -38,7 +38,7 @@
                                     </div>
                                     <div class="ltn__shop-details-small-img slick-arrow-2">
                                         <div class="single-small-img">
-                                            <img src="{{ Storage::url($sanPham->hinh_anh) }}" alt="Image">
+                                            <img src="{{ Storage::url($sanPham->hinh_anh) }}" alt="Image" height="50px">
                                         </div>
                                         @foreach ($sanPham->hinhAnhSanPhams as $image)
                                             <div class="single-small-img">
@@ -151,142 +151,59 @@
                                     <h4 class="title-2">Customer Reviews</h4>
                                     <div class="product-ratting">
                                         <ul>
-                                            <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
                                             <li><a href="#"><i class="far fa-star"></i></a></li>
-                                            <li class="review-total"> <a href="#"> ( 95 Reviews )</a></li>
+                                            <li><a href="#"><i class="far fa-star"></i></a></li>
+                                            <li><a href="#"><i class="far fa-star"></i></a></li>
+                                            <li><a href="#"><i class="far fa-star"></i></a></li>
+                                            <li><a href="#"><i class="far fa-star"></i></a></li>
+                                            <li class="review-total"> <a href="#"> ( {{$sanPham->luot_xem}} lượt xem )</a></li>
                                         </ul>
                                     </div>
                                     <hr>
-                                    <!-- comment-area -->
                                     <div class="ltn__comment-area mb-30">
                                         <div class="ltn__comment-inner">
                                             <ul>
-                                                <li>
-                                                    <div class="ltn__comment-item clearfix">
-                                                        <div class="ltn__commenter-img">
-                                                            <img src="img/testimonial/1.jpg" alt="Image">
-                                                        </div>
-                                                        <div class="ltn__commenter-comment">
-                                                            <h6><a href="#">Adam Smit</a></h6>
-                                                            <div class="product-ratting">
-                                                                <ul>
-                                                                    <li><a href="#"><i class="fas fa-star"></i></a>
-                                                                    </li>
-                                                                    <li><a href="#"><i class="fas fa-star"></i></a>
-                                                                    </li>
-                                                                    <li><a href="#"><i class="fas fa-star"></i></a>
-                                                                    </li>
-                                                                    <li><a href="#"><i
-                                                                                class="fas fa-star-half-alt"></i></a></li>
-                                                                    <li><a href="#"><i class="far fa-star"></i></a>
-                                                                    </li>
-                                                                </ul>
+                                                @foreach ($sanPham->binhLuans as $comment)
+                                                    <li>
+                                                        <div class="ltn__comment-item clearfix">
+                                                            <div class="ltn__commenter-img">
+                                                                
+                                                                    <img src="{{ asset('assets/clients/img/icons/user.jpg') }}" width="70px" alt="Default User Image" >
+                                                                
                                                             </div>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                                                Doloribus, omnis fugit corporis iste magnam ratione.</p>
-                                                            <span class="ltn__comment-reply-btn">September 3, 2020</span>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="ltn__comment-item clearfix">
-                                                        <div class="ltn__commenter-img">
-                                                            <img src="img/testimonial/3.jpg" alt="Image">
-                                                        </div>
-                                                        <div class="ltn__commenter-comment">
-                                                            <h6><a href="#">Adam Smit</a></h6>
-                                                            <div class="product-ratting">
-                                                                <ul>
-                                                                    <li><a href="#"><i class="fas fa-star"></i></a>
-                                                                    </li>
-                                                                    <li><a href="#"><i class="fas fa-star"></i></a>
-                                                                    </li>
-                                                                    <li><a href="#"><i class="fas fa-star"></i></a>
-                                                                    </li>
-                                                                    <li><a href="#"><i
-                                                                                class="fas fa-star-half-alt"></i></a></li>
-                                                                    <li><a href="#"><i class="far fa-star"></i></a>
-                                                                    </li>
-                                                                </ul>
+                                                            <div class="ltn__commenter-comment">
+                                                                <h6 class="pt-2"><a href="#">{{ $comment->user->name }}</a></h6>
+                                                                <div class="product-ratting">
+                                                                    <ul>
+                                                                        <!-- Display ratings here -->
+                                                                    </ul>
+                                                                </div>
+                                                                <p>{{ $comment->noi_dung }}</p>
+                                                                <span class="ltn__comment-reply-btn">{{ $comment->created_at->format('F j, Y') }}</span>
                                                             </div>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                                                Doloribus, omnis fugit corporis iste magnam ratione.</p>
-                                                            <span class="ltn__comment-reply-btn">September 2, 2020</span>
                                                         </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="ltn__comment-item clearfix">
-                                                        <div class="ltn__commenter-img">
-                                                            <img src="img/testimonial/2.jpg" alt="Image">
-                                                        </div>
-                                                        <div class="ltn__commenter-comment">
-                                                            <h6><a href="#">Adam Smit</a></h6>
-                                                            <div class="product-ratting">
-                                                                <ul>
-                                                                    <li><a href="#"><i class="fas fa-star"></i></a>
-                                                                    </li>
-                                                                    <li><a href="#"><i class="fas fa-star"></i></a>
-                                                                    </li>
-                                                                    <li><a href="#"><i class="fas fa-star"></i></a>
-                                                                    </li>
-                                                                    <li><a href="#"><i
-                                                                                class="fas fa-star-half-alt"></i></a></li>
-                                                                    <li><a href="#"><i class="far fa-star"></i></a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                                                Doloribus, omnis fugit corporis iste magnam ratione.</p>
-                                                            <span class="ltn__comment-reply-btn">September 2, 2020</span>
-                                                        </div>
-                                                    </div>
-                                                </li>
+                                                    </li>
+                                                @endforeach
                                             </ul>
                                         </div>
                                     </div>
-                                    <!-- comment-reply -->
-                                    <div class="ltn__comment-reply-area ltn__form-box mb-30">
-                                        <form action="#">
-                                            <h4 class="title-2">Add a Review</h4>
-                                            <div class="mb-30">
-                                                <div class="add-a-review">
-                                                    <h6>Your Ratings:</h6>
-                                                    <div class="product-ratting">
-                                                        <ul>
-                                                            <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                            <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                            <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                            <li><a href="#"><i class="fas fa-star-half-alt"></i></a>
-                                                            </li>
-                                                            <li><a href="#"><i class="far fa-star"></i></a></li>
-                                                        </ul>
-                                                    </div>
+                                    <!-- Comment Reply -->
+                                    @auth
+                                        <div class="ltn__comment-reply-area ltn__form-box mb-30">
+                                            <form action="{{ route('comments.store', $sanPham->id) }}" method="POST">
+                                                @csrf
+                                                <h4 class="title-2">Add a Review</h4>
+                                                <div class="input-item input-item-textarea ltn__custom-icon">
+                                                    <textarea name="noi_dung" placeholder="Type your comments...."></textarea>
                                                 </div>
-                                            </div>
-                                            <div class="input-item input-item-textarea ltn__custom-icon">
-                                                <textarea placeholder="Type your comments...."></textarea>
-                                            </div>
-                                            <div class="input-item input-item-name ltn__custom-icon">
-                                                <input type="text" placeholder="Type your name....">
-                                            </div>
-                                            <div class="input-item input-item-email ltn__custom-icon">
-                                                <input type="email" placeholder="Type your email....">
-                                            </div>
-                                            <div class="input-item input-item-website ltn__custom-icon">
-                                                <input type="text" name="website" placeholder="Type your website....">
-                                            </div>
-                                            <label class="mb-0"><input type="checkbox" name="agree"> Save my name,
-                                                email, and website in this browser for the next time I comment.</label>
-                                            <div class="btn-wrapper">
-                                                <button class="btn theme-btn-1 btn-effect-1 text-uppercase"
-                                                    type="submit">Submit</button>
-                                            </div>
-                                        </form>
-                                    </div>
+                                                <div class="btn-wrapper">
+                                                    <button class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Submit</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    @else
+                                        <p>Please <a href="{{ route('login') }}">login</a> to add a review.</p>
+                                    @endauth
                                 </div>
                             </div>
                         </div>
@@ -303,8 +220,9 @@
                                     <li>
                                         <div class="top-rated-product-item clearfix">
                                             <div class="top-rated-product-img">
-                                                <a href="{{ route('clients.detailProduct', $item->id) }}"><img
-                                                        src="{{ Storage::url($item->hinh_anh) }}" alt="#" style="height: 100px"></a>
+                                                <a href="{{ route('clients.detailProduct', $item->id) }}">
+                                                    <img src="{{ Storage::url($item->hinh_anh) }}" alt="#" style="height: 100px">
+                                                </a>
                                             </div>
                                             <div class="top-rated-product-info">
 

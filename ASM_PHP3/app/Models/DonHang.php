@@ -19,10 +19,11 @@ class DonHang extends Model
     ];
 
         const TRANG_THAT_THANH_TOAN = [
-        ' chua_thanh_toan'=> 'Chưa thanh toán',
-        ' da_thanh_toan' => 'Đã thanh toán',
+        'chua_thanh_toan'=> 'Chưa thanh toán',
+        'da_thanh_toan' => 'Đã thanh toán',
         ];
 
+        const COD = 'COD'; 
         const CHO_XAC_NHAN = 'cho_xac_nhan';
         const DA_XAC_NHAN = 'da_xac_nhan';
         const DANG_CHUAN_BI = 'dang_chuan_bi';

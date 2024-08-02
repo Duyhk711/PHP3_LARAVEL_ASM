@@ -68,7 +68,7 @@
                      <nav>
                          <div class="ltn__main-menu">
                               <ul>
-                                   <li class="menu-icon"><a href="{{route('clients.trang_chu')}}">Home</a>
+                                   <li class="menu-icon"><a href="{{route('trang_chu')}}">Home</a>
                                      
                                    </li>
                                    <li class="menu-icon"><a href="#">Giới Thiệu</a>

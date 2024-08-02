@@ -41,13 +41,13 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="example-text-input" class="form-control-label">Địa chỉ</label>
-                        <input class="form-control" type="text" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
+                        <input class="form-control" type="text" value="{{$user->address}}">
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="example-text-input" class="form-control-label">Giới tính</label>
-                        <input class="form-control" type="text" value="New York">
+                        <input class="form-control" type="text" value="">
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -59,7 +59,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="example-text-input" class="form-control-label">Số điện thoại</label>
-                        <input class="form-control" type="text" value="437300">
+                        <input class="form-control" type="text" value="{{$user->phone}}">
                     </div>
                 </div>
             </div>

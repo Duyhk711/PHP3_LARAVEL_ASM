@@ -75,4 +75,5 @@ class UserController extends Controller
         $pages_title = "Profile";
         return view('admins.contents.profile', compact('user', 'pages_title'));
     }
+    
 }

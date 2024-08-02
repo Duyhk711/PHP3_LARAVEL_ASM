@@ -175,11 +175,11 @@
                         <img id="profileAvatar" src="" class="modal-profile-avatar" alt="Avatar">
                         <div class="profile-details">
                             <h4 id="profileName"></h4>
-                            <p><strong>Email:</strong> <span id="profileEmail"></span></p>
+                            <p><strong>Email:</strong> <span id="profileEmail">{{Auth::user()->email}}</span></p>
                             <p><strong>Ngày sinh:</strong> <span id="profileDob"></span></p>
-                            <p><strong>Địa chỉ:</strong> <span id="profileAddress"></span></p>
+                            <p><strong>Địa chỉ:</strong>  <span id="profileAddress">{{Auth::user()->address}}</span></p>
                             <p><strong>Giới tính:</strong> <span id="profileGender"></span></p>
-                            <p><strong>Số điện thoại:</strong> <span id="profilePhone"></span></p>
+                            <p><strong>Số điện thoại:</strong> <span id="profilePhone">{{Auth::user()->phone}}</span></p>
                         </div>
                     </div>
                 </div>

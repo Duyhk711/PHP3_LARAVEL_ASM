@@ -23,14 +23,14 @@ class OrderRequest extends FormRequest
     {
         return [
             'ten_nguoi_nhan' => 'required|string|max:255',
-            'so_dien_thoai_nguoi_nhan' => 'required|string|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'so_dien_thoai_nguoi_nhan' => 'required|string|regex:/^([0-9\s\-\+\(\)]*)$/|size:10',
             'email_nguoi_nhan' => 'required|string|email|max:255',
             'dia_chi_nguoi_nhan' => 'required|string|max:255',
         ];
     }
 
 
-    public function messages()
+    public function messages(): array
     {
         return [
             'ten_nguoi_nhan.required' => 'Tên người nhận là bắt buộc.',
@@ -40,7 +40,7 @@ class OrderRequest extends FormRequest
             'so_dien_thoai_nguoi_nhan.required' => 'Số điện thoại người nhận là bắt buộc.',
             'so_dien_thoai_nguoi_nhan.string' => 'Số điện thoại người nhận phải là một chuỗi ký tự.',
             'so_dien_thoai_nguoi_nhan.regex' => 'Số điện thoại người nhận không hợp lệ.',
-            'so_dien_thoai_nguoi_nhan.min' => 'Số điện thoại người nhận phải có ít nhất 10 ký tự.',
+            'so_dien_thoai_nguoi_nhan.size' => 'Số điện thoại người nhận phải đúng 10 ký tự.',
 
             'email_nguoi_nhan.required' => 'Email người nhận là bắt buộc.',
             'email_nguoi_nhan.string' => 'Email người nhận phải là một chuỗi ký tự.',

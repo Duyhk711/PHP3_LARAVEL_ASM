@@ -40,7 +40,8 @@
 
     <!-- HEADER AREA START (header-5) -->
     <header class="ltn__header-area ltn__header-5 ltn__header-transparent gradient-color-2">
-     @include('clients.blocks.headerShop')
+
+        @include('clients.blocks.headerShop')
     </header>
     <!-- HEADER AREA END -->
     <!-- Utilize Mobile Menu Start -->
