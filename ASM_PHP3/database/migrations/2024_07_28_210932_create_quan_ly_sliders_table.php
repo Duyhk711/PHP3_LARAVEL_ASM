@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('quan_ly_sliders', function (Blueprint $table) {
             $table->id();
             $table->string('hinh_anh');
-            $table->boolean('trang_thai');
+            $table->boolean('trang_thai')->default(true);;
             $table->timestamps();
         });
     }

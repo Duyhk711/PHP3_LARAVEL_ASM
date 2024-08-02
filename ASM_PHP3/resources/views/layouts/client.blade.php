@@ -21,6 +21,16 @@
     <link rel="stylesheet" href="{{asset('assets/clients')}}/css/style.css">
     <!-- Responsive css -->
     <link rel="stylesheet" href="{{asset('assets/clients')}}/css/responsive.css">
+
+    <style>
+        .slide-item-img {
+          height: 500px; /* Chiều cao cố định cho slider */
+        }
+        .slide-item-img img {
+          height: 100%;
+          object-fit: cover;
+        }
+      </style>
 </head>
 
 <body>
@@ -182,29 +192,8 @@
     <div class="ltn__slider-area ltn__slider-3  section-bg-1">
         <div class="ltn__slide-one-active slick-slide-arrow-1 slick-slide-dots-1">
             <!-- ltn__slide-item -->
-            <div class="ltn__slide-item ltn__slide-item-2 ltn__slide-item-3">
-                <div class="ltn__slide-item-inner">
-                    <div class="container">
-                        <div class="row">
-                                <div class="slide-item-img">
-                                    <img src="{{asset('assets/clients')}}/img/slider/23.png" alt="#">
-                                </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- ltn__slide-item -->
-            <div class="ltn__slide-item ltn__slide-item-2 ltn__slide-item-3">
-                <div class="ltn__slide-item-inner  text-right text-end">
-                    <div class="container">
-                        <div class="row">
-                                <div class="slide-item-img slide-img-left">
-                                    <img src="{{asset('assets/clients')}}/img/slider/21.png" alt="#">
-                                </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @yield('showsl')
+        
             <!--  -->
         </div>
     </div>
