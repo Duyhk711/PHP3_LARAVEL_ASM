@@ -1,6 +1,6 @@
 @extends('layouts.clientShop')
 @section('content')
-   
+
     <div class="ltn__product-area ltn__product-gutter mb-120">
         <div class="container">
             <div class="row">

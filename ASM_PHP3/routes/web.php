@@ -2,14 +2,23 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admins\UserController;
+use App\Http\Controllers\Clients\ShopController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Admins\DanhMucController;
 use App\Http\Controllers\Admins\DonHangController;
+
 use App\Http\Controllers\Admins\SanPhamController;
-use App\Http\Controllers\Admins\TrangThaiDHController;
+
+
+use App\Http\Controllers\Admins\SlidersController;
+
+use App\Http\Controllers\Clients\ShowSlideController;
+use App\Http\Controllers\Clients\ShowSliderController;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BinhLuanController;
@@ -19,6 +28,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\Clients\CartController;
 use App\Http\Controllers\OrderController;
 use App\Models\User;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +48,7 @@ use App\Models\User;
 // Route::get('/dashboard', function () {
 //     return view('admins.index');
 // });
+
 
 
 Route::middleware(['auth', 'auth.admin'])->prefix('admins')
@@ -90,6 +101,7 @@ Route::middleware(['auth', 'auth.admin'])->prefix('admins')
         });
 });
 
+
 Route::get('/login',      [AuthController::class, 'showFormLogin']);
 Route::post('/login',     [AuthController::class, 'login'])->name('login');
 Route::get('/register',   [AuthController::class, 'showFormRegister']);
@@ -132,6 +144,7 @@ Route::prefix('clients')
 Route::post('/products/{id}/comments', [BinhLuanController::class, 'store'])->middleware('auth')->name('comments.store');
 
 Route::get('/', [ClientController::class, 'index'])->name('trang_chu');
+
 
 
 

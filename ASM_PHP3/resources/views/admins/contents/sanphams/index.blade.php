@@ -88,7 +88,6 @@
                                                 ? '<span class="badge bg-info">Hiển thị</span>'
                                                 : '<span class="badge bg-danger">Ẩn</span>' !!}
                                         </td>
-
                                         <td class="align-middle">
                                             <div class="mt-3">
                                                 <a class=" text-center text-warning m-1"

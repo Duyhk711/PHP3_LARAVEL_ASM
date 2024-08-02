@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\DanhMuc;
 use App\Models\SanPham;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ShopController extends Controller
 {
@@ -27,6 +28,7 @@ class ShopController extends Controller
         return view('clients.contents.shops.doChien');
     }
     public function doUong(){
+                           
         return view('clients.contents.shops.doUong');
     }
     
