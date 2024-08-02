@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admins\BaiVietController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -87,6 +88,17 @@ Route::middleware(['auth', 'auth.admin'])->prefix('admins')
             Route::get('/', [UserController::class , 'index'])->name('index');
             Route::get('/profile', [UserController::class , 'showProfile'])->name('profile');
         });
+        Route::prefix('baiviets')
+        ->as('baiviets.')
+        ->group(function(){
+            Route::get('/',                 [BaiVietController::class , 'index'])->name('index');
+            Route::get('/create',           [BaiVietController::class , 'create'])->name('create');
+            Route::post('/store',           [BaiVietController::class , 'store'])->name('store');
+            Route::get('/show/{id}',        [BaiVietController::class , 'show'])->name('show');
+            Route::get('{id}/edit',         [BaiVietController::class , 'edit'])->name('edit');
+            Route::put('{id}/update',       [BaiVietController::class , 'update'])->name('update');
+            Route::delete('{id}/destroy',   [BaiVietController::class , 'destroy'])->name('destroy');
+        });
 });
 
 Route::get('/login',      [AuthController::class, 'showFormLogin']);
@@ -104,7 +116,7 @@ Route::prefix('clients')
     Route::post('/add-to-cart',      [CartController::class,   'addCart'])->name('cart.add');
     Route::post('/update-cart',      [CartController::class,   'updateCart'])->name('cart.update');
     
-    Route::get('/home',              [ClientController::class, 'index'])->name('trang_chu');
+    // Route::get('/home',              [ClientController::class, 'index'])->name('trang_chu');
     Route::get('/product/{cat}',     [ClientController::class, 'danhMuc'])->name('product');
     Route::get('/shop',              [ShopController::class,   'shop'])->name('shop');
     Route::get('/shop/doAnNhanh',    [ShopController::class,   'doAnNhanh'])->name('shop.doAnNhanh');

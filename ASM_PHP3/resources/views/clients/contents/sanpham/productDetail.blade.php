@@ -24,21 +24,21 @@
                                         <div class="single-large-img">
                                             <a href="{{ Storage::url($sanPham->hinh_anh) }}"
                                                 data-rel="lightcase:myCollection">
-                                                <img src="{{ Storage::url($sanPham->hinh_anh) }}" alt="Image">
+                                                <img src="{{ Storage::url($sanPham->hinh_anh) }}" alt="Image" width="500px" height="400px">
                                             </a>
                                         </div>
-                                        @foreach ($sanPham->hinhAnhSanPhams as $image)
+                                        @foreach ($sanPham->hinhAnhSanPhams as $image )
                                             <div class="single-large-img">
                                                 <a href="{{ Storage::url($image->hinh_anh) }}"
                                                     data-rel="lightcase:myCollection">
-                                                    <img src="{{ Storage::url($image->hinh_anh) }}" alt="Image">
+                                                    <img src="{{ Storage::url($image->hinh_anh) }}" alt="Image" >
                                                 </a>
                                             </div>
                                         @endforeach
                                     </div>
                                     <div class="ltn__shop-details-small-img slick-arrow-2">
                                         <div class="single-small-img">
-                                            <img src="{{ Storage::url($sanPham->hinh_anh) }}" alt="Image">
+                                            <img src="{{ Storage::url($sanPham->hinh_anh) }}" alt="Image" height="50px">
                                         </div>
                                         @foreach ($sanPham->hinhAnhSanPhams as $image)
                                             <div class="single-small-img">
@@ -53,7 +53,7 @@
                                 <div class="modal-product-info shop-details-info pl-0">
                                     <div class="product-ratting">
                                         <ul>
-                                            <li><a href="#"><i class="fas fa-star"></i></a></li>
+<li><a href="#"><i class="fas fa-star"></i></a></li>
                                             <li><a href="#"><i class="fas fa-star"></i></a></li>
                                             <li><a href="#"><i class="fas fa-star"></i></a></li>
                                             <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
@@ -95,7 +95,7 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <div class="ltn__product-details-menu-3">
+<div class="ltn__product-details-menu-3">
                                         <ul>
                                             <li>
                                                 <a href="#" class="" title="Wishlist" data-bs-toggle="modal"
@@ -142,7 +142,7 @@
                         </div>
                         <div class="tab-content">
                             <div class="tab-pane fade active show" id="liton_tab_details_1_1">
-                                <div class="ltn__shop-details-tab-content-inner">
+<div class="ltn__shop-details-tab-content-inner">
                                     {!! $sanPham->noi_dung !!}
                                 </div>
                             </div>
@@ -180,7 +180,7 @@
                                                                     <li><a href="#"><i class="fas fa-star"></i></a>
                                                                     </li>
                                                                     <li><a href="#"><i
-                                                                                class="fas fa-star-half-alt"></i></a></li>
+class="fas fa-star-half-alt"></i></a></li>
                                                                     <li><a href="#"><i class="far fa-star"></i></a>
                                                                     </li>
                                                                 </ul>
@@ -213,7 +213,7 @@
                                                                 </ul>
                                                             </div>
                                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                                                Doloribus, omnis fugit corporis iste magnam ratione.</p>
+Doloribus, omnis fugit corporis iste magnam ratione.</p>
                                                             <span class="ltn__comment-reply-btn">September 2, 2020</span>
                                                         </div>
                                                     </div>
@@ -249,7 +249,7 @@
                                         </div>
                                     </div>
                                     <!-- comment-reply -->
-                                    <div class="ltn__comment-reply-area ltn__form-box mb-30">
+<div class="ltn__comment-reply-area ltn__form-box mb-30">
                                         <form action="#">
                                             <h4 class="title-2">Add a Review</h4>
                                             <div class="mb-30">
@@ -284,7 +284,7 @@
                                             <div class="btn-wrapper">
                                                 <button class="btn theme-btn-1 btn-effect-1 text-uppercase"
                                                     type="submit">Submit</button>
-                                            </div>
+</div>
                                         </form>
                                     </div>
                                 </div>
@@ -326,7 +326,7 @@
                                                                 style="margin-bottom: 10px"></i> 
                                                         </button>
                                                     </form>
-                                                </div>
+</div>
                                             </div>
                                         </div>
 

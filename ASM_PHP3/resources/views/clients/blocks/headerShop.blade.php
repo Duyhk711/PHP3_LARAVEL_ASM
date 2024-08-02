@@ -69,7 +69,7 @@
                      <nav>
                          <div class="ltn__main-menu">
                               <ul>
-                                   <li class="menu-icon"><a href="{{route('clients.trang_chu')}}">Home</a>
+                                   <li class="menu-icon"><a href="{{route('trang_chu')}}">Home</a>
                                      
                                    </li>
                                    <li class="menu-icon"><a href="#">Giới Thiệu</a>
@@ -86,10 +86,7 @@
                                             <li><a href="{{route('clients.product',$item->id)}}">{{$item->ten_danh_muc}}</a></li>
                                         @endforeach
                                            
-                                           {{-- <li><a href="{{route('clients.shop.doUong')}}">Đồ uống</a></li>
-                                           <li><a href="{{route('clients.shop.banhKem')}}">Bánh Kem</a></li>
-                                           <li><a href="{{route('clients.shop.doAnNhanh')}}">Đồ ăn Nhanh</a></li>
-                                           <li><a href="{{route('clients.shop.doChien')}}">Đồ Chiên</a></li> --}}
+                                          
                                        </ul>
                                    </li>
                                    <li class="menu-icon"><a href="#">Tin Tức</a>
@@ -160,4 +157,4 @@
      </div>
  </div>
  <!-- ltn__header-middle-area end -->
->>>>>>> d9fd59ae752cec771d4a7c132d8a8e687d78fc83
+

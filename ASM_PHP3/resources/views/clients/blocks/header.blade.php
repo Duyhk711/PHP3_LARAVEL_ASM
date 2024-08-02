@@ -67,7 +67,7 @@
                     <nav>
                         <div class="ltn__main-menu">
                             <ul>
-                                <li class="menu-icon"><a href="#">Home</a>
+                                <li class="menu-icon"><a href="{{route('trang_chu')}}">Home</a>
                                   
                                 </li>
                                 <li class="menu-icon"><a href="#">Giới Thiệu</a>
@@ -77,13 +77,13 @@
                                         
                                     </ul>
                                 </li>
-                                <li class="menu-icon"><a href="{{route('shop')}}">Shop</a>
+                                <li class="menu-icon"><a href="{{route('clients.shop')}}">Shop</a>
                                     <ul>
-                                        <li><a href="{{route('shop')}}">Shop</a></li>
-                                        <li><a href="{{route('shop.doUong')}}">Đồ uống</a></li>
-                                        <li><a href="{{route('shop.banhKem')}}">Bánh Kem</a></li>
-                                        <li><a href="{{route('shop.doAnNhanh')}}">Đồ ăn Nhanh</a></li>
-                                        <li><a href="{{route('shop.doChien')}}">Đồ Chiên</a></li>
+                                        <li><a href="{{route('clients.shop')}}">Sản Phẩm</a></li>
+
+                                        @foreach ($danhmucs as $item)
+                                            <li><a href="{{route('clients.product',$item->id)}}">{{$item->ten_danh_muc}}</a></li>
+                                        @endforeach 
                                     </ul>
                                 </li>
                                 <li class="menu-icon"><a href="#">Tin Tức</a>
@@ -122,19 +122,27 @@
                         <li>
                             <a href="#"><i class="icon-user"></i></a>
                             <ul>
-                                <li><a href="login.html">Sign in</a></li>
-                                <li><a href="register.html">Register</a></li>
-                                <li><a href="account.html">My Account</a></li>
-                                <li><a href="wishlist.html">Wishlist</a></li>
+                                @if (Auth::check())
+                                    <li><a href="account.html" class="ms-1" >My Account</a></li>
+                                    <li>
+                                        <form action="{{route('logout')}}" method="POST" >
+                                            @csrf
+                                            <button type="submit" class="btn-logout" style="background: none; border: none;">Logout</button>
+                                        </form>
+                                    </li>
+                                @else
+                                    <li><a href="{{route('login')}}">Sign in</a></li>
+                                    <li><a href="{{route('register')}}">Register</a></li>
+                                @endif
                             </ul>
                         </li>
                     </ul>
                 </div>
                 <!-- mini-cart -->
                 <div class="mini-cart-icon">
-                    <a href="{{route('shop.cart')}}" class="ltn__utilize-toggle">
+                    <a href="{{ route('clients.cart.list') }}">
                         <i class="icon-shopping-cart"></i>
-                        <sup>2</sup>
+                        <sup>{{session('cart') ? count(session('cart')) : '0'}}</sup>
                     </a>
                 </div>
                 <!-- mini-cart -->

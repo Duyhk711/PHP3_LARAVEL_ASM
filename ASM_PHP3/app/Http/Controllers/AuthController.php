@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
     public function showFormLogin(){
-        return view('auth.login');
+        $title="Trang Login";
+        return view('auth.login',compact('title'));
     }
 
 
@@ -29,7 +30,7 @@ class AuthController extends Controller
             if(Auth::check() && Auth::user()->role === User::ROLE_ADMIN){
                 return redirect()->intended('/admins/dashboard');
             }
-            return redirect()->intended('/clients/trangchu');
+            return redirect()->intended('/');
         }
 
             return redirect()->back()->withErrors([
@@ -49,7 +50,7 @@ class AuthController extends Controller
         $data =  $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email',
-            'password' => 'required|string|min:8|confirmed',
+            'password' => 'required|string|min:8',
             
         ]);
         $user = User::create([
@@ -57,10 +58,12 @@ class AuthController extends Controller
             'email' => $data['email'],
             
             'password' => Hash::make($data['password']),
+         
         ]);
+   
         Auth::login($user);
 
-        return redirect()->intended('/clients/trangchu');
+        return redirect()->route('trang_chu');
         // dd($data);
     }
 

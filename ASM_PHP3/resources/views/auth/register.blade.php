@@ -99,7 +99,7 @@
                     <div class="account-login-inner">
                         <form method="POST" action="{{ route('register') }}" class="ltn__form-box contact-form-box">
                             @csrf
-                            <input type="text" name="firstname" placeholder="Name" class="@error('name') is-invalid @enderror"">
+                            <input type="text" name="name" placeholder="Name" class="@error('name') is-invalid @enderror"">
                             
                             <input type="text" name="email" placeholder="Email*" class="@error('email') is-invalid @enderror"">
                             <input type="password" name="password" placeholder="Password*" class="@error('password') is-invalid @enderror"">

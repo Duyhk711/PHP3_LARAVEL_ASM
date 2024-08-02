@@ -41,7 +41,7 @@
     <!-- HEADER AREA START (header-5) -->
     <header class="ltn__header-area ltn__header-5 ltn__header-transparent gradient-color-4---">
        @include('clients.blocks.header');
-       @include('clients.blocks.nav');
+      
        {{-- @include('clients.blocks.headerShop'); --}}
 
     </header>

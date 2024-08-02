@@ -1,4 +1,4 @@
-@extends('layouts.client')
+@extends('layouts.clientShop')
 @section('content')
 <div class="ltn__product-area ltn__product-gutter mb-120">
      <div class="container">
@@ -21,13 +21,17 @@
                          </li>
                          <li>
                             <div class="short-by text-center">
-                                 <select class="nice-select">
-                                     <option>Default Sorting</option>
-                                     <option>Sort by popularity</option>
-                                     <option>Sort by new arrivals</option>
-                                     <option>Sort by price: low to high</option>
-                                     <option>Sort by price: high to low</option>
-                                 </select>
+                                <form action="{{route('clients.shop')}}" method="GET">
+                                    <div class="input-group">
+                                        <select class="nice-select" name="filter">
+                                            <option value="" >--Lọc Sản Phẩm--</option>
+                                            <option value="is_new" {{request('filter') == 'is_new' ? 'selected' : ''}}>Sản Phẩm Mới</option>
+                                            <option value="is_hot" {{request('filter') == 'is_hot' ? 'selected' : ''}}>Sản Phẩm Yêu Thích</option>
+                                            <option value="is_hot_deal" {{request('filter') == 'is_hot_deal' ? 'selected' : ''}}>Sản Phẩm Khuyến mại</option>
+                                        </select>
+                                   <button type="submit" style="border: none; background:none "><i class="fa-solid fa-filter"></i></button>
+                                </div>   
+                                </form> 
                              </div> 
                          </li>
                      </ul>
@@ -162,92 +166,6 @@
                              <li><a href="#">Wheel <span><i class="fas fa-long-arrow-alt-right"></i></span></a></li>
                          </ul>
                      </div>
-                     <!-- Price Filter Widget -->
-                     <div class="widget ltn__price-filter-widget">
-                         <h4 class="ltn__widget-title ltn__widget-title-border">Filter by price</h4>
-                         <div class="price_filter">
-                             <div class="price_slider_amount">
-                                 <input type="submit"  value="Your range:"/> 
-                                 <input type="text" class="amount" name="price"  placeholder="Add Your Price" /> 
-                             </div>
-                             <div class="slider-range"></div>
-                         </div>
-                     </div>
-                     <!-- Top Rated Product Widget -->
-                     <div class="widget ltn__top-rated-product-widget">
-                         <h4 class="ltn__widget-title ltn__widget-title-border">Top Rated Product</h4>
-                         <ul>
-                             <li>
-                                 <div class="top-rated-product-item clearfix">
-                                     <div class="top-rated-product-img">
-                                         <a href="product-details.html"><img src="img/product/1.png" alt="#"></a>
-                                     </div>
-                                     <div class="top-rated-product-info">
-                                         <div class="product-ratting">
-                                             <ul>
-                                                 <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                 <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                 <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                 <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                 <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                             </ul>
-                                         </div>
-                                         <h6><a href="product-details.html">Mixel Solid Seat Cover</a></h6>
-                                         <div class="product-price">
-                                             <span>$49.00</span>
-                                             <del>$65.00</del>
-                                         </div>
-                                     </div>
-                                 </div>
-                             </li>
-                             <li>
-                                 <div class="top-rated-product-item clearfix">
-                                     <div class="top-rated-product-img">
-                                         <a href="product-details.html"><img src="img/product/2.png" alt="#"></a>
-                                     </div>
-                                     <div class="top-rated-product-info">
-                                         <div class="product-ratting">
-                                             <ul>
-                                                 <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                 <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                 <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                 <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                 <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                             </ul>
-                                         </div>
-                                         <h6><a href="product-details.html">Vegetables Juices</a></h6>
-                                         <div class="product-price">
-                                             <span>$49.00</span>
-                                             <del>$65.00</del>
-                                         </div>
-                                     </div>
-                                 </div>
-                             </li>
-                             <li>
-                                 <div class="top-rated-product-item clearfix">
-                                     <div class="top-rated-product-img">
-                                         <a href="product-details.html"><img src="img/product/3.png" alt="#"></a>
-                                     </div>
-                                     <div class="top-rated-product-info">
-                                         <div class="product-ratting">
-                                             <ul>
-                                                 <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                 <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                 <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                 <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
-                                                 <li><a href="#"><i class="far fa-star"></i></a></li>
-                                             </ul>
-                                         </div>
-                                         <h6><a href="product-details.html">Coil Spring Conversion</a></h6>
-                                         <div class="product-price">
-                                             <span>$49.00</span>
-                                             <del>$65.00</del>
-                                         </div>
-                                     </div>
-                                 </div>
-                             </li>
-                         </ul>
-                     </div>
                      <!-- Search Widget -->
                      <div class="widget ltn__search-widget">
                          <h4 class="ltn__widget-title ltn__widget-title-border">Search Objects</h4>
@@ -256,30 +174,19 @@
                              <button type="submit"><i class="fas fa-search"></i></button>
                          </form>
                      </div>
-                     <!-- Tagcloud Widget -->
-                     <div class="widget ltn__tagcloud-widget">
-                         <h4 class="ltn__widget-title ltn__widget-title-border">Popular Tags</h4>
-                         <ul>
-                             <li><a href="#">Popular</a></li>
-                             <li><a href="#">desgin</a></li>
-                             <li><a href="#">ux</a></li>
-                             <li><a href="#">usability</a></li>
-                             <li><a href="#">develop</a></li>
-                             <li><a href="#">icon</a></li>
-                             <li><a href="#">Car</a></li>
-                             <li><a href="#">Service</a></li>
-                             <li><a href="#">Repairs</a></li>
-                             <li><a href="#">Auto Parts</a></li>
-                             <li><a href="#">Oil</a></li>
-                             <li><a href="#">Dealer</a></li>
-                             <li><a href="#">Oil Change</a></li>
-                             <li><a href="#">Body Color</a></li>
-                         </ul>
-                     </div>
+               
+                    
                  </aside>
              </div>
          </div>
      </div>
  </div>
     
+@endsection
+@section('css')
+    
+
+    <script>
+
+    </script>
 @endsection
