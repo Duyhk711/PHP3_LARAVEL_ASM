@@ -59,7 +59,7 @@
              <div class="col">
                  <div class="site-logo-wrap">
                      <div class="site-logo">
-                         <a href="index.html"><img src="img/logo-2.png" alt="Logo"></a>
+                         <a href="index.html"><img src="{{asset('assets/clients/img/logo-2.png')}}" alt="Logo"></a>
                      </div>
                  </div>
              </div>
@@ -68,7 +68,7 @@
                      <nav>
                          <div class="ltn__main-menu">
                               <ul>
-                                   <li class="menu-icon"><a href="#">Home</a>
+                                   <li class="menu-icon"><a href="{{route('trang_chu')}}">Home</a>
                                      
                                    </li>
                                    <li class="menu-icon"><a href="#">Giới Thiệu</a>
@@ -78,13 +78,17 @@
                                            
                                        </ul>
                                    </li>
-                                   <li class="menu-icon"><a href="{{route('shop')}}">Shop</a>
+                                   <li class="menu-icon"><a href="{{route('clients.shop')}}">Shop</a>
                                        <ul>
-                                           <li><a href="{{route('shop')}}">Shop</a></li>
-                                           <li><a href="{{route('shop.doUong')}}">Đồ uống</a></li>
-                                           <li><a href="{{route('shop.banhKem')}}">Bánh Kem</a></li>
-                                           <li><a href="{{route('shop.doAnNhanh')}}">Đồ ăn Nhanh</a></li>
-                                           <li><a href="{{route('shop.doChien')}}">Đồ Chiên</a></li>
+                                        <li><a href="{{route('clients.shop')}}">Sản Phẩm</a></li>
+                                        @foreach ($danhmucs as $item)
+                                            <li><a href="{{route('clients.product',$item->id)}}">{{$item->ten_danh_muc}}</a></li>
+                                        @endforeach
+                                           
+                                           {{-- <li><a href="{{route('clients.shop.doUong')}}">Đồ uống</a></li>
+                                           <li><a href="{{route('clients.shop.banhKem')}}">Bánh Kem</a></li>
+                                           <li><a href="{{route('clients.shop.doAnNhanh')}}">Đồ ăn Nhanh</a></li>
+                                           <li><a href="{{route('clients.shop.doChien')}}">Đồ Chiên</a></li> --}}
                                        </ul>
                                    </li>
                                    <li class="menu-icon"><a href="#">Tin Tức</a>
@@ -123,32 +127,33 @@
                          <li>
                              <a href="#"><i class="icon-user"></i></a>
                              <ul>
-                                 <li><a href="login.html">Sign in</a></li>
-                                 <li><a href="register.html">Register</a></li>
-                                 <li><a href="account.html">My Account</a></li>
-                                 <li><a href="wishlist.html">Wishlist</a></li>
-                             </ul>
+                                @if (Auth::check())
+                                    <li><a href="account.html">My Account</a></li>
+                                    <li>
+                                        <form action="{{route('logout')}}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn-logout" style="background: none; border: none;">Logout</button>
+                                        </form>
+                                    </li>
+                                @else
+                                    <li><a href="{{route('login')}}">Sign in</a></li>
+                                    <li><a href="{{route('register')}}">Register</a></li>
+                                @endif
+                                
+                            </ul>
                          </li>
                      </ul>
                  </div>
                  <!-- mini-cart -->
                  <div class="mini-cart-icon">
-                     <a href="#ltn__utilize-cart-menu" class="ltn__utilize-toggle">
-                         <i class="icon-shopping-cart"></i>
-                         <sup>2</sup>
-                     </a>
+                    <a href="{{ route('clients.cart.list') }}">
+                        <i class="icon-shopping-cart"></i>
+                        <sup>{{session('cart') ? count(session('cart')) : '0'}}</sup>
+                    </a>
                  </div>
                  <!-- mini-cart -->
                  <!-- Mobile Menu Button -->
-                 <div class="mobile-menu-toggle d-xl-none">
-                     <a href="#ltn__utilize-mobile-menu" class="ltn__utilize-toggle">
-                         <svg viewBox="0 0 800 600">
-                             <path d="M300,220 C300,220 520,220 540,220 C740,220 640,540 520,420 C440,340 300,200 300,200" id="top"></path>
-                             <path d="M300,320 L540,320" id="middle"></path>
-                             <path d="M300,210 C300,210 520,210 540,210 C740,210 640,530 520,410 C440,330 300,190 300,190" id="bottom" transform="translate(480, 320) scale(1, -1) translate(-480, -318) "></path>
-                         </svg>
-                     </a>
-                 </div>
+                 
              </div>
          </div>
      </div>

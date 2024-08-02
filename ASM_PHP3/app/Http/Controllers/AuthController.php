@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AuthRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,9 +28,9 @@ class AuthController extends Controller
         if(Auth::attempt($user)){
             
             if(Auth::check() && Auth::user()->role === User::ROLE_ADMIN){
-                return redirect()->intended('dashboard');
+                return redirect()->intended('/admins/dashboard');
             }
-            return redirect()->intended('/client/trangchu');
+            return redirect()->intended('/');
         }
 
             return redirect()->back()->withErrors([
@@ -45,13 +46,9 @@ class AuthController extends Controller
 
 
 
-    public function register(Request $request){
-        $data =  $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255',
-            'password' => 'required|string|min:8',
-            
-        ]);
+    public function register(AuthRequest $request){
+        
+        $data = $request->except('_token');
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -60,13 +57,13 @@ class AuthController extends Controller
         ]);
         Auth::login($user);
 
-        return redirect()->intended('/client/index');
+        return redirect()->route('trang_chu');
         // dd($data);
     }
 
     public function logout(Request $request){
         Auth::logout();
-        return redirect('/login');
+        return redirect('/');
     }
 
 

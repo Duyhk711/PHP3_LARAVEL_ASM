@@ -51,4 +51,8 @@ class SanPham extends Model
     public function chiTietDonHangs(){
         return $this->hasMany(ChiTietDonHang::class, 'san_pham_id');
     }
+
+    public function binhLuans(){
+        return $this->hasMany(BinhLuan::class);
+    }
 }

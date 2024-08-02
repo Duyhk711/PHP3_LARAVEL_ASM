@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admins;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -15,10 +16,9 @@ class UserController extends Controller
     {
         $title = "Danh sách tài khoản";
         $listUser = User::orderBy('id')->get();
-        return view('admins.contents.taikhoans.index',[
-            'title' => $title,
-            'listUser' => $listUser
-        ]);
+        $admins = User::where('role', User::ROLE_ADMIN)->get();
+        $users =  User::where('role', User::ROLE_USER)->get();
+        return view('admins.contents.taikhoans.index',compact('title', 'listUser', 'admins', 'users'));
 
     }
 
@@ -69,4 +69,11 @@ class UserController extends Controller
     {
         //
     }
+
+    public function showProfile(){
+        $user = Auth::user();
+        $pages_title = "Profile";
+        return view('admins.contents.profile', compact('user', 'pages_title'));
+    }
+    
 }

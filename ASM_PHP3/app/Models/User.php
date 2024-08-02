@@ -51,4 +51,8 @@ class User extends Authenticatable
     public function donHangs (){
         return $this->hasMany(DonHang::class);
     }
+
+    public function binhLuans(){
+        return $this->hasMany(BinhLuan::class);
+    }
 }

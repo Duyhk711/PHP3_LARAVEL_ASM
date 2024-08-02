@@ -25,7 +25,7 @@ class SanPhamRequest extends FormRequest
             [
        
                 'ten_san_pham' => 'required|max:255',
-                'ma_san_pham' => 'required|max:10|unique:san_phams,ma_san_pham,' . $this->route('sanpham'),
+                'ma_san_pham' => 'required|max:10|unique:san_phams,ma_san_pham,' .  $this->route('id'),
                 'gia_san_pham' => 'required|numeric|min:0|max:999999999',
                 'gia_khuyen_mai' => 'numeric|min:0|lt:gia_san_pham',
                 'so_luong' => 'required|integer|min:0',

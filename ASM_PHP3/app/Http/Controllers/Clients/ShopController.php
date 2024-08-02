@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Clients;
 
+use App\Http\Controllers\Controller;
 use App\Models\DanhMuc;
 use App\Models\SanPham;
 use Illuminate\Http\Request;
@@ -10,11 +11,14 @@ use App\Http\Controllers\Controller;
 class ShopController extends Controller
 {
     public function shop(){
-        $dataSanPham=SanPham::take(9)->get();
-        return view('clients.contents.shops.shop',compact('dataSanPham'));
+        // $sanPham = SanPham::query()->findOrFail($id);
+        $listSanPham = SanPham::query()->paginate(15);
+        return view('clients.contents.shops.shop', compact( 'listSanPham'));
     }
-    public function doAnNhanh(){
-        return view('clients.contents.shops.doAnNhanh');
+    public function doAnNhanh($danhMucId){
+        $danhMuc = DanhMuc::query()->findOrFail($danhMucId );
+        $sanPham =  $danhMuc->sanPhams;
+        return view('clients.contents.shops.doAnNhanh', compact('danhMuc'));
     }
     public function banhKem(){
         return view('clients.contents.shops.banhKem');
@@ -27,10 +31,10 @@ class ShopController extends Controller
                            
         return view('clients.contents.shops.doUong');
     }
-    public function cart(){
-        return view('clients.contents.shops.cart');
-    }
-    public function detailProduct(){
-        return view('clients.contents.sanpham.productDetail');
+    
+    public function detailProduct(string $id){
+        $sanPham = SanPham::query()->findOrFail($id);
+        $listSanPham = SanPham::query()->get();
+        return view('clients.contents.sanpham.productDetail', compact('sanPham', 'listSanPham'));
     }
 }

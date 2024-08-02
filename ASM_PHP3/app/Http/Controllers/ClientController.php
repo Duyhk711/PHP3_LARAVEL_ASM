@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\SanPham;
 use App\Models\Sliders;
+
+use App\Models\DanhMuc;
+
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -24,7 +26,10 @@ $dataSlider=Sliders::where('trang_thai',1)->orderBy('trang_thai','desc')->get();
         
            return view('clients.home',compact('dataSanPham','newProducts','hotProducts','manyViews','hotdealProducts','dataSlider'));
     }
-
-
+    public function danhMuc(DanhMuc $cat){
+        $sanPham = $cat->sanPhams()->paginate(9);
+        $title = $cat->ten_danh_muc;
+         return view('clients.contents.shops.product', compact('cat', 'sanPham', 'title'));
+    }
 
 }
