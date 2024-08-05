@@ -51,4 +51,15 @@ class User extends Authenticatable
     public function donHangs (){
         return $this->hasMany(DonHang::class);
     }
+
+    public function binhLuans(){
+        return $this->hasMany(BinhLuan::class);
+    }
+
+    public function daMua($productId)
+    {
+        return $this->donHangs()->whereHas('chiTietDonHangs', function ($query) use ($productId) {
+            $query->where('san_pham_id', $productId);
+        })->exists();
+    }
 }

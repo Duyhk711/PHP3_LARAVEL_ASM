@@ -70,7 +70,7 @@
                 <div class="account-login-inner">
                     <form method="POST" action="{{ route('login') }}" class="ltn__form-box contact-form-box">
                         @csrf
-                        <input type="text" name="email" class="@error('email') is-invalid @enderror"" placeholder="Email*" required="required">
+                        <input type="text" name="email" class="@error('email') is-invalid @enderror" placeholder="Email*" required="required">
                         @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

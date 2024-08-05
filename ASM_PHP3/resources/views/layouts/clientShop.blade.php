@@ -39,15 +39,22 @@
     <!-- Body main wrapper start -->
     <div class="wrapper">
 
-        <!-- HEADER AREA START (header-5) -->
-        <header class="ltn__header-area ltn__header-5 ltn__header-transparent gradient-color-2">
-            @include('clients.blocks.headerShop')
-        </header>
-        <!-- HEADER AREA END -->
-        <!-- BREADCRUMB AREA START -->
-        <div class="ltn__breadcrumb-area ltn__breadcrumb-area-2 ltn__breadcrumb-color-white bg-overlay-theme-black-90 bg-image plr--9---"
-            data-bg="img/bg/9.jpg">
-            <div class="container">
+
+    <!-- HEADER AREA START (header-5) -->
+    <header class="ltn__header-area ltn__header-5 ltn__header-transparent gradient-color-2">
+
+        @include('clients.blocks.headerShop')
+    </header>
+    <!-- HEADER AREA END -->
+    <!-- Utilize Mobile Menu Start -->
+  
+    <!-- Utilize Mobile Menu End -->
+
+   
+
+    <!-- BREADCRUMB AREA START -->
+    <div class="ltn__breadcrumb-area ltn__breadcrumb-area-2 ltn__breadcrumb-color-white bg-overlay-theme-black-90 bg-image plr--9---" data-bg="img/bg/9.jpg">
+        <div class="container">
           @include('clients.blocks.bannerHeader')
             </div>
         </div>

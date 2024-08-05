@@ -25,6 +25,16 @@
             width: 120px;
             display: inline-block;
         }
+        form .form-control {
+            width: auto; /* Đảm bảo chiều rộng của select là tự động */
+        }
+
+        form button.btn-sm {
+            margin-top: 17px;
+            padding: 0.6rem 0.6rem; /* Giảm kích thước của nút */
+            font-size: 0.875rem; /* Giảm kích thước chữ của nút */
+            line-height: 1.5;
+}
     </style>
 @endsection
 @section('content')
@@ -39,7 +49,7 @@
                     <div class="container">
                         <div class="row ">
 
-                            <div class="col-lg-5">
+                            <div class="col-lg-6">
                                 <div class="card-body px-0 pt-0 pb-2">
                                     <div class="table-responsive p-0">
                                         <table class="table align-items-center mb-0">
@@ -48,15 +58,22 @@
                                                 <tr>
                                                     <th
                                                         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                        Khách Hàng</th>
+                                                        Nhân Viên</th>
                                                     <th
                                                         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                                        Quyền truy cập
                                                     </th>
+                                                    <th
+                                                        class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                        Ngày làm việc</th>
+                                                    <th
+                                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                                     </th>
 
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($users as $item)
+                                                @foreach ($admins as $item)
                                                     <tr>
                                                         <td>
                                                             <div class="d-flex px-2 py-1">
@@ -71,15 +88,33 @@
                                                                 </div>
                                                             </div>
                                                         </td>
+                                                        <td>
+                                                            <form method="POST" action="{{ route('updateRole') }}" style="display: flex; align-items: center;">
+                                                                @csrf
+                                                                <input type="hidden" name="user_id" value="{{ $item->id }}">
+                                                                <select name="role" class="form-control" style="width: auto; margin-right: 10px;">
+                                                                    <option value="Admin" {{ $item->role === 'Admin' ? 'selected' : '' }}>Admin</option>
+                                                                    <option value="User" {{ $item->role === 'User' ? 'selected' : '' }}>User</option>
+                                                                </select>
+                                                                <button type="submit" class="btn btn-primary btn-sm">Save</button>
+                                                            </form>
+                                                        </td>
+                                                        
+
+                                                        <td class="align-middle text-center">
+                                                            <span
+                                                                class="text-secondary text-xs font-weight-bold">{{ $item->created_at->format('d-m-Y') }}</span>
+                                                        </td>
 
                                                         <td class="align-middle">
-                                                            <a href="javascript:;"
+                                                            <a href="{{route('admins.taikhoans.show',  $item->id)}}"
                                                                 class="text-secondary font-weight-bold text-xs"
-                                                                data-toggle="tooltip" data-original-title="Edit user"
-                                                                onclick="showProfileModal({{ json_encode($item) }})">
+                                                                data-toggle="tooltip">
                                                                 <i class="fa-solid fa-eye"></i>
                                                             </a>
                                                         </td>
+
+
                                                     </tr>
                                                 @endforeach
 
@@ -89,7 +124,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-7">
+                            <div class="col-lg-6">
                                 <div class="card-body px-0 pt-0 pb-2">
                                     <div class="table-responsive p-0">
                                         <table class="table align-items-center  mb-0">
@@ -97,19 +132,17 @@
                                                 <tr>
                                                     <th
                                                         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                        Nhân Viên</th>
+                                                        Khách hàng</th>
                                                     <th
                                                         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                                        Chức vụ</th>
+                                                        Quyền truy cập</th>
 
-                                                    <th
-                                                        class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                        Ngày làm việc</th>
+                                                    
                                                     <th class="text-secondary opacity-7"></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($admins as $item)
+                                                @foreach ($users as $item)
                                                     <tr>
                                                         <td>
                                                             <div class="d-flex px-2 py-1">
@@ -126,19 +159,22 @@
                                                             </div>
                                                         </td>
                                                         <td>
-                                                            <p class="text-xs font-weight-bold mb-0">{{ $item->role }}</p>
-
+                                                            <form method="POST" action="{{ route('updateRole') }}" style="display: flex; align-items: center;">
+                                                                @csrf
+                                                                <input type="hidden" name="user_id" value="{{ $item->id }}">
+                                                                <select name="role" class="form-control" style="width: auto; margin-right: 10px;">
+                                                                    <option value="Admin" {{ $item->role === 'Admin' ? 'selected' : '' }}>Admin</option>
+                                                                    <option value="User" {{ $item->role === 'User' ? 'selected' : '' }}>User</option>
+                                                                </select>
+                                                                <button type="submit" class="btn btn-primary btn-sm">Save</button>
+                                                            </form>
                                                         </td>
-
-                                                        <td class="align-middle text-center">
-                                                            <span
-                                                                class="text-secondary text-xs font-weight-bold">{{ date($item->created_at) }}</span>
-                                                        </td>
+                                                        
+                                                        
                                                         <td class="align-middle">
-                                                            <a href="javascript:;"
+                                                            <a href="{{route('admins.taikhoans.show',  $item->id)}}"
                                                                 class="text-secondary font-weight-bold text-xs"
-                                                                data-toggle="tooltip" data-original-title="Edit user"
-                                                                onclick="showProfileModal({{ json_encode($item) }})">
+                                                                data-toggle="tooltip">
                                                                 <i class="fa-solid fa-eye"></i>
                                                             </a>
                                                         </td>
@@ -175,11 +211,11 @@
                         <img id="profileAvatar" src="" class="modal-profile-avatar" alt="Avatar">
                         <div class="profile-details">
                             <h4 id="profileName"></h4>
-                            <p><strong>Email:</strong> <span id="profileEmail"></span></p>
+                            <p><strong>Email:</strong> <span id="profileEmail">{{Auth::user()->email}}</span></p>
                             <p><strong>Ngày sinh:</strong> <span id="profileDob"></span></p>
-                            <p><strong>Địa chỉ:</strong> <span id="profileAddress"></span></p>
+                            <p><strong>Địa chỉ:</strong>  <span id="profileAddress">{{Auth::user()->address}}</span></p>
                             <p><strong>Giới tính:</strong> <span id="profileGender"></span></p>
-                            <p><strong>Số điện thoại:</strong> <span id="profilePhone"></span></p>
+                            <p><strong>Số điện thoại:</strong> <span id="profilePhone">{{Auth::user()->phone}}</span></p>
                         </div>
                     </div>
                 </div>

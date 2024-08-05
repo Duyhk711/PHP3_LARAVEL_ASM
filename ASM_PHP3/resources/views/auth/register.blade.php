@@ -100,9 +100,23 @@
                         <form method="POST" action="{{ route('register') }}" class="ltn__form-box contact-form-box">
                             @csrf
                             <input type="text" name="name" placeholder="Name" class="@error('name') is-invalid @enderror"">
-                            
-                            <input type="text" name="email" placeholder="Email*" class="@error('email') is-invalid @enderror"">
-                            <input type="password" name="password" placeholder="Password*" class="@error('password') is-invalid @enderror"">
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                 @enderror
+                            <input type="text" name="email" placeholder="Email*" class="@error('email') is-invalid @enderror">
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            <input type="password" name="password" placeholder="Password*" class="@error('password') is-invalid @enderror">
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             <input type="password" name="password_confirmation" placeholder="password_confirmation*" class="@error('password_confirmation') is-invalid @enderror"">
                             <label class="checkbox-inline">
                                 <input type="checkbox" value="">

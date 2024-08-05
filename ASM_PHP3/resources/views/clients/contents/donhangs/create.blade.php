@@ -107,7 +107,7 @@
                                     </div>
                                     <div class="input-item input-item-textarea ltn__custom-icon">
                                         <textarea name="ghi_chu" placeholder="Nhập ghi chú..."></textarea>
-                                        <input type="hidden"  name="phuong_thuc_thanh_toan">
+                                        
                                     </div>
                                 </div>
                             </div>

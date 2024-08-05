@@ -62,6 +62,7 @@ class DanhMucController extends Controller
     public function show(string $id)
     {
         //
+        
     }
 
     /**

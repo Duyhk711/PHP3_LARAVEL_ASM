@@ -43,10 +43,7 @@ return new class extends Migration
             // Khôi phục thuộc tính cũ của cột
             
             
-            $table->string('so_dien_thoai')->change();
-            $table->string('dia_chi')->change();
-            $table->double('tong_tien')->change();
-            $table->string('phuong_thuc_thanh_toan')->change();
+            
         });
     }
 };

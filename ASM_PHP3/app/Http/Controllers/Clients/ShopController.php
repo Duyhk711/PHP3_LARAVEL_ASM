@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\Clients;
-
 use App\Http\Controllers\Controller;
 use App\Models\DanhMuc;
 use App\Models\SanPham;
 use Illuminate\Http\Request;
+
 
 class ShopController extends Controller
 {
@@ -24,33 +24,12 @@ class ShopController extends Controller
         return view('clients.contents.shops.shop',compact('listSanPham','title'));
     }
 
-    public function doAnNhanh(){
-        return view('clients.contents.shops.doAnNhanh');
-    }
-    public function banhKem(){
-        $danhmucs=DanhMuc::get();
 
-        return view('clients.contents.shops.banhKem');
-
-    }
-    public function doChien(){
-        $danhmucs=DanhMuc::get();
-
-        return view('clients.contents.shops.doChien');
-    }
-    public function doUong(){
-        $danhmucs=DanhMuc::get();
-
-        return view('clients.contents.shops.doUong');
-    }
-    public function cart(){
-        return view('clients.contents.shops.cart');
-    }
     public function detailProduct(string $id){
-
-       $sanPham = SanPham::query()->findOrFail($id);
+        $sanPham = SanPham::with('binhLuans')->findOrFail($id);
+        $danhGiaTrungBinh = $sanPham->binhLuans->whereNotNull('danh_gia')->avg('danh_gia');
         $listSanPham = SanPham::query()->get();
-        return view('clients.contents.sanpham.productDetail', compact('sanPham', 'listSanPham'));
+        return view('clients.contents.sanpham.productDetail', compact('sanPham', 'listSanPham', 'danhGiaTrungBinh'));
     }
 }
 
