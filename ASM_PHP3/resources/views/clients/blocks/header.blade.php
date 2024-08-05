@@ -58,7 +58,7 @@
             <div class="col">
                 <div class="site-logo-wrap">
                     <div class="site-logo">
-                        <a href="index.html"><img src="{{asset('assets/clients/img/logo.png')}}" alt="Logo"></a>
+                        <a href="index.html"><img src="{{asset('assets/clients')}}/img/logo.png" alt="Logo"></a>
                     </div>
                 </div>
             </div>
@@ -134,7 +134,6 @@
                                     <li><a href="{{route('login')}}">Sign in</a></li>
                                     <li><a href="{{route('register')}}">Register</a></li>
                                 @endif
-                                
                             </ul>
                         </li>
                     </ul>

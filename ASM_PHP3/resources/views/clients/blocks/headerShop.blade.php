@@ -1,3 +1,4 @@
+
  <!-- ltn__header-top-area start -->
  <div class="ltn__header-top-area d-none">
      <div class="container">
@@ -85,10 +86,7 @@
                                             <li><a href="{{route('clients.product',$item->id)}}">{{$item->ten_danh_muc}}</a></li>
                                         @endforeach
                                            
-                                           {{-- <li><a href="{{route('clients.shop.doUong')}}">Đồ uống</a></li>
-                                           <li><a href="{{route('clients.shop.banhKem')}}">Bánh Kem</a></li>
-                                           <li><a href="{{route('clients.shop.doAnNhanh')}}">Đồ ăn Nhanh</a></li>
-                                           <li><a href="{{route('clients.shop.doChien')}}">Đồ Chiên</a></li> --}}
+                                          
                                        </ul>
                                    </li>
                                    <li class="menu-icon"><a href="#">Tin Tức</a>
@@ -159,3 +157,4 @@
      </div>
  </div>
  <!-- ltn__header-middle-area end -->
+

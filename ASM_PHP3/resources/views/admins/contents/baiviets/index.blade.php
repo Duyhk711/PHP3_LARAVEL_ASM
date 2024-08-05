@@ -18,7 +18,7 @@
                     <div class="alert alert-success">{{ session('error') }}</div>
                 @endif
                 <div class="d-flex justify-content-end ">
-                    <a class="btn btn-success mx-4" href="{{ route('admins.danhmucs.create') }}">Thêm mới danh mục</a>
+                    <a class="btn btn-success mx-4" href="{{ route('admins.baiviets.create') }}">Thêm mới danh mục</a>
                 </div>
                 <div class="row">
                     <div class="col-xl-12">
@@ -46,8 +46,10 @@
                                             </th>
                                             <th
                                                 class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ">
-                                                Tên danh mục</th>
-
+                                                Tên Bài Viết</th>
+                                                <th
+                                                class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ">
+                                                  Ngày đăng</th>
                                             <th
                                                 class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ">
                                                 Trạng thái</th>
@@ -57,28 +59,29 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                            @foreach ($listDM as $index => $item)
+                                            @foreach ($listBV as $index => $item)
                                             <tr>
                                                 <td class="text-center" scope="row">{{$index + 1}}</td>
                                                 <td class="text-center"><img src="{{Storage::url($item->hinh_anh)}}" width="100px" alt="" srcset=""></td>
-                                                <td class="text-center">{{$item->ten_danh_muc}}</td>
+                                                <td class="text-center">{{$item->ten_bai_viet}}</td>
+                                                <td class="text-center">{{$item->ngay_dang}}</td>
                                                 <td class="{{$item->trang_thai == true ? 'text-success' : 'text-danger'}} text-center ">
                                                     {{$item->trang_thai == true ? 'Hiển Thị' : 'Ẩn'}}
                                                 <td class="text-center">
                                                     <div class="d-inline">
                                                         <a class="  text-warning m-1"
-                                                            href="{{ route('admins.danhmucs.edit', $item->id) }}">
+                                                            href="{{ route('admins.baiviets.edit', $item->id) }}">
                                                             <button class="btn btn-link text-warning p-0 "
                                                                 style="border: none; background: none; ">
                                                                 <i class="fa-solid fa-pen-to-square fa-xl"></i>
                                                             </button>
                                                         </a>
-                                                        <form action="{{ route('admins.danhmucs.destroy', $item->id) }}"
+                                                        <form action="{{ route('admins.baiviets.destroy', $item->id) }}"
                                                             method="POST" class="mt-1 d-inline">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit"
-                                                                onclick="return confirm('Có chắc chắn xóa danh mục không?')"
+                                                                onclick="return confirm('Có chắc chắn xóa bài viết không?')"
                                                                 class="btn btn-link text-danger p-0 "
                                                                 style="border: none; background: none; ">
                                                                 <i class="fa-solid fa-trash fa-xl "></i>
@@ -90,7 +93,7 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                                {{ $listDM->links('pagination::bootstrap-5') }}
+                                {{ $listBV->links('pagination::bootstrap-5') }}
                             </div>
                         </div>
                     </div>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admins\BaiVietController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -103,11 +104,29 @@ Route::middleware(['auth', 'auth.admin'])->prefix('admins')
             Route::get('/profile', [UserController::class , 'showProfile'])->name('profile');
             Route::get('/show/{id}', [UserController::class , 'show'])->name('show');
         });
+        Route::prefix('baiviets')
+        ->as('baiviets.')
+        ->group(function(){
+            Route::get('/',                 [BaiVietController::class , 'index'])->name('index');
+            Route::get('/create',           [BaiVietController::class , 'create'])->name('create');
+            Route::post('/store',           [BaiVietController::class , 'store'])->name('store');
+            Route::get('/show/{id}',        [BaiVietController::class , 'show'])->name('show');
+            Route::get('{id}/edit',         [BaiVietController::class , 'edit'])->name('edit');
+            Route::put('{id}/update',       [BaiVietController::class , 'update'])->name('update');
+            Route::delete('{id}/destroy',   [BaiVietController::class , 'destroy'])->name('destroy');
+        });
 });
 
 
 Route::get('/login',      [AuthController::class, 'showFormLogin']);
 Route::post('/login',     [AuthController::class, 'login'])->name('login');
+
+Route::get('/forget_password',      [AuthController::class, 'forgetPass'])->name('forgetpass');
+Route::post('/forget_password',     [AuthController::class, 'postForgetPass'])->name('postforgetpass');
+Route::get('get_password/{user}/{token}', [AuthController::class, 'getPass'])->name('getpass');
+Route::post('/get_password/{user}{token}', [AuthController::class, 'postGetPass']);
+
+
 Route::get('/register',   [AuthController::class, 'showFormRegister']);
 Route::post('/register',  [AuthController::class, 'register'])->name('register');
 Route::post('/logout',    [AuthController::class, 'logout'])->name('logout');
@@ -118,6 +137,7 @@ Route::prefix('clients')
 ->as('clients.')
 ->group(function(){
     
+
     Route::middleware('auth')->group(function(){
         Route::get('/list-cart',         [CartController::class,   'listCart'])->name('cart.list');
         Route::post('/add-to-cart',      [CartController::class,   'addCart'])->name('cart.add');
@@ -146,9 +166,6 @@ Route::prefix('clients')
 Route::post('/products/{id}/comments', [BinhLuanController::class, 'store'])->middleware('auth')->name('comments.store');
 
 Route::get('/', [ClientController::class, 'index'])->name('trang_chu');
-
-
-
 
 
 

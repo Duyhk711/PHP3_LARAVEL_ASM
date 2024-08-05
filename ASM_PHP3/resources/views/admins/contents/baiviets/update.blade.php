@@ -13,32 +13,54 @@
                 
                 <div class="card-body">
                         
-                    <form action="{{route('admins.danhmucs.update', $showDM->id)}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('admins.baiviets.update', $showBV->id)}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="row">
                         <div class="col-lg-6">
                             <div class="mb-3">
-                                <label for="ten_danh_muc" class="form-label">Tên Danh Mục</label>
-                                <input type="text" name="ten_danh_muc" id="ten_danh_muc" 
-                                    class="form-control @error('ten_danh_muc') is-invalid @enderror"
-                                    placeholder="Nhập tên danh mục" value="{{$showDM->ten_danh_muc}}"
+                                <label for="ten_bai_viet" class="form-label">Tên Bài Viet</label>
+                                <input type="text" name="ten_bai_viet" id="ten_bai_viet" 
+                                    class="form-control @error('ten_bai_viet') is-invalid @enderror"
+                                    placeholder="Nhập tên Bài viet" value="{{$showBV->ten_bai_viet}}"
                                 >
 
-                                @error('ten_danh_muc')
+                                @error('ten_bai_viet')
                                    <p class="text-danger"> {{$message}}</p>
                                 @enderror
                             </div>
+                            <div class="mb-3">
+                              <label for="noi_dung" class="form-label">Nội Dung</label>
+                              <input type="text" name="noi_dung" id="noi_dung" 
+                                  class="form-control @error('noi_dung') is-invalid @enderror"
+                                  placeholder="Nhập tên danh mục" value="{{$showBV->noi_dung}}"
+                              >
+
+                              @error('noi_dung')
+                                 <p class="text-danger"> {{$message}}</p>
+                              @enderror
+                          </div>
+                          <div class="mb-3">
+                              <label for="ngay_dang" class="form-label">Ngày Đăng</label>
+                              <input type="date" name="ngay_dang" id="ngay_dang" 
+                                  class="form-control @error('ngay_dang') is-invalid @enderror"
+                                  placeholder="Nhập tên danh mục" value="{{$showBV->ngay_dang}}"
+                              >
+
+                              @error('ngay_dang')
+                                 <p class="text-danger"> {{$message}}</p>
+                              @enderror
+                          </div>
 
                             <div class="mb-3">
                                 <label for="trang_thai" class="form_label">Trạng Thái: </label>
                             </div>
                                 <div class=" mb-3">
 
-                                            <input class="form-check-input me-1" type="radio" name="trang_thai" value="1" {{$showDM->trang_thai == true ? 'checked' : '' }} id="firstRadio" >
+                                            <input class="form-check-input me-1" type="radio" name="trang_thai" value="1" {{$showBV->trang_thai == true ? 'checked' : '' }} id="firstRadio" >
                                             <label class="form-check-label text-success" for="firstRadio">Hiển thị</label>
                                         
-                                            <input class="form-check-input me-1" type="radio" name="trang_thai" value="0" {{$showDM->trang_thai == false ? 'checked' : '' }} id="secondRadio">
+                                            <input class="form-check-input me-1" type="radio" name="trang_thai" value="0" {{$showBV->trang_thai == false ? 'checked' : '' }} id="secondRadio">
                                             <label class="form-check-label text-danger" for="secondRadio">Ẩn</label>
                                        
                                 </div> <!-- end card-body -->
@@ -52,7 +74,7 @@
                                     class="form-control @error('hinh_anh') is-invalid @enderror"
                                     onchange="showImage(event)" 
                                 >
-                                <img id="img_danhmuc" src="{{Storage::url($showDM->hinh_anh)}}" style="width: 150px;" alt="" class="mt-3">
+                                <img id="img_baiviets" src="{{Storage::url($showBV->hinh_anh)}}" style="width: 150px;" alt="" class="mt-3">
                        
                             </div>
                         </div>

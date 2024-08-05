@@ -36,6 +36,7 @@
     <link rel="stylesheet" href="{{ asset('assets/theme2/css/colors/default.css" id="colorSkinCSS') }}" />
 @endsection
 
+
 @section('content')
     <div class="liton__shoping-cart-area mb-120">
         <div class="container">
@@ -72,8 +73,7 @@
                                                                     <a href="{{route('clients.detailProduct',['id' => $key])}}"
                                                                         class="d-inline-block align-middle mb-0 f_s_16 f_w_600 color_theme2">
                                                                         {{ $item['ten_san_pham'] }} <br> <span
-                                                                            
-                                                                    </a>
+                                                                     </a>
                                                                 </p>
 
                                                                 <input type="hidden" name="cart[{{ $key }}][hinh_anh]" value="{{ $item['hinh_anh'] }}">

@@ -17,18 +17,39 @@
 
                     <div class="card-body">
                         
-                            <form action="{{route('admins.danhmucs.store')}}" method="POST" enctype="multipart/form-data">
+                            <form action="{{route('admins.baiviets.store')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        <label for="ten_danh_muc" class="form-label">Tên Danh Mục</label>
-                                        <input type="text" name="ten_danh_muc" id="ten_danh_muc" 
-                                            class="form-control @error('ten_danh_muc') is-invalid @enderror"
-                                            placeholder="Nhập tên danh mục" value="{{old('ten_danh_muc')}}"
+                                        <label for="ten_danh_muc" class="form-label">Tên Bài Viết</label>
+                                        <input type="text" name="ten_bai_viet" id="ten_bai_viet" 
+                                            class="form-control @error('ten_bai_viet') is-invalid @enderror"
+                                            placeholder="Nhập tên danh mục" value="{{old('ten_bai_viet')}}"
                                         >
 
-                                        @error('ten_danh_muc')
+                                        @error('ten_bai_viet')
+                                           <p class="text-danger"> {{$message}}</p>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="noi_dung" class="form-label">Nội Dung</label>
+                                        <textarea type="text" name="noi_dung" id="noi_dung_bai_viet" 
+                                            class="form-control @error('noi_dung') is-invalid @enderror"
+                                            placeholder="Nhập tên danh mục" value="{{old('noi_dung')}}"
+                                        >{{old('noi_dung')}}</textarea>
+
+                                        @error('noi_dung')
+                                           <p class="text-danger"> {{$message}}</p>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="ngay_dang" class="form-label">Ngày Đăng</label>
+                                        <input type="date" name="ngay_dang" id="ngay_dang" 
+                                            class="form-control @error('ngay_dang') is-invalid @enderror"
+                                            placeholder="ngày đăng">
+
+                                        @error('ngay_dang')
                                            <p class="text-danger"> {{$message}}</p>
                                         @enderror
                                     </div>
@@ -55,7 +76,7 @@
                                             class="form-control @error('hinh_anh') is-invalid @enderror"
                                             onchange="showImage(event)"
                                         >
-                                        <img id="img_danhmuc" src="" style="width: 150px; display: none;" alt="" class="mt-3">
+                                        <img id="img_baiviet" src="" style="width: 150px; display: none;" alt="" class="mt-3">
                                
                                     </div>
                                 </div>
@@ -88,13 +109,13 @@
 
 <script>
     function showImage(event){
-        const img_danhmuc = document.getElementById('img_danhmuc');
+        const img_baiviet = document.getElementById('img_baiviet');
         
         const file = event.target.files[0];
         const reader = new FileReader();
         reader.onload = function (){
-            img_danhmuc.src = reader.result;
-            img_danhmuc.style.display = 'block';
+            img_baiviet.src = reader.result;
+            img_baiviet.style.display = 'block';
         }
 
         if(file){
@@ -103,4 +124,10 @@
         // console.log(reader.result);
     }
 </script>
+<script type="text/javascript" src="{{asset('ckeditor/ckeditor.js')}}"></script>
+  <script  type="text/javascript">
+    CKEDITOR.replace('noi_dung_bai_viet');
+    
+
+  </script>
 @endsection
