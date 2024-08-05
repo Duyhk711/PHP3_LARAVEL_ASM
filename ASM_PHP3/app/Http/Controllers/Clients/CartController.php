@@ -20,7 +20,8 @@ class CartController extends Controller
         }
         $shipping = 30000;
         $total = $subTotal + $shipping;
-        return view('clients.contents.shops.cart', compact('cart', 'total', 'shipping', 'subTotal' ));
+        $title="giỏ hàng";
+        return view('clients.contents.shops.cart', compact('cart', 'total', 'shipping', 'subTotal' ,'title'));
     }
 
     public function addCart(Request $request){

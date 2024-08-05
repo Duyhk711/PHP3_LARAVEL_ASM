@@ -4,14 +4,14 @@
              <div class="section-title-area ltn__section-title-2">
                  <h6 class="section-subtitle ltn__secondary-color">Sản Phẩm</h6>
             
-                 <h1 class="section-title white-color">{{$title}}</h1>
+                 {{-- <h1 class="section-title white-color">{{$title}}</h1> --}}
 
              </div>
              <div class="ltn__breadcrumb-list">
                  <ul>
                      <li><a href="{{route('trang_chu')}}">Home</a></li>
 
-                     <li>{{$title}}</li>
+                     {{-- <li>{{$title}}</li> --}}
                  </ul>
              </div>
          </div>

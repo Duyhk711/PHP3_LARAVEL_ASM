@@ -327,3 +327,4 @@
 @section('pages-title')
     {{ $pages_title }}
 @endsection
+

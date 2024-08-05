@@ -25,11 +25,11 @@
                                     <div class="input-group">
                                         <select class="nice-select" name="filter">
                                             <option value="" >--Lọc Sản Phẩm--</option>
-                                            <option value="is_new" {{request('filter') == 'is_new' ? 'selected' : ''}}>Sản Phẩm Mới</option>
-                                            <option value="is_hot" {{request('filter') == 'is_hot' ? 'selected' : ''}}>Sản Phẩm Yêu Thích</option>
-                                            <option value="is_hot_deal" {{request('filter') == 'is_hot_deal' ? 'selected' : ''}}>Sản Phẩm Khuyến mại</option>
+                                            <option value="new" {{request('filter') == 'new' ? 'selected' : ''}}>Sản Phẩm Mới</option>
+                                            <option value="hot" {{request('filter') == 'hot' ? 'selected' : ''}}>Sản Phẩm Yêu Thích</option>
+                                            <option value="hot_deal" {{request('filter') == 'hot_deal' ? 'selected' : ''}}>Sản Phẩm Khuyến mại</option>
                                         </select>
-                                   <button type="submit" style="border: none; background:none "><i class="fa-solid fa-filter"></i></button>
+                                   <button type="submit" style="border: none; background:none "><i class="fa fa-rgb fa-filter"></i></button>
                                 </div>   
                                 </form> 
                              </div> 
@@ -184,9 +184,7 @@
     
 @endsection
 @section('css')
-    
-
-    <script>
-
-    </script>
+<link rel="stylesheet" href="{{ asset('assets/admins/lib/bootstrap.css') }}">
+<script src="{{ asset('assets/admins/lib/bootstrap.js') }}"></script>
+<script src="{{ asset('assets/admins/lib/font-fontawesome-ae333ffef2.js') }}"></script>
 @endsection

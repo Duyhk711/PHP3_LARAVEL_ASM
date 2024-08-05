@@ -103,6 +103,13 @@ Route::middleware(['auth', 'auth.admin'])->prefix('admins')
 
 Route::get('/login',      [AuthController::class, 'showFormLogin']);
 Route::post('/login',     [AuthController::class, 'login'])->name('login');
+
+Route::get('/forget_password',      [AuthController::class, 'forgetPass'])->name('forgetpass');
+Route::post('/forget_password',     [AuthController::class, 'postForgetPass'])->name('postforgetpass');
+Route::get('get_password/{user}/{token}', [AuthController::class, 'getPass'])->name('getpass');
+Route::post('/get_password/{user}{token}', [AuthController::class, 'postGetPass']);
+
+
 Route::get('/register',   [AuthController::class, 'showFormRegister']);
 Route::post('/register',  [AuthController::class, 'register'])->name('register');
 Route::post('/logout',    [AuthController::class, 'logout'])->name('logout');

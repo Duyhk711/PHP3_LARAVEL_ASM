@@ -34,7 +34,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="noi_dung" class="form-label">Nội Dung</label>
-                                        <textarea type="text" name="noi_dung" id="noi_dung" 
+                                        <textarea type="text" name="noi_dung" id="noi_dung_bai_viet" 
                                             class="form-control @error('noi_dung') is-invalid @enderror"
                                             placeholder="Nhập tên danh mục" value="{{old('noi_dung')}}"
                                         >{{old('noi_dung')}}</textarea>
@@ -124,4 +124,10 @@
         // console.log(reader.result);
     }
 </script>
+<script type="text/javascript" src="{{asset('ckeditor/ckeditor.js')}}"></script>
+  <script  type="text/javascript">
+    CKEDITOR.replace('noi_dung_bai_viet');
+    
+
+  </script>
 @endsection

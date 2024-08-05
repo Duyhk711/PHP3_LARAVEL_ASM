@@ -35,6 +35,7 @@ class OrderController extends Controller
             $shipping = 30000;
 
             $total = $subTotal + $shipping;
+            $title="Mua Hàng";
             return view('clients.contents.donhangs.create', compact('carts', 'subTotal', 'total', 'shipping'));
         }
         return redirect()->route('clients.cart.list');
