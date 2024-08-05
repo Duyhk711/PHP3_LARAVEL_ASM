@@ -105,13 +105,13 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                  @enderror
-                            <input type="text" name="email" placeholder="Email*" class="@error('email') is-invalid @enderror"">
+                            <input type="text" name="email" placeholder="Email*" class="@error('email') is-invalid @enderror">
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                            <input type="password" name="password" placeholder="Password*" class="@error('password') is-invalid @enderror"">
+                            <input type="password" name="password" placeholder="Password*" class="@error('password') is-invalid @enderror">
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

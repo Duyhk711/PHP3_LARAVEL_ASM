@@ -56,8 +56,14 @@ class DonHangController extends Controller
         $newTrangThai = $request->input('trang_thai_don_hang');
 
         $trangThais = array_keys(DonHang::TRANG_THAI_DON_HANG);
+        // $trangThaiThanhToan = array_keys(DonHang::TRANG_THAT_THANH_TOAN);
 
         // kiểm tra trạng thái đã hủy thì không chọn trạng thái nữa
+
+        if ($currentTrangThai === DonHang::DA_GIAO_HANG) {
+            $donHang->trang_thai_thanh_toan = DonHang::DA_THANH_TOAN;
+            $donHang->save();
+        }
 
         if ($currentTrangThai === DonHang::HUY_DON_HANG) {
             return redirect()->route('admins.donhangs.index')->with('error', 'Đơn hàng không thể thay đổi trạng thái'); 
@@ -67,7 +73,8 @@ class DonHangController extends Controller
         if(array_search($newTrangThai, $trangThais) < array_search($currentTrangThai, $trangThais)){
             return redirect()->route('admins.donhangs.index')->with('error', 'Không thể cập nhật ngược lại trạng thái');
         }
-        
+
+       
         $donHang->trang_thai_don_hang = $newTrangThai;
         
         $donHang->save();

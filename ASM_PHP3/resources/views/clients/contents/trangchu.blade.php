@@ -10,7 +10,7 @@
                <a data-bs-toggle="tab" href="#liton_tab_3_2" class="">Hot</a>
                <a data-bs-toggle="tab" href="#liton_tab_3_3" class="">Favourite</a>
                <a data-bs-toggle="tab" href="#liton_tab_3_4" class="">Bestseller</a>
-               <a data-bs-toggle="tab" href="#liton_tab_3_5" class="">Fish & Meat</a>
+              
            </div>
        </div>
        <div class="tab-content">
@@ -59,7 +59,7 @@
                                         <li><a href="#"><i class="far fa-star"></i></a></li>
                                     </ul>
                                 </div>
-                                <h2 class="product-title"><a href="product-details.html">{{$item->ten_san_pham}}</a></h2>
+                                <h2 class="product-title"><a href="{{route('clients.detailProduct', $item->id)}}">{{$item->ten_san_pham}}</a></h2>
                                 <div class="product-price">
                                     <span>${{$item->gia_san_pham}}</span>
                                     <del>${{$item->gia_khuyen_mai}}</del>
@@ -120,7 +120,7 @@
                                            <li><a href="#"><i class="far fa-star"></i></a></li>
                                        </ul>
                                    </div>
-                                   <h2 class="product-title"><a href="product-details.html">{{$item->ten_san_pham}}</a></h2>
+                                   <h2 class="product-title"><a href="{{route('clients.detailProduct', $item->id)}}">{{$item->ten_san_pham}}</a></h2>
                                    <div class="product-price">
                                        <span>${{$item->gia_san_pham}}</span>
                                        <del>${{$item->gia_khuyen_mai}}</del>
@@ -177,7 +177,7 @@
                                         <li><a href="#"><i class="far fa-star"></i></a></li>
                                     </ul>
                                 </div>
-                                <h2 class="product-title"><a href="product-details.html">{{$item->ten_san_pham}}</a></h2>
+                                <h2 class="product-title"><a href="{{route('clients.detailProduct', $item->id)}}">{{$item->ten_san_pham}}</a></h2>
                                 <div class="product-price">
                                     <span>${{$item->gia_san_pham}}</span>
                                     <del>${{$item->gia_khuyen_mai}}</del>
@@ -234,7 +234,7 @@
                                         <li><a href="#"><i class="far fa-star"></i></a></li>
                                     </ul>
                                 </div>
-                                <h2 class="product-title"><a href="product-details.html">{{$item->ten_san_pham}}</a></h2>
+                                <h2 class="product-title"><a href="{{route('clients.detailProduct', $item->id)}}">{{$item->ten_san_pham}}</a></h2>
                                 <div class="product-price">
                                     <span>${{$item->gia_san_pham}}</span>
                                     <del>${{$item->gia_khuyen_mai}}</del>
@@ -310,7 +310,7 @@
                     <li><a href="#"><i class="far fa-star"></i></a></li>
                 </ul>
             </div>
-            <h2 class="product-title"><a href="product-details.html">{{$item->ten_san_pham}}</a></h2>
+            <h2 class="product-title"><a href="{{route('clients.detailProduct', $item->id)}}">{{$item->ten_san_pham}}</a></h2>
             <div class="product-price">
                 <span>${{$item->gia_san_pham}}</span>
                 <del>${{$item->gia_khuyen_mai}}</del>

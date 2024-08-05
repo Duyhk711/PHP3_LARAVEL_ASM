@@ -15,15 +15,40 @@
 
     </div>
     <div class="row">
-        <div class="col-lg-8 shadow-sm p-3 mb-5 bg-body rounded">
+        <div class="col-lg-8 shadow-sm p-3 mb-5 rounded" style="background: rgb(180, 228, 191)">
             <div class="table-responsive">
-                <div class="">
-                    <b>Đơn hàng</b> &nbsp;  <p class="badge bg-warning ">{{ $trangThaiThanhToan[$donHang->trang_thai_thanh_toan] }}</p>
-                </div>
                 <div>
-                    <b>Trạng thái: </b> <p class="badge bg-warning">{{ $trangThaiDonHang[$donHang->trang_thai_don_hang] }}</p>
+                    <b>Đơn hàng:</b> 
+                    @if ($donHang->trang_thai_thanh_toan === 'chua_thanh_toan')
+                        <p class="badge bg-warning">Chưa thanh toán</p>
+                    @else
+                        <p class="badge bg-success">Đã thanh toán</p>
+                    @endif
                 </div>
-                <table class="table table-hover table-primary">
+                
+                <div>
+                    <b>Trạng thái:</b> 
+                    @php
+                        // Đặt giá trị mặc định cho màu badge
+                        $trangThaiDonHangColor = 'warning'; // Mặc định là màu vàng
+                
+                        // Kiểm tra các trạng thái và gán màu sắc tương ứng
+                        if ($donHang->trang_thai_don_hang === 'huy_don_hang') {
+                            $trangThaiDonHangColor = 'danger'; // Màu đỏ cho trạng thái đã hủy
+                        } elseif ($donHang->trang_thai_don_hang === 'da_giao_hang') {
+                            $trangThaiDonHangColor = 'success'; // Màu xanh lá cho trạng thái đã vận chuyển
+                        }elseif ($donHang->trang_thai_don_hang === 'dang_chuan_bi') {
+                            $trangThaiDonHangColor = 'primary'; // Màu xanh lá cho trạng thái đã vận chuyển
+                        }elseif ($donHang->trang_thai_don_hang === 'dang_van_chuyen') {
+                            $trangThaiDonHangColor = 'info'; // Màu xanh lá cho trạng thái đã vận chuyển
+                        }
+                    @endphp
+                    <p class="badge bg-{{ $trangThaiDonHangColor }}">
+                        {{ $trangThaiDonHang[$donHang->trang_thai_don_hang] }}
+                    </p>
+                </div>
+                
+                <table class="table table-hover table-warning">
                     <thead>
                         <tr>
                             <th>Hình ảnh</th>
@@ -47,15 +72,17 @@
                                 <td>{{$sanPham->ma_san_pham}}</td>
                                 <td>{{$sanPham->ten_san_pham}}</td>
                                 <td>{{ number_format($item->don_gia, 0, ',', '.') }}đ</td>
-                                <td>{{ number_format($item->so_luong, 0, ',', '.')}}đ</td>
+                                <td>{{ number_format($item->so_luong, 0, ',', '.')}}</td>
                                 <td>{{ number_format($item->thanh_tien, 0, ',', '.')}}đ</td>
                             </tr>
                         @endforeach
                         <tr>
                             <td colspan="4">
-                                <textarea class="form-control" placeholder="Ghi chú đơn hàng">
-                                    {{ $donHang->ghi_chu == null ? 'Ghi chú đơn hàng' : $donHang->ghi_chu }}
-                                </textarea>
+                               @if ($donHang->ghi_chu)
+                                   <p>{{$donHang->ghi_chu}}</p>
+                               @else
+                                   <p>Không có ghi chú nào!</p>
+                               @endif
                             </td>
                             <td>
                                 <b>Tổng tiền: </b>
@@ -69,8 +96,8 @@
             </div>
         </div>
 
-        <div class="col-lg-4 shadow-sm p-3 mb-5 bg-body rounded">
-            <div>
+        <div class="col-lg-4 shadow-sm p-3 mb-5  rounded " style="background: rgb(230, 224, 201)">
+            <div class="">
                 <div>
                     <h4>Khách hàng</h4>
                     <p>{{ $donHang->ten_nguoi_nhan }}</p>

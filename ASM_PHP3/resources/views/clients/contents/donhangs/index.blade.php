@@ -43,7 +43,7 @@
                 <div class="shoping-cart-inner">
                     <div class="shoping-cart-table">
                         @if (session('success'))
-                             <div class="alert text-danger m-2">{{ session('success') }}</div>
+                             <div class="alert text-success m-2">{{ session('success') }}</div>
                             
                         @endif
                         <div class="row">
@@ -72,7 +72,27 @@
 
                                                             <td class="col-3">{{ $item->created_at->format('d-m-Y')}}</td>
 
-                                                            <td class="col-2">{{ $trangThaiDonHang[$item->trang_thai_don_hang] }}</td>
+                                                            <td class="col-2">
+                                                                @php
+                                                                    // Đặt giá trị mặc định cho màu badge
+                                                                    $trangThaiDonHangColor = 'warning'; // Mặc định là màu vàng
+                                                            
+                                                                    // Kiểm tra các trạng thái và gán màu sắc tương ứng
+                                                                    if ($item->trang_thai_don_hang === 'huy_don_hang') {
+                                                                        $trangThaiDonHangColor = 'danger'; // Màu đỏ cho trạng thái đã hủy
+                                                                    } elseif ($item->trang_thai_don_hang === 'da_giao_hang') {
+                                                                        $trangThaiDonHangColor = 'success'; // Màu xanh lá cho trạng thái đã vận chuyển
+                                                                    }elseif ($item->trang_thai_don_hang === 'dang_chuan_bi') {
+                                                                        $trangThaiDonHangColor = 'primary'; // Màu xanh lá cho trạng thái đã vận chuyển
+                                                                    }elseif ($item->trang_thai_don_hang === 'dang_van_chuyen') {
+                                                                        $trangThaiDonHangColor = 'info'; // Màu xanh lá cho trạng thái đã vận chuyển
+                                                                    }
+                                                                @endphp
+                                                                
+                                                                <span class="badge bg-{{$trangThaiDonHangColor}}">
+                                                                    {{ $trangThaiDonHang[$item->trang_thai_don_hang] }}
+                                                                </span>
+                                                            </td>
 
                                                             <td class="col-2">{{ number_format($item->tong_tien, 0, ',', '.') }}đ</td>
 
@@ -106,11 +126,7 @@
                                                     @endforeach
                                                 </tbody>
                                             </table>
-                                            <div class="d-flex justify-content-end">
-                                                <button type="submit" class="btn theme-btn-2 btn-effect-2-- me-4 mt-4">
-                                                    Update Cart
-                                                </button>
-                                            </div>
+                                            
                                         </div>
                                     
                                 </div>
@@ -120,32 +136,7 @@
                     </div>
                 </div>
 
-                <div class="d-flex justify-content-end">
-                    <div class="shoping-cart-total mt-50">
-                        <h4>Cart Totals</h4>
-                        <table class="table">
-                            <tbody>
-                                {{-- <tr>
-                                    <td>Cart Subtotal</td>
-                                    <td class="sub-total">{{ number_format($subTotal, 0, ',', '.') }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Shipping and Handing</td>
-                                    <td class="shipping">{{ number_format($shipping, 0, ',', '.') }}</td>
-                                </tr>
-
-                                <tr>
-                                    <td><strong>Order Total</strong></td>
-                                    <td class="total-amount"><strong>{{ number_format($total, 0, ',', '.') }}</strong>
-                                    </td>
-                                </tr> --}}
-                            </tbody>
-                        </table>
-                        <div class="btn-wrapper text-right text-end">
-                            <a href="{{route('clients.donhangs.create')}}" class="theme-btn-1 btn btn-effect-1">Proceed to checkout</a>
-                        </div>
-                    </div>
-                </div>
+               
             </div>
         </div>
     </div>

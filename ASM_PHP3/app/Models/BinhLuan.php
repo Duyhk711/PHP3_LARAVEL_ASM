@@ -14,7 +14,8 @@ class BinhLuan extends Model
     protected $fillable = [
         'user_id',
         'san_pham_id',
-        'noi_dung'
+        'noi_dung',
+        'danh_gia'
     ];
 
     public function user()
@@ -25,5 +26,12 @@ class BinhLuan extends Model
     public function sanPham()
     {
         return $this->belongsTo(SanPham::class);
+    }
+
+    public function daMua($productId)
+    {
+        return $this->donHangs()->whereHas('ma_don_hang', function($query) use ($productId) {
+            $query->where('san_pham_id', $productId);
+        })->exists();
     }
 }

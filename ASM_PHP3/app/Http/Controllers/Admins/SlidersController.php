@@ -55,7 +55,7 @@ class SlidersController extends Controller
             }
             $params['hinh_anh'] = $filePath;
             Sliders::create($params);
-            return redirect()->route('slider.index')->with('msg','Thêm slider thành công');
+            return redirect()->route('admins.index')->with('msg','Thêm slider thành công');
         }
     }
 
@@ -100,7 +100,7 @@ class SlidersController extends Controller
             }
             $params['hinh_anh'] = $filePath;
             $listSL->update($params);
-            return redirect()->route('slider.index')->with('success', 'Cập nhật slider thành công');
+            return redirect()->route('admins.index')->with('success', 'Cập nhật slider thành công');
     }
     }
     /**

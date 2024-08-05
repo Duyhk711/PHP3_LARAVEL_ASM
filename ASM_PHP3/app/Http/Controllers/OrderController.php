@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\DonHang;
+use App\Models\SanPham;
+use App\Mail\OrderConfirm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\OrderRequest;
-use App\Mail\OrderConfirm;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
@@ -71,6 +72,18 @@ class OrderController extends Controller
                 $carts = session()->get('cart', []);
 
                 foreach ($carts as $key => $item) {
+                    $sanPham = SanPham::find($key);
+                    if (!$sanPham) {
+                        throw new \Exception("Sản phẩm với ID {$key} không tồn tại.");
+                    }
+    
+                    if ($sanPham->so_luong < $item['so_luong']) {
+                        throw new \Exception("Sản phẩm '{$sanPham->ten_san_pham}' chỉ còn {$sanPham->so_luong} sản phẩm trong kho, không đủ để đặt hàng.");
+                    }
+    
+                    $sanPham->so_luong -= $item['so_luong'];
+                    $sanPham->save();
+
                    $thanhTien = $item['gia'] * $item['so_luong'];
 
                    $donHang->chiTietDonHangs()->create([
@@ -87,12 +100,12 @@ class OrderController extends Controller
                 Mail::to($donHang->email_nguoi_nhan)->queue(new OrderConfirm($donHang));
                 session()->put('cart', []);
 
-                return redirect()->route('clients.donhangs.index')->with('success', 'Đơn hàng đã tạo thành công!');
+                return redirect()->route('clients.donhangs.index')->with('success', 'Đặt hàng thành công!');
                 // dd($params);
             } catch (\Exception $e) {
                 DB::rollBack();
                 // dd($e->getMessage(), $e->getTraceAsString());
-                return redirect()->route('clients.cart.list')->with('error', 'Có lỗi khi tạo đơn hàng, vui lòng thử lại sau!');
+                return redirect()->route('clients.cart.list')->with('error', $e->getMessage());
             }
         }
     }
@@ -124,13 +137,26 @@ class OrderController extends Controller
     public function update(Request $request, string $id)
     {
         $donHang = DonHang::query()->findOrFail($id);
-
+        $chiTietDonHangs = $donHang->chiTietDonHangs;
+        // $trangThaiThanhToan = DonHang::TRANG_THAT_THANH_TOAN;
         DB::beginTransaction();
         try {
             if($request->has('huy_don_hang')){
-                $donHang->update(['trang_thai_don_hang' => DonHang::HUY_DON_HANG]);
+                foreach ($chiTietDonHangs as $chiTiet) {
+                    // Cộng lại số lượng sản phẩm khi hủy đơn hàng
+                    $sanPham = SanPham::find($chiTiet->san_pham_id);
+                    $sanPham->so_luong += $chiTiet->so_luong;
+                    $sanPham->save();
+                }
+                $donHang->update([
+                    'trang_thai_don_hang' => DonHang::HUY_DON_HANG,
+                ]);
+
             }elseif($request->has('da_giao_hang')){
-                $donHang->update(['trang_thai_don_hang' => DonHang::DA_GIAO_HANG]);
+                $donHang->update([
+                    'trang_thai_don_hang' => DonHang::DA_GIAO_HANG,
+                    'trang_thai_thanh_toan' => DonHang::DA_THANH_TOAN
+                ]);
             }
 
             DB::commit();

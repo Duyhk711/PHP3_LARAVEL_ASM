@@ -13,18 +13,16 @@ use App\Http\Controllers\Admins\DanhMucController;
 use App\Http\Controllers\Admins\DonHangController;
 
 use App\Http\Controllers\Admins\SanPhamController;
-
-
 use App\Http\Controllers\Admins\SlidersController;
+// use App\Http\Controllers\Admins\SlidersController;
 
-use App\Http\Controllers\Clients\ShowSlideController;
+// use App\Http\Controllers\Clients\ShowSlideController;
 use App\Http\Controllers\Clients\ShowSliderController;
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\BinhLuanController;
-use App\Http\Controllers\Clients\ShopController;
 
-use App\Http\Controllers\ClientController;
+use App\Http\Controllers\BinhLuanController;
+
+
 use App\Http\Controllers\Clients\CartController;
 use App\Http\Controllers\OrderController;
 use App\Models\User;
@@ -69,7 +67,12 @@ Route::middleware(['auth', 'auth.admin'])->prefix('admins')
             Route::put('{id}/update',       [DanhMucController::class , 'update'])->name('update');
             Route::delete('{id}/destroy',   [DanhMucController::class , 'destroy'])->name('destroy');
         });
-
+        Route::get('/',                         [SlidersController::class , 'index'])->name('index');
+        Route::get('/create',                   [SlidersController::class , 'create'])->name('create');
+        Route::post('/store',                   [SlidersController::class , 'store'])->name('store');
+        Route::put('{id}/update',               [SlidersController::class , 'update'])->name('update');
+        Route::get('{id}/edit',                 [SlidersController::class , 'edit'])->name('edit');
+        Route::delete('{id}/destroy',           [SlidersController::class , 'destroy'])->name('destroy');
 
         Route::prefix('sanphams')
         ->as('sanphams.')
@@ -98,6 +101,7 @@ Route::middleware(['auth', 'auth.admin'])->prefix('admins')
         ->group(function(){
             Route::get('/', [UserController::class , 'index'])->name('index');
             Route::get('/profile', [UserController::class , 'showProfile'])->name('profile');
+            Route::get('/show/{id}', [UserController::class , 'show'])->name('show');
         });
 });
 
@@ -107,6 +111,7 @@ Route::post('/login',     [AuthController::class, 'login'])->name('login');
 Route::get('/register',   [AuthController::class, 'showFormRegister']);
 Route::post('/register',  [AuthController::class, 'register'])->name('register');
 Route::post('/logout',    [AuthController::class, 'logout'])->name('logout');
+Route::post('/update-role', [UserController::class, 'updateRole'])->name('updateRole');
 
 
 Route::prefix('clients')
@@ -121,10 +126,7 @@ Route::prefix('clients')
     // Route::get('/home',              [ClientController::class, 'index'])->name('trang_chu');
     Route::get('/product/{cat}',     [ClientController::class, 'danhMuc'])->name('product');
     Route::get('/shop',              [ShopController::class,   'shop'])->name('shop');
-    Route::get('/shop/doAnNhanh',    [ShopController::class,   'doAnNhanh'])->name('shop.doAnNhanh');
-    Route::get('/shop/banhKem',      [ShopController::class,   'banhKem'])->name('shop.banhKem');
-    Route::get('/shop/doUong',       [ShopController::class,   'doUong'])->name('shop.doUong');
-    Route::get('/shop/doChien',      [ShopController::class,   'doChien'])->name('shop.doChien');
+    
     
     Route::get('/detailProduct/{id}',[ShopController::class,   'detailProduct'])->name('detailProduct');
     

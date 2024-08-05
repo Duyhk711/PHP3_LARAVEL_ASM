@@ -44,8 +44,19 @@
                                                 <a href="{{route('clients.detailProduct',$item->id)}}"><img src="{{Storage::url($item->hinh_anh)}}" height="200px" alt="#"></a>
                                                 <div class="product-badge">
                                                     <ul>
-                                                        <li class="sale-badge">{{$item->is_new == 1 ? 'New' : ''}}</li>
+                                                        @if ($item->so_luong == 0)
+                                                            <li class="sale-badge">Hết hàng</li>
+                                                        @else
+                                                            @if ($item->is_new)
+                                                                <li class="sale-badge">New</li>
+                                                            @elseif ($item->is_hot)
+                                                                <li class="sale-badge">Hot</li>
+                                                            @elseif ($item->is_hot_deal)
+                                                                <li class="sale-badge">Hot Deal</li>
+                                                            @endif
+                                                        @endif
                                                     </ul>
+                                                    
                                                 </div>
                                                 <div class="product-hover-action">
                                                     <ul>
@@ -55,7 +66,7 @@
                                                             </a>
                                                         </li>
                                                         <li>
-                                                            <form action="{{ route('clients.cart.add') }}" method="POST">
+                                                            <form action="{{ route('clients.cart.add') }}" method="POST" onsubmit="return checkSoLuong({{ $item->so_luong }})">
                                                                 @csrf
                                                                 <input type="hidden" name="qtybutton" value="1">
                                                                 <input type="hidden" name="product_id" value="{{$item->id}}">
@@ -100,7 +111,17 @@
                                                 <a href="{{route('clients.detailProduct',$item->id)}}"><img src="{{Storage::url($item->hinh_anh)}}" alt="#"></a>
                                                 <div class="product-badge">
                                                     <ul>
-                                                        <li class="sale-badge">{{$item->is_new == 1 ? 'New' : ''}}</li>
+                                                        @if ($item->so_luong == 0)
+                                                            <li class="sale-badge">Hết hàng</li>
+                                                        @else
+                                                            @if ($item->is_new)
+                                                                <li class="sale-badge">New</li>
+                                                            @elseif ($item->is_hot)
+                                                                <li class="sale-badge">Hot</li>
+                                                            @elseif ($item->is_hot_deal)
+                                                                <li class="sale-badge">Hot Deal</li>
+                                                            @endif
+                                                        @endif
                                                     </ul>
                                                 </div>
                                             </div>
@@ -123,9 +144,16 @@
                                                             </a>
                                                         </li>
                                                         <li>
-                                                            <a href="#" title="Add to Cart" data-bs-toggle="modal" data-bs-target="#add_to_cart_modal">
-                                                                <i class="fas fa-shopping-cart"></i>
-                                                            </a>
+                                                            <form action="{{ route('clients.cart.add') }}" method="POST" onsubmit="return checkSoLuong({{ $item->so_luong }})">
+                                                                @csrf
+                                                                <input type="hidden" name="qtybutton" value="1">
+                                                                <input type="hidden" name="product_id" value="{{$item->id}}">
+                                                                <button type="submit" style="background: none; border: none" >
+                                                                    
+                                                                        <i class="fas fa-shopping-cart"></i>
+                                                                    
+                                                                </button>
+                                                            </form>
                                                         </li>
                                                         <li>
                                                             <a href="#" title="Wishlist" data-bs-toggle="modal" data-bs-target="#liton_wishlist_modal">
@@ -282,4 +310,18 @@
      </div>
  </div>
     
+@endsection
+
+@section('js')
+<script>
+    function checkSoLuong(soLuong) {
+        // Kiểm tra số lượng hàng tồn kho
+        if (soLuong > 0) {
+            return true;  // Cho phép gửi biểu mẫu
+        } else {
+            alert('Không còn hàng trong kho.');
+            return false; // Ngăn gửi biểu mẫu
+        }
+    }
+</script>
 @endsection
