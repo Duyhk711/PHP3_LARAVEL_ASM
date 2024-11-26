@@ -17,7 +17,7 @@
                 <div class="card-body p-3 rounded">
                     <div class="white_card_body QA_section">
                         <div class="QA_table ">
-                            <form action="{{ route('sanpham.store') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('admins.sanphams.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="row">
@@ -29,7 +29,7 @@
                                                 <option selected>-- Chọn danh mục --</option>
                                                 @foreach ($listDm as $item)
                                                     <option value="{{ $item->id }}"
-                                                        {{ old($item->ten_danh_muc) == $item->id ? 'selected' : '' }}>
+                                                        {{ old('danh_muc_id') == $item->id ? 'selected' : '' }}>
                                                         {{ $item->ten_danh_muc }}
                                                     </option>
                                                 @endforeach
@@ -140,11 +140,14 @@
                                         <label for="">Tùy chỉnh khác</label> <br>
                                         <div class="row d-flex justify-content-between row-cols-lg-2">
                                             <div class="mb-2  col">
+                                                {{-- s --}}
                                                 <div class="form-check form-switch">
                                                     <input class="form-check-input bg-danger" type="checkbox"
                                                         role="switch" id="is_new" name="is_new" checked>
                                                     <label class="form-check-label" for="is_new">New</label>
                                                 </div>
+                                                {{-- e --}}
+
                                                 <div class="form-check  form-switch">
                                                     <input class="form-check-input bg-info" type="checkbox"
                                                         role="switch" id="is_hot_deal" name="is_hot_deal" checked>
@@ -327,3 +330,4 @@
 @section('pages-title')
     {{ $pages_title }}
 @endsection
+

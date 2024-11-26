@@ -6,64 +6,97 @@
                 <div class="card-header pb-0 pt-3 bg-transparent ">
                     <h4 class="text-capitalize text-center">{{ $title }}</h4>
                 </div>
-                {{-- <div class="d-flex justify-content-end ">
-                <a class="btn btn-success mx-4" href="{{ route('sanpham.create') }}">Thêm mới sản phẩm</a>
-                </div> --}}
-                <div class="card-body p-3 ">
-                    <div class="container">
-                        <div class="table-responsive  border-4 ">
-                            <table class="table  table-hover p-0  table-bordered shadow p-3 mb-5 bg-body rounded">
-                                <thead class="table-danger">
+                @if (session('error'))
+                    <div class="alert text-danger m-2">{{ session('error') }}</div>
+                @endif
+                @if (session('success'))
+                    <div class="alert text-success m-2">{{ session('success') }}</div>
+                @endif
+                <div class="card-body container ">
+                    <div class=" container p-0">
+                        <table class="table align-items-center justify-content-center mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder  opacity-7">
+                                        Mã đơn
+                                    </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
+                                        Ngày đặt
+                                    </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
+                                        Tổng 
+                                    </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
+                                        Trạng thái
+                                    </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
+                                        &nbsp;
+                                    </th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($data as $item)
                                     <tr>
-                                        <th class="text-center">Mã đơn</th>
-                                        <th class="text-center">Người Nhận</th>
-                                        <th class="text-center">Email</th>
-                                        <th class="text-center">Số điện thoại</th>
-                                        <th class="text-center">Địa chỉ</th>
-                                        <th class="text-center">Ngày đặt</th>
-                                        <th class="text-center">PTTT</th>
-                                        <th class="text-center">Tổng </th>
+                                        <td>  
+                                            <h6 class="mb-0 text-sm">{{ $item->ma_don_hang }}</h6>
+                                        </td>
+                                       
+                                        <td class="text-center">
+                                            {{ $item->created_at->format('d-m-Y') }}
+                                        </td>
 
-                                    </tr>
-                                </thead>
-                                <tbody class="table-Default">
-                                    @forelse ($data as $item)
-                                        <tr>
-                                            <td class=" text-center  ">{{ $item->ma_don_hang }}</td>
+                                      
+                                        <td class="align-middle  text-center">
+                                           {{ number_format($item->tong_tien, 0 , ',', '.') }}đ
+                                        </td>
 
-                                            <td class=" text-center">{{ $item->ten_nguoi_nhan }}</td>
-                                            
-                                            <td class=" text-center" style="width: 100px; overflow: hidden;">
-                                                {{ $item->email_nguoi_nhan }}
-                                            </td>
+                                        <td class="align-middle text-center">
+                                            <form action="{{route('admins.donhangs.update', $item->id )}}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <select name="trang_thai_don_hang" class="form-select" 
+                                                onchange="confirmSubmit(this)" data-default-value="{{$trangThaiDonHang[$item->trang_thai_don_hang]}}">
+                                                    @foreach ($trangThaiDonHang as $key => $value)
+                                                        <option value="{{ $key }}" 
+                                                        {{ $key == $item->trang_thai_don_hang ? 'selected' : '' }}
+                                                        {{ $key == 'huy_don_hang' ? 'disabled' : '' }}>
+                                                            {{ $value }}
 
-                                            <td class=" text-center" style="width: 100px; overflow: hidden;">
-                                                {{ $item->so_dien_thoai }}
-                                            </td>
-                                            <td class=" text-center" style="width: 100px; overflow: hidden;">
-                                                {{ $item->dia_chi }}
-                                            </td>
-                                            <td class=" text-center">{{ $item->ngay_dat }}</td>
-
-
-                                            <td class=" text-center">{{ $item->phuong_thuc_thanh_toan }}</td>
-
-                                            <td class=" text-center">{{ $item->tong_tien }}</td>
-
-                                            <td>
-                                                <div class="text-center">
-                                                    <a class=" text-center text-Primary m-1" href=""> Xem Chi Tiết
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </form>
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            <div class="row">
+                                                    <a href="{{route('admins.donhangs.show', $item->id)}}" class="col-lg-6">
+                                                        <i class="fa-solid fa-eye fa-xl"></i>
                                                     </a>
-
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @empty
-                                    @endforelse
-                                </tbody>
-                            </table>
-                            {{ $data->links() }}
-                        </div>
+                                                
+                                                    @if ($item->trang_thai_don_hang === $type_huy_don_hang )
+                                                        <form action="{{ route('admins.donhangs.destroy', $item->id) }}" method="POST"
+                                                            class="d-inline col-lg-6">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" 
+                                                                onclick="return confirm('Có chắc chắn xóa sản phẩm không?')"
+                                                                class="text-danger p-0"
+                                                                style="border: none; background: none; ">
+                                                                <i class="fa-solid fa-delete-left fa-xl"></i>
+                                                            </button>
+                                                        </form>
+                                                    @endif
+                                                
+                                            </div>
+                                        </td>
+                                        
+                                    </tr>
+                                @empty
+                                @endforelse
+                            </tbody>
+                        </table>
+                        {{$data->links('pagination::bootstrap-5')}}
                     </div>
                 </div>
             </div>
@@ -72,6 +105,21 @@
     </div>
 @endsection
 
+@section('js')
+    <script>
+        function confirmSubmit(selectElement){
+            var form = selectElement.form;
+            var selectedOption =  selectElement.options[selectElement.selectedIndex].text;
+            var defaultValue = selectElement.getAttribute('data-default-value');
+
+            if (confirm('Bạn có chắc chắn thay đổi trạng thái đơn hàng thành: "' + selectedOption + '" không?')) {
+                form.submit();
+            } else {    
+                selectElement.value = defaultValue;
+            }
+        }
+    </script>
+@endsection
 @section('pages-title')
     {{ $pages_title }}
 @endsection

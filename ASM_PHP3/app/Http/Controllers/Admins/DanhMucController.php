@@ -51,7 +51,7 @@ class DanhMucController extends Controller
             }
             $params['hinh_anh'] = $filePath;
             DanhMuc::create($params);
-            return redirect()->route('danhmuc.index')->with('msg','Thêm danh mục thành công');
+            return redirect()->route('admins.danhmucs.index')->with('msg','Thêm danh mục thành công');
         }
         
     }
@@ -62,6 +62,7 @@ class DanhMucController extends Controller
     public function show(string $id)
     {
         //
+        
     }
 
     /**
@@ -96,7 +97,7 @@ class DanhMucController extends Controller
             }
             $params['hinh_anh'] = $filePath;
             $danhMuc->update($params);
-            return redirect()->route('danhmuc.index')->with('success', 'Cập nhật danh mục thành công');
+            return redirect()->route('admins.danhmucs.index')->with('success', 'Cập nhật danh mục thành công');
         }
     }
 

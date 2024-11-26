@@ -22,20 +22,14 @@
 
                 <div class="wrapper row">
                     <div class="preview col-md-6">
-                        <div class="preview-pic tab-content">
-                            <div class="tab-pane" id="pic-1">
-                                <img src="./img/iphone-14-pro-128gb-likenew-2-didongviet_4.webp">
-                            </div>
-                            <div class="tab-pane" id="pic-2">
-                                <img src="./img/iphone-14-pro-128gb-likenew-2-didongviet_4.webp">
-                            </div>
-                            <div class="tab-pane active" id="pic-3">
-                                <img src="./img/tải xuống (1).jpg">
+                        <div class="">
+                            <div class="" >
+                                <img src="{{ Storage::url($sanPham->hinh_anh) }}" width="600px" height="500px">
                             </div>
                         </div>
                     </div>
                     <div class="details col-md-6">
-                        <h3 class="product-title">Samsung Galaxy Tab 10.1 3G 16G</h3>
+                        <h3 class="product-title">{{$sanPham->ten_san_pham}}</h3>
                         <div class="rating">
                             <div class="stars">
                                 <span class="fa fa-star checked"></span>
@@ -44,26 +38,14 @@
                                 <span class="fa fa-star"></span>
                                 <span class="fa fa-star"></span>
                             </div>
-                            <span class="review-no">999 reviews</span>
+                            <span class="review-no">{{ $sanPham->luot_xem }}</span>
                         </div>
-                        <p class="product-description">Màn hình 10.1 inch cảm ứng đa điểm</p>
-                        <small class="text-muted">Giá cũ: <s><span>10,990,000.00 vnđ</span></s></small>
-                        <h4 class="price">Giá hiện tại: <span>10,990,000.00 vnđ</span></h4>
+                        <p class="product-description">{{ $sanPham->mo_ta_ngan}}</p>
+                        <small class="text-muted">Giá cũ: <s><span>{{ $sanPham->gia_khuyen_mai}} vnđ</span></s></small>
+                        <h4 class="price">Giá hiện tại: <span>{{ $sanPham->gia_san_pham}} vnđ</span></h4>
                         <p class="vote"><strong>100%</strong> hàng <strong>Chất lượng</strong>, đảm bảo
                             <strong>Uy
                                 tín</strong>!</p>
-                        <h5 class="sizes">sizes:
-                            <span class="size" data-toggle="tooltip" title="cỡ Nhỏ">s</span>
-                            <span class="size" data-toggle="tooltip" title="cỡ Trung bình">m</span>
-                            <span class="size" data-toggle="tooltip" title="cỡ Lớn">l</span>
-                            <span class="size" data-toggle="tooltip" title="cỡ Đại">xl</span>
-                        </h5>
-                        <h5 class="colors">colors:
-                            <span class="color orange not-available" data-toggle="tooltip"
-                                title="Hết hàng"></span>
-                            <span class="color green"></span>
-                            <span class="color blue"></span>
-                        </h5>
                         <div class="form-group">
                             <label for="soluong">Số lượng đặt mua:</label>
                             <input type="number" class="form-control" id="soluong" name="soluong">
@@ -84,7 +66,7 @@
             <h3>Thông tin chi tiết về Sản phẩm</h3>
             <div class="row">
                 <div class="col">
-                    Vi xử lý Dual-core 1 Cortex-A9 tốc độ 1GHz
+                  {{ strip_tags($sanPham->noi_dung) }}
                 </div>
             </div>
         </div>

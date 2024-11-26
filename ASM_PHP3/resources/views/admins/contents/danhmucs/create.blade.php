@@ -17,7 +17,7 @@
 
                     <div class="card-body">
                         
-                            <form action="{{route('danhmuc.store')}}" method="POST" enctype="multipart/form-data">
+                            <form action="{{route('admins.danhmucs.store')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                 <div class="col-lg-6">
@@ -50,7 +50,7 @@
 
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        <label for="hinh_anh" class="form-label">Tên Danh Mục</label>
+                                        <label for="hinh_anh" class="form-label">Hình ảnh</label>
                                         <input type="file" name="hinh_anh" id="hinh_anh" 
                                             class="form-control @error('hinh_anh') is-invalid @enderror"
                                             onchange="showImage(event)"
